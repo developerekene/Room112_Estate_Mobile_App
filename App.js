@@ -1,12 +1,13 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
-import Supplier from './src/screens/supplier-screens/Supplier';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, View } from "react-native";
+import Supplier from "./src/screens/supplier-screens/Supplier";
 
 export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <Supplier />
+      {/* <Supplier /> */}
+      <ConsumerHeader />
     </View>
   );
 }
@@ -14,8 +15,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

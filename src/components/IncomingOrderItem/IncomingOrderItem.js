@@ -1,24 +1,21 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { useFonts, Manrope_400Regular, Manrope_700Bold, Manrope_300Light, Manrope_500Medium } from '@expo-google-fonts/manrope';
-import AppLoading from 'expo-app-loading';
 
-function IncomingOrderItem({image, title, location, qty, name, date}) {
+function IncomingOrderItem({image, title, location, qty, name, date, showModal, modalId, fonts}) {
 
-    let [fontsLoaded] = useFonts({
-        Manrope_400Regular,
-        Manrope_700Bold,
-        Manrope_300Light,
-        Manrope_500Medium
-    });
-
-    if (!fontsLoaded) {
-        return <AppLoading />;
-    }
+    const { Manrope_400Regular, Manrope_700Bold, Manrope_300Light, Manrope_500Medium } = fonts;
 
     return (
-        <TouchableOpacity style={styles.container}>
+        <TouchableOpacity onPress={() => {
+            showModal(modalId, {
+                requester: name,
+                quantity: qty,
+                phone: "09088764533",
+                address: "44, Alidada street, Okota, Lagos",
+                description: "Lorem ispsum ruh’un tehs jsh rem kahk lsurem."
+            })
+        }} style={styles.container}>
             <Image source={image} />
             <View style={styles.section}>
                 <View style={styles.nameSection}>

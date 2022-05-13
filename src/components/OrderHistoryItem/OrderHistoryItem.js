@@ -1,21 +1,9 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image, Platform } from 'react-native';
-import { useFonts, Manrope_400Regular, Manrope_700Bold, Manrope_300Light, Manrope_500Medium } from '@expo-google-fonts/manrope';
-import AppLoading from 'expo-app-loading';
 
+function OrderHistoryItem({ image, title, status, date, subtitle, fonts }) {
 
-function OrderHistoryItem({ image, title, status, date, subtitle }) {
-
-    let [fontsLoaded] = useFonts({
-        Manrope_400Regular,
-        Manrope_700Bold,
-        Manrope_300Light,
-        Manrope_500Medium
-    });
-
-    if (!fontsLoaded) {
-        return <AppLoading />;
-    }
+    const { Manrope_400Regular, Manrope_700Bold, Manrope_300Light, Manrope_500Medium } = fonts;
 
     return (
        <View style={{

@@ -1,8 +1,27 @@
 import React from 'react';
-import { Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
+import { useFonts, Manrope_400Regular, Manrope_700Bold, Manrope_300Light, Manrope_500Medium } from '@expo-google-fonts/manrope';
+
 import OrderHistoryItem from '../../../../components/OrderHistoryItem/OrderHistoryItem';
 
 function OrderHistory(props) {
+
+    let [fontsLoaded] = useFonts({
+        Manrope_400Regular,
+        Manrope_700Bold,
+        Manrope_300Light,
+        Manrope_500Medium
+    });
+
+    if (!fontsLoaded) {
+        return (
+            <View
+                style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                <Text>loading...</Text>
+            </View>
+        );
+    }
+
     const data = [
         {
             title: "Arizona Inc.",
@@ -53,7 +72,13 @@ function OrderHistory(props) {
                         title={el.title} 
                         status={el.status} 
                         date={el.date} 
-                        subtitle={el.subtitle} />
+                        subtitle={el.subtitle}
+                        fonts={{
+                            Manrope_400Regular,
+                            Manrope_700Bold,
+                            Manrope_300Light,
+                            Manrope_500Medium
+                        }} />
                 )
             })}
         </ScrollView>

@@ -1,7 +1,10 @@
+import Onboarding from './OnboardingScreen';
 import OrganizerApp from './OrganizerApp';
 
 export default function App() {
   return (
-    <OrganizerApp />
+    <Onboarding/>
+      // <OrganizerApp/>
+    
   );
 }

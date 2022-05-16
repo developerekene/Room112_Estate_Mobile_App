@@ -18,27 +18,29 @@ function ConsumerHeader({ title }) {
 
 const styles = StyleSheet.create({
   toolbar: {
-    width: "100%",
-    height: 68,
-    padding: 20,
+    padding: 10,
     flexDirection: "row",
     alignItems: "center",
   },
+  consumerHeader: {
+    flexDirection: "row",
+    justifyContent: "center",
+    position: "absolute",
+    top: 0,
+  },
   toolbarTxt: {
     color: "#21334F",
-    fontSize: 14,
+    fontSize: 10,
     marginHorizontal: 5,
   },
   topContainer: {
-    width: "100%",
-    height: 48,
-    paddingHorizontal: 20,
+    paddingHorizontal: 70,
     justifyContent: "center",
   },
   topContainerTxt: {
-    fontSize: 24,
+    fontSize: 10,
     fontWeight: "bold",
   },
 });
 
-export default SupplierHeader;
+export default ConsumerHeader;

@@ -5,12 +5,27 @@ import ConsumerHeader from "./src/components/ConsumerHeader/ConsumerHeader";
 import BottomNavigation from "./src/navigators/consumer-navigators/ConsumerBottomNavigation/BottomNavigation";
 import ConsumptionLevelScreen from "./src/screens/consumer-screens/ConsumerDetails/ConsumptionLevelScreen";
 import SearchScreen from "./src/screens/consumer-screens/ConsumerDetails/SearchScreen";
-import { useFonts, Manrope } from "@expo-google-fonts/inter";
-import { AppLoading } from "expo";
+import {
+  Manrope_200ExtraLight,
+  Manrope_300Light,
+  Manrope_400Regular,
+  Manrope_500Medium,
+  Manrope_600SemiBold,
+  Manrope_700Bold,
+  Manrope_800ExtraBold,
+} from "@expo-google-fonts/manrope";
+import { useFonts } from "expo-font";
+import AppLoading from "expo-app-loading";
 
 export default function App() {
-  let [fontsLoaded] = useFonts({
-    Manrope,
+  let [fontsLoaded, error] = useFonts({
+    Manrope_200ExtraLight,
+    Manrope_300Light,
+    Manrope_400Regular,
+    Manrope_500Medium,
+    Manrope_600SemiBold,
+    Manrope_700Bold,
+    Manrope_800ExtraBold,
   });
   if (!fontsLoaded) {
     return <AppLoading />;
@@ -35,6 +50,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-    fontFamily: "Manrope",
+    fontFamily: "Manrope_600SemiBold",
   },
 });

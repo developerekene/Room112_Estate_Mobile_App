@@ -1,5 +1,4 @@
 import React from "react";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -10,11 +9,13 @@ import AccountTab, { accountName } from "./SupplierBottomTabs/AccountTab";
 const Tab = createBottomTabNavigator();
 
 function SupplierNavigation(props) {
-  const insets = useSafeAreaInsets();
 
   return (
     <NavigationContainer>
       <Tab.Navigator
+        safeAreaInsets={{
+          bottom: 10
+        }}
         initialRouteName={homeName}
         screenOptions={({ route }) => ({
           headerShown: false,

@@ -2,9 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-function IncomingOrderItem({image, title, location, qty, name, date, showModal, modalId, fonts}) {
-
-    const { Manrope_400Regular, Manrope_700Bold, Manrope_300Light, Manrope_500Medium } = fonts;
+function IncomingOrderItem({image, title, location, qty, name, date, showModal, modalId }) {
 
     return (
         <TouchableOpacity onPress={() => {

@@ -1,10 +1,7 @@
-import Onboarding from './OnboardingScreen';
-import OrganizerApp from './OrganizerApp';
-
+import OrganizerApp from "./OrganizerApp";
+import ChangePassword from "./src/screens/consumer-screens/ConsumerDetails/changePassword";
 export default function App() {
-  return (
-    <Onboarding/>
-      // <OrganizerApp/>
-    
-  );
+  return <ChangePassword />;
 }
+
+//<OrganizerApp />

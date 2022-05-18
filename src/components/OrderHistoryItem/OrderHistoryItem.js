@@ -1,9 +1,7 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image, Platform } from 'react-native';
 
-function OrderHistoryItem({ image, title, status, date, subtitle, fonts }) {
-
-    const { Manrope_400Regular, Manrope_700Bold, Manrope_300Light, Manrope_500Medium } = fonts;
+function OrderHistoryItem({ image, title, status, date, subtitle }) {
 
     return (
        <View style={{

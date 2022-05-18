@@ -1,21 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
-import Supplier from './src/screens/supplier-screens/Supplier';
-
+import OrganizerApp from "./OrganizerApp";
+import ChangePassword from "./src/screens/consumer-screens/ConsumerDetails/changePassword";
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <StatusBar style="auto" />
-      <Supplier />
-    </View>
-  );
+  return <ChangePassword />;
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+//<OrganizerApp />

@@ -2,24 +2,28 @@ import {
   StyleSheet,
   Text,
   View,
-  SafeAreaView,
   Dimensions,
   Image,
   Pressable,
 } from "react-native";
 import React from "react";
 import Menu from "../../../components/ConsumerAccount/Menu";
+import { Feather } from '@expo/vector-icons';
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const AccountScreen = ({ navigation }) => {
   return (
+    <>
     <View style={styles.homeheader}>
       <View style={styles.profileHeader}>
         <Text style={styles.title}>My Profile</Text>
         <View style={styles.headerprofile}>
-          <Image
-            style={styles.avatar}
-            source={require("../../../../assets/avatarpix.png")}
-          />
+          <View style={{height: 100, width: 100, borderRadius: 50, borderWidth: 3, borderColor: "#fff"}}>
+            <Image
+              style={styles.avatar}
+              source={require("../../../../assets/customers/customer-profile-pic.jpg")}
+            />
+          </View>
           <View style={styles.profiledetails}>
             <Text style={styles.name}>Abimbola Thomas</Text>
             <Text style={styles.email}>abimbolathomas@gmail.com</Text>
@@ -29,15 +33,17 @@ const AccountScreen = ({ navigation }) => {
           </View>
         </View>
       </View>
-      <Menu style={styles.menu} />
-      <Pressable style={styles.btnprimary}>
-        <Image
-          style={styles.btnImage}
-          source={require("../../../../assets/Sign-out.png")}
-        />
-        <Text style={styles.btnPrimaryText}>LogOut</Text>
-      </Pressable>
+      <View style={{flex: 1, justifyContent: "space-between"}}>
+        <Menu style={styles.menu} />
+        <Pressable style={{ paddingHorizontal: 20, marginBottom: 30 }}>
+          <View style={styles.btnprimary}>
+            <Feather name="log-out" size={24} color="#147DF5" />
+            <Text style={styles.btnPrimaryText}>Logout</Text>
+          </View>
+        </Pressable>
+      </View>
     </View>
+    </>
   );
 };
 
@@ -48,68 +54,57 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     display: "flex",
-    flexDirection: "column",
     alignItems: "center",
-    justifyContent: "space-between",
   },
   profileHeader: {
     backgroundColor: "#147DF5",
     display: "flex",
-    flex: 1,
     width: "100%",
-    height: 222,
-    position: "absolute",
-    top: 0,
+    height: 242,
+    padding: 20,
+    paddingVertical: 30
   },
   avatar: {
-    height: 94,
-    width: 94,
-    position: "absolute",
-    left: 16,
-    top: 90,
-    resizeMode: "contain",
+    height: "100%",
+    width: "100%",
+    borderRadius: 50,
+    resizeMode: "cover",
   },
   title: {
     fontSize: 24,
-    fontWeight: "bold",
-    color: "white",
-    height: 33,
-    position: "absolute",
-    width: 116,
-    left: 16,
-    top: 40,
+    fontFamily: "Manrope_700Bold",
+    color: "#FFFFFF",
+  },
+  headerprofile: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 25
+  },
+  profiledetails: {
+    marginLeft: 10
   },
   name: {
     color: "white",
     fontSize: 16,
     fontWeight: "bold",
-    position: "absolute",
-    height: 22,
-    width: 200,
-    top: 90,
-    left: 126,
+    fontFamily: "Manrope_600SemiBold",
   },
   email: {
-    height: 16,
-    width: 220,
-    left: 126,
-    position: "absolute",
-    top: 110,
+    fontFamily: "Manrope_400Regular",
     color: "white",
   },
   btn: {
-    position: "absolute",
-    height: 20,
-    width: 80,
-    left: 126,
-    top: 130,
+    width: 100,
+    padding: 3,
     borderWidth: 1,
     borderColor: "white",
     justifyContent: "center",
     alignItems: "center",
+    marginTop: 10
   },
   btnText: {
     color: "white",
+    fontFamily: "Manrope_700Bold",
   },
   iconavatar: {
     height: 22,
@@ -125,26 +120,23 @@ const styles = StyleSheet.create({
   profilebtn: {
     width: 14,
     height: 8,
-    position: "absolute",
-    left: 10,
   },
   menu: {
     flex: 1,
   },
   btnprimary: {
-    width: 329,
+    width: "100%",
     height: 50,
+    fontFamily: "Manrope_600SemiBold",
     borderWidth: 2,
     borderColor: "#147DF5",
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    position: "absolute",
-    bottom: 50,
   },
   btnPrimaryText: {
     fontSize: 16,
-    fontWeight: "bold",
+    fontFamily: "Manrope_600SemiBold",
     textAlign: "left",
     color: "#147DF5",
     paddingLeft: 5,

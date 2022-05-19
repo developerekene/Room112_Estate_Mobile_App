@@ -2,22 +2,29 @@ import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 import { AntDesign } from "react-native-vector-icons";
 
-const Product = (props) => {
-  const { company, address, price, quantity, link, imageUrl, rating } =
-    props.product;
+const Product = ({product, index}) => {
+  // console.log(right);
+  const { company, address, price, quantity, link, imageUrl, rating } = product;
+  const containerPadding = index % 2 > 0 ? {paddingLeft: 5} : {paddingRight: 5}
   return (
-    <View style={styles.container}>
-      <Image style={styles.card} source={imageUrl} />
-      <Text style={styles.ratingNo}>{rating}</Text>
-      <Text style={styles.companyText}>{company}</Text>
-      <Text style={styles.addressText}>{address}</Text>
-      <View style={styles.priceQuantity}>
-        <Text style={styles.priceText}>{price}</Text>
-        <Text style={styles.quantityText}> {quantity}</Text>
-      </View>
-      <View style={styles.products_links}>
-        <Text style={styles.linkText}>{link}</Text>
-        <AntDesign name="right" size={20} color="rgba(20, 125, 245, 1)" />
+    <View style={[{width: "50%"}, containerPadding]}>
+      <View style={styles.container}>
+        <View style={{ height: 90 }}>
+          <Image style={styles.card} source={imageUrl} />
+          <View style={styles.ratingNo}>
+            <Text style={[styles.rating, {color:"#000"}]}>{rating}</Text>
+          </View>
+        </View>
+        <Text style={styles.companyText}>{company}</Text>
+        <Text style={styles.addressText}>{address}</Text>
+        <View style={styles.priceQuantity}>
+          <Text style={styles.priceText}>{price}</Text>
+          <Text style={styles.quantityText}> {quantity}</Text>
+        </View>
+        <View style={styles.products_links}>
+          <Text style={styles.linkText}>{link}</Text>
+          <AntDesign name="right" size={14} color="#147DF5" />
+        </View>
       </View>
     </View>
   );
@@ -28,50 +35,53 @@ export default Product;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
-    zIndex: 5,
-    padding: 10,
-    marginTop: 15,
-    marginRight: 5,
-    marginLeft: 10,
+    width: "100%",
+    // zIndex: 5,
+    marginBottom: 15,
+    // marginRight: 3,
+    // marginLeft: 3,
+    paddingHorizontal: 7,
+    paddingVertical: 10,
     borderColor: "white",
-    borderWidth: 1,
+    // borderWidth: 1,
+    shadowOffset: { width: 0, height: 2.5 },
+    shadowColor: '#BEBEBE',
+    shadowOpacity: 1,
+    elevation: 10,
   },
   card: {
-    width: 156,
-    height: 85,
-    padding: 20,
+    width: "100%",
+    height: "100%",
+    resizeMode: "cover",
   },
   companyText: {
     fontSize: 14,
-    fontWeight: "normal",
+    fontFamily: "Manrope_400Regular",
     textAlign: "left",
     color: "rgba(33, 51, 79, 1)",
-    padding: 5,
+    marginBottom: 5
   },
   addressText: {
     fontSize: 12,
-    fontWeight: "normal",
+    fontFamily: "Manrope_400Regular",
     textAlign: "left",
     color: "rgba(33, 51, 79, 1)",
-    padding: 5,
+    marginBottom: 2
   },
   priceQuantity: {
     flexDirection: "row",
-    //justifyContent: "center",
   },
   priceText: {
     fontSize: 12,
-    fontWeight: "bold",
+    fontFamily: "Manrope_700Bold",
     textAlign: "left",
     color: "rgba(33, 51, 79, 1)",
-    padding: 1,
   },
   quantityText: {
     fontSize: 12,
-    fontWeight: "bold",
+    fontFamily: "Manrope_400Regular",
     textAlign: "left",
     color: "rgba(33, 51, 79, 1)",
-    padding: 1,
   },
   products_links: {
     flexDirection: "row",
@@ -81,19 +91,20 @@ const styles = StyleSheet.create({
   },
   linkText: {
     fontSize: 12,
-    fontWeight: "bold",
+    fontFamily: "Manrope_700Bold",
     textAlign: "left",
     color: "rgba(20, 125, 245, 1)",
   },
   ratingNo: {
     position: "absolute",
-    top: 50,
+    bottom: 10,
     right: 10,
-    backgroundColor: "#21334F",
-    width: 54,
-    height: 30,
-    borderRadius: 25,
-    color: "#fff",
+    backgroundColor: "#21334F40",
+    // width: 54,
+    // height: 24,
+    borderRadius: 20,
     padding: 5,
+    justifyContent:"center",
+    alignItems:"center",
   },
 });

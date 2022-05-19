@@ -1,17 +1,9 @@
-import React from "react";
-import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
-import InputComponents from "./src/components/InputComponents";
-import ButtonComponents from "./src/components/ButtonComponents";
-import Container from "./src/components/Container";
-import SupplierScreen from "./src/screens/SupplierScreen/SupplierScreen";
-import ConsumerScreen from "./src/screens/ConsumerScreen/ConsumerScreen";
-import ForgotPasswordScreen from "./src/screens/ForgotPasswordScreen/ForgotPasswordScreen";
+import { StyleSheet } from 'react-native';
+import SprintOneFlowOneApp from "./SprintOneFlowOneApp";
 
-export default function App() {
+export default function OrganizerApp() {
   return (
-    <Container>
-      <SupplierScreen />
-    </Container>
+    <SprintOneFlowOneApp />
   );
 }
 

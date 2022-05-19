@@ -1,12 +1,14 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-export default function productDetails() {
+const buyNow = () => {
   return (
     <View>
-      <Text>productDetails</Text>
+      <Text>buyNow</Text>
     </View>
   );
-}
+};
+
+export default buyNow;
 
 const styles = StyleSheet.create({});

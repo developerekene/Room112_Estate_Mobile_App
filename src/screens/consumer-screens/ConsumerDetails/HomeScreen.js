@@ -7,10 +7,12 @@ import {
   Image,
   FlatList,
 } from "react-native";
+import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
 import React from "react";
 import HomePageHeader from "../../../components/ConsumerHeader/HomePageHeader";
 import { AntDesign, Fontisto } from "@expo/vector-icons";
 import Product from "../../../components/ConsumerHeader/Product";
+
 const products = [
   {
     company: "Arinzona Water Inc",
@@ -70,43 +72,45 @@ const products = [
 
 const HomeScreen = () => {
   return (
-    <ScrollView>
+    <SafeAreaProvider>
       <View style={styles.container}>
-        <HomePageHeader />
-        <View style={styles.containerBar}>
-          <AntDesign
-            name="barschart"
-            style={styles.icon}
-            size={24}
-            color="#FFBE0B"
-          />
-          <View>
-            <Text style={styles.title}>Your consumption level is 65.89%</Text>
-            <Text style={styles.subTitle}>Today 02 Apr 2022</Text>
+        <ScrollView horizontal={false}>
+          <HomePageHeader />
+          <View style={styles.containerBar}>
+            <AntDesign
+              name="barschart"
+              style={styles.icon}
+              size={24}
+              color="#FFBE0B"
+            />
+            <View>
+              <Text style={styles.title}>Your consumption level is 65.89%</Text>
+              <Text style={styles.subTitle}>Today 02 Apr 2022</Text>
+            </View>
+            <Fontisto
+              name="angle-right"
+              style={styles.icon}
+              size={24}
+              color="#000"
+            />
           </View>
-          <Fontisto
-            name="angle-right"
-            style={styles.icon}
-            size={24}
-            color="#000"
+          <View style={styles.navBelow}>
+            <Text style={styles.navBelowNotoutlined}>Suppliers</Text>
+            <Text style={styles.navBelowOutlined}>See all</Text>
+          </View>
+          <FlatList
+            numColumns={2}
+            data={products}
+            keyExtractor={(_, index) => index.toString()}
+            renderItem={({ item }) => <Product product={item} />}
           />
-        </View>
-        <View style={styles.navBelow}>
-          <Text style={styles.navBelowNotoutlined}>Suppliers</Text>
-          <Text style={styles.navBelowOutlined}>See all</Text>
-        </View>
-        <FlatList
-          numColumns={2}
-          data={products}
-          keyExtractor={(_, index) => index.toString()}
-          renderItem={({ item }) => <Product product={item} />}
-        />
-        <Image
-          style={styles.frame}
-          source={require("../../../../assets/HomePageImg/frame.png")}
-        />
+          <Image
+            style={styles.frame}
+            source={require("../../../../assets/HomePageImg/frame.png")}
+          />
+        </ScrollView>
       </View>
-    </ScrollView>
+    </SafeAreaProvider>
   );
 };
 

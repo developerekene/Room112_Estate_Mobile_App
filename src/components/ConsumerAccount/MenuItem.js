@@ -7,11 +7,11 @@ const MenuItem = (props) => {
   return (
     <View style={styles.menu}>
       <View style={styles.iconsection}>
-        <Image style={styles.menuicon} source={icon} />
+        { icon }
         <Text style={styles.title}>{tag}</Text>
       </View>
       <Pressable style={styles.profilebtn}>
-        <Ionicons name="chevron-forward" size={24} color="black" />
+        <Ionicons name="chevron-forward" size={18} color="black" />
       </Pressable>
     </View>
   );
@@ -25,16 +25,21 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "100%",
     justifyContent: "space-between",
-    marginTop: 20,
+    alignItems: "center",
+    // marginTop: 10,
+    paddingVertical: 10
+    
   },
   iconsection: {
     display: "flex",
     flexDirection: "row",
+    alignItems: "center",
     paddingLeft: 20,
   },
   menuicon: {
-    height: 23,
-    width: 23,
+    height: 26,
+    width: 26,
+    resizeMode: "contain",
   },
   profilebtn: {
     paddingRight: 20,
@@ -43,6 +48,6 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     color: "#21334F",
     fontSize: 14,
-    fontWeight: 400,
+    fontFamily: "Manrope_400Regular",
   },
 });

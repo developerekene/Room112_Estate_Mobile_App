@@ -13,10 +13,29 @@ import {
 import Colors from "../../components/Colors";
 import { AntDesign, Feather } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useFonts, Manrope_400Regular, Manrope_600SemiBold, Manrope_700Bold, Manrope_300Light, Manrope_500Medium } from '@expo-google-fonts/manrope';
 
 function SupplierHomePageScreen(props) {
+
+  let [fontsLoaded] = useFonts({
+    Manrope_400Regular,
+    Manrope_700Bold,
+    Manrope_300Light,
+    Manrope_600SemiBold,
+    Manrope_500Medium
+  });
+
+  if (!fontsLoaded) {
+      return (
+          <View
+              style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+              <Text>loading...</Text>
+          </View>
+      );
+  }
+
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.toobarSection}>
         <View style={styles.alermPart}>
           <Text style={styles.text}>Hi, Supplier 👋</Text>
@@ -46,7 +65,7 @@ function SupplierHomePageScreen(props) {
             style={{
               fontSize: 24,
               color: Colors.black,
-              fontWeight: "700",
+              fontFamily: 'Manrope_500Medium',
               marginLeft: 10,
             }}
           >
@@ -58,7 +77,7 @@ function SupplierHomePageScreen(props) {
             <Text
               style={{
                 textAlign: "center",
-                fontFamily: "Roboto",
+                fontFamily: "Manrope_700Bold",
                 fontSize: 40,
                 fontWeight: "900",
               }}
@@ -80,7 +99,7 @@ function SupplierHomePageScreen(props) {
             <Text
               style={{
                 textAlign: "center",
-                fontFamily: "Roboto",
+                fontFamily: "Manrope_700Bold",
                 fontSize: 40,
                 fontWeight: "900",
               }}
@@ -102,7 +121,7 @@ function SupplierHomePageScreen(props) {
             <Text
               style={{
                 textAlign: "center",
-                fontFamily: "Roboto",
+                fontFamily: "Manrope_700Bold",
                 fontSize: 40,
                 fontWeight: "900",
               }}
@@ -124,7 +143,7 @@ function SupplierHomePageScreen(props) {
             <Text
               style={{
                 textAlign: "center",
-                fontFamily: "Roboto",
+                fontFamily: "Manrope_700Bold",
                 fontSize: 40,
                 fontWeight: "900",
               }}
@@ -142,13 +161,12 @@ function SupplierHomePageScreen(props) {
           </View>
         </TouchableOpacity>
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: Platform.OS === "android" ? 25 : 0,
     backgroundColor: Colors.white,
 
     width: "100%",
@@ -167,7 +185,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: Colors.white,
-    fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
+    fontFamily: "Manrope_600SemiBold",
     fontSize: 16,
     fontWeight: "400",
   },
@@ -247,7 +265,7 @@ const styles = StyleSheet.create({
   },
   textSize: {
     fontSize: 16,
-    fontWeight: "300",
+    fontFamily: "Manrope_500Medium",
     color: Colors.black,
   },
 });

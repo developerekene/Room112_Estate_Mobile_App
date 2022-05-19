@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Text, StyleSheet, TextInput, Image, FlatList, Button, TouchableHighlight, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useFonts, Manrope_400Regular, Manrope_700Bold, Manrope_300Light, Manrope_500Medium } from '@expo-google-fonts/manrope';
 import ActionSheet, { SheetManager } from "react-native-actions-sheet";
 
 
@@ -233,22 +232,6 @@ function showReminderSuccessDetails(data) {
 }
 
 function FavouriteCustomers(props) {
-
-    let [fontsLoaded] = useFonts({
-        Manrope_400Regular,
-        Manrope_700Bold,
-        Manrope_300Light,
-        Manrope_500Medium
-    });
-
-    if (!fontsLoaded) {
-        return  (
-            <View
-                style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                <Text>loading...</Text>
-            </View>
-        );
-    }
 
     return (
         <SafeAreaView>

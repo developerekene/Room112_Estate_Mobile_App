@@ -2,15 +2,18 @@ import {
   StyleSheet,
   Text,
   View,
-  Dimensions,
-  ScrollView,
   Image,
-  FlatList,
+  FlatList
 } from "react-native";
 import React from "react";
 import HomePageHeader from "../../../components/ConsumerHeader/HomePageHeader";
 import { AntDesign, Fontisto } from "@expo/vector-icons";
 import Product from "../../../components/ConsumerHeader/Product";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { ScrollView } from 'react-native-virtualized-view';
+
+
+
 const products = [
   {
     company: "Arinzona Water Inc",
@@ -70,43 +73,68 @@ const products = [
 
 const HomeScreen = () => {
   return (
-    <ScrollView>
-      <View style={styles.container}>
-        <HomePageHeader />
-        <View style={styles.containerBar}>
-          <AntDesign
-            name="barschart"
-            style={styles.icon}
-            size={24}
-            color="#FFBE0B"
-          />
-          <View>
-            <Text style={styles.title}>Your consumption level is 65.89%</Text>
-            <Text style={styles.subTitle}>Today 02 Apr 2022</Text>
-          </View>
-          <Fontisto
-            name="angle-right"
-            style={styles.icon}
-            size={24}
-            color="#000"
-          />
+    <View style={{ height: "100%", width: "100%" }}>
+      <HomePageHeader />
+      {/* <ScrollView> */}
+        <View style={{width: "100%", height: "100%"  }}>
+          <ScrollView style={{padding: 20}}>
+            <View style={styles.containerBar}>
+              <View style={{flexDirection: "row", alignItems: "center"}}>
+                <View style={{ 
+                  backgroundColor: "#FFBE0B1A", 
+                  width: 42, 
+                  height: 42, 
+                  justifyContent: "center", 
+                  alignItems: "center",
+                  borderRadius: 21
+                    }}>
+                  <AntDesign
+                    name="barschart"
+                    style={styles.icon}
+                    size={24}
+                    color="#FFBE0B"
+                  />
+                </View>
+                <View style={{marginLeft: 10}}>
+                  <Text style={styles.title}>Your consumption level is 65.89%</Text>
+                  <Text style={styles.subTitle}>Today 02 Apr 2022</Text>
+                </View>
+              </View>
+              <Fontisto
+                name="angle-right"
+                style={styles.icon}
+                size={14}
+                color="#000"
+              />
+            </View>
+
+            <View style={styles.navBelow}>
+              <Text style={styles.navBelowNotoutlined}>Suppliers</Text>
+              <Text style={styles.navBelowOutlined}>See all</Text>
+            </View>
+            
+            <View style={{width: "100%", flex: 1, justifyContent: "center" }}>
+              <FlatList
+                numColumns={2}
+                data={products}
+                scrollEnabled={true}
+                keyExtractor={(_, index) => index.toString()}
+                renderItem={({ item, index }) => <Product product={item} index={index}
+                style={{
+                  backgroundColor: "#000"
+                }} />}
+              />
+              <Image
+                style={styles.frame}
+                source={require("../../../../assets/HomePageImg/frame.png")}
+              /> 
+            </View>
+            
+          </ScrollView>
         </View>
-        <View style={styles.navBelow}>
-          <Text style={styles.navBelowNotoutlined}>Suppliers</Text>
-          <Text style={styles.navBelowOutlined}>See all</Text>
-        </View>
-        <FlatList
-          numColumns={2}
-          data={products}
-          keyExtractor={(_, index) => index.toString()}
-          renderItem={({ item }) => <Product product={item} />}
-        />
-        <Image
-          style={styles.frame}
-          source={require("../../../../assets/HomePageImg/frame.png")}
-        />
-      </View>
-    </ScrollView>
+
+      {/* </ScrollView> */}
+    </View>
   );
 };
 
@@ -114,51 +142,48 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "center",
-    alignItems: "center",
+    // justifyContent: "center",
+    // alignItems: "center",
     backgroundColor: "#E5E5E5",
     height: "100%",
+    width: "100%"
   },
   containerBar: {
-    width: Dimensions.get("window").width - 20,
-    height: 100,
+    width: "100%",
+    height: 80,
     backgroundColor: "rgba(255, 190, 11, 0.1)",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: 20,
-    flex: 1,
-    // position: "absolute",
-    // top: 120,
+    padding: 10,
   },
   navBelow: {
-    width: Dimensions.get("window").width - 20,
+    width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
-    position: "absolute",
-    padding: 20,
-    top: 184,
-    flex: 1,
+    // paddingTop: 5,
+    // flex: 1,
+    padding: 10
   },
   title: {
     fontSize: 14,
-    fontWeight: "bold",
+    fontFamily: "Manrope_600SemiBold",
     textAlign: "left",
   },
   subTitle: {
     fontSize: 12,
-    fontWeight: "normal",
+    fontFamily: "Manrope_400Regular",
     textAlign: "left",
   },
   navBelowNotoutlined: {
     fontSize: 14,
-    fontWeight: "bold",
-    color: "rgba(33, 51, 79, 1)",
+    fontFamily: "Manrope_700Bold",
+    color: "#21334F",
   },
   navBelowOutlined: {
     color: " rgba(20, 125, 245, 1)",
     fontSize: 14,
-    fontWeight: "bold",
+    fontFamily: "Manrope_600SemiBold",
   },
   gridContainer: {
     width: "100%",
@@ -168,8 +193,9 @@ const styles = StyleSheet.create({
   frame: {
     // position: "absolute",
     // bottom: 0,
-    width: 346,
-    height: 233,
+    width: "100%",
+    marginVertical: 30,
+    marginBottom: 150,
     resizeMode: "contain",
   },
 });

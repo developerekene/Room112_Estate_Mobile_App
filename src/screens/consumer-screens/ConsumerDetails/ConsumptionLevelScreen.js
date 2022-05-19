@@ -2,7 +2,6 @@ import {
   StyleSheet,
   Text,
   View,
-  SafeAreaView,
   Dimensions,
   ScrollView,
   Pressable,
@@ -13,6 +12,7 @@ import ConsumerHeader from "../../../components/ConsumerHeader/ConsumerHeader";
 import { PieChart } from "react-native-chart-kit";
 import Legend from "./Legend";
 import { AntDesign } from "react-native-vector-icons";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const ConsumptionLevelScreen = () => {
   const chartConfig = {
@@ -84,7 +84,8 @@ const ConsumptionLevelScreen = () => {
   ];
 
   return (
-    <ScrollView contentContainerStyle={styles.scrollContainer}>
+    <SafeAreaView> 
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.safeAreaContainer}>
         <View style={styles.header}>
           <ConsumerHeader title="Statistics Level" />
@@ -198,6 +199,8 @@ const ConsumptionLevelScreen = () => {
         </View>
       </View>
     </ScrollView>
+    </SafeAreaView>
+
   );
 };
 

@@ -1,7 +1,17 @@
-import OrganizerApp from "./OrganizerApp";
-import ChangePassword from "./src/screens/consumer-screens/ConsumerDetails/changePassword";
-export default function App() {
-  return <ChangePassword />;
+import { StyleSheet } from 'react-native';
+import SprintOneFlowOneApp from "./SprintOneFlowOneApp";
+
+export default function OrganizerApp() {
+  return (
+    <SprintOneFlowOneApp />
+  );
 }
 
-//<OrganizerApp />
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});

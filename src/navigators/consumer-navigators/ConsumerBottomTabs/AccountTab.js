@@ -3,12 +3,13 @@ import { View, Text } from 'react-native';
 
 import SupplierMyProfileScreen from "../../../screens/supplier-screens/SupplierMyProfileScreen";
 import SupplierHeader from "../../../components/SupplierHeader";
+import HomeScreen from '../../../screens/consumer-screens/ConsumerDetails/HomeScreen';
+import AccountScreen from '../../../screens/consumer-screens/ConsumerDetails/AccountScreen';
 
-export const accountName = "Account";
 function AccountTab({ navigation }) {
     return (
         <View style={{flex: 1, backgroundColor: '#fff' }}>
-            <SupplierMyProfileScreen />
+            <AccountScreen />
         </View>
     );
 }

@@ -10,7 +10,7 @@ export default function OrganizerApp() {
       <StatusBar style="auto"/>
       <SafeAreaProvider style={{width: '100%', height: '100%'}}>
         {/* <Supplier /> */}
-        <FavouriteCustomers />
+        {/* <FavouriteCustomers /> */}
       </SafeAreaProvider>
     </View>
   );

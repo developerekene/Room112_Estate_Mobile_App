@@ -8,10 +8,13 @@ export default function OrganizerApp() {
 }
 
 const styles = StyleSheet.create({
+  screenTitle: {
+    paddingTop: 20,
+    paddingBottom: 20,
+    fontSize: 24,
+  },
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#FFFFFF",
   },
 });

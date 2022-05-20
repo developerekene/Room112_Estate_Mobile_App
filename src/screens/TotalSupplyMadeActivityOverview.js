@@ -48,7 +48,7 @@ class TotalSupplyMadeActivityOverview extends React.Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <View style={{width: "100%", height: 48, paddingHorizontal: 10, flexDirection: "row", alignItems: "center",}}>
+        <View style={{width: "100%", height: 48, paddingHorizontal: 20, flexDirection: "row", alignItems: "center",}}>
           <AntDesign name="arrowleft" size={24} color="black" />
           <Text style={{ fontFamily: "Manrope_400Regular", fontSize: 14 }}>Back</Text>
         </View>
@@ -168,8 +168,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   overview: {
-    padding: 10,
-    paddingVertical: 20,
+    padding: 20,
     justifyContent: "center"
   },
   overviewText: {
@@ -190,6 +189,7 @@ const styles = StyleSheet.create({
   main: {
     // backgroundColor: "tomato",
     padding: 10,
+    paddingHorizontal: 20
   },
   supplymadeIconSection: {
     display: "flex",

@@ -19,14 +19,14 @@ const slides = [
        title: "Transparent Pricing",
        description:
          "Before placing an order, customers will input their address for delivery and receive detailed pricing information. There are no hidden costs!",
-       image: require("./src/assets/boarding1.png"),
+       image: require("./src/assets/boarding2.png"),
      },
      {
        id: 3,
        title: "Timely Delivery",
        description:
          "Depending on the customer’s needs, delivery can be one-time or long-running",
-       image: require("./src/assets/boarding1.png"),
+       image: require("./src/assets/boarding3.png"),
      },
    ];
 
@@ -90,44 +90,46 @@ function Onboarding () {
                   <View
                     style={{
                       alignItems: "center",
-                      paddingBottom: 20,
                       height: '70%'
                     }}
                   >
-                    <View>
+                    <View style={{width: "100%", height: 400}}>
                       <Image
                         source={item.image}
                         style={{
-                          marginTop: 30,
-                          width: 400,
-                          height: 300,
-                          marginBottom: 20,
+                          width: "100%",
+                          height: "100%",
                         }}
                         resizeMode="cover"
                       />
                     </View>
       
-                    <Text
-                      style={{
-                        fontWeight: "bold",
-                        color: COLORS.title,
-                        fontSize: 20,
-                        marginTop: 25,
-                      }}
-                    >
-                      {item.title}
-                    </Text>
-                    <Text
-                      style={{
-                        textAlign: "center",
-                        paddingTop: 5,
-                        color: COLORS.title,
-                        fontSize: 14,
-                        marginTop: 15,
-                      }}
-                    >
-                      {item.description}
-                    </Text>
+                    <View style={{padding: 20}}>
+                      <Text
+                        style={{
+                          textAlign: "center",
+                          fontWeight: "bold",
+                          color: COLORS.title,
+                          fontFamily: "Manrope_800ExtraBold",
+                          fontSize: 20,
+                          marginTop: 25,
+                        }}
+                      >
+                        {item.title}
+                      </Text>
+                      <Text
+                        style={{
+                          textAlign: "center",
+                          marginTop: 5,
+                          color: COLORS.title,
+                          fontFamily: "Manrope_400Regular",
+                          fontSize: 14,
+                          marginTop: 15,
+                        }}
+                      >
+                        {item.description}
+                      </Text>
+                    </View>
                   </View>
                 );
               }}

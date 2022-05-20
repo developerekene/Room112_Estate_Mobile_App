@@ -204,71 +204,69 @@ function IncomingOrder(props) {
 }
 
 const styles = StyleSheet.create({
-    consumerDetailsModal: {
-        dash: {
-            height: 4,
-            width: '20%',
-            backgroundColor: '#EBEBEB',
-            alignSelf: 'center',
-            marginVertical: 15,
-            borderRadius: 2
-        },
-        header: {
-            flexDirection: 'row',
-            paddingBottom: 15,
-            borderBottomColor: '#EBEBEB',
-            borderBottomWidth: 1
-        },
-        headerText: {
-            fontSize: 14, 
-            color: '#21334F',
-            fontFamily: 'Manrope_700Bold'
-        },
-        close: {
-            position: 'absolute',
-            right: 20,
-            top: 0
-        },
-        modalImageContainer: {
-            width: '100%',
-            height: 149,
-            padding: 10,
-            paddingHorizontal: 20
-        },
-        modalImageRow: {
-            width: '100%',
-            height: '100%',
-            backgroundColor: '#21334F0A',
-            justifyContent: 'center',
-            alignItems: 'center'
-        },
-        row: { 
-            flexDirection: 'row', 
-            justifyContent: 'space-between', 
-            alignContent: 'center', 
-            marginBottom: 15
-        },
-        rowText: {
-            fontSize: 14, 
-            fontFamily: 'Manrope_400Regular'
-        },
-        rowInfoText: {
-            fontSize: 14, 
-            fontFamily: 'Manrope_400Regular', 
-            flexShrink: 1, textAlign: 'right'
-        },
-        confirmOrderBtn: {
-            width: '100%', 
-            height: 46, 
-            backgroundColor: '#147DF5', 
-            justifyContent: 'center', 
-            alignItems: 'center'
-        },
-        confirmOrderBtnText: {
-            fontSize: 14, 
-            fontFamily: 'Manrope_700Bold', 
-            color: '#fff'
-        }
+    dash: {
+        height: 4,
+        width: '20%',
+        backgroundColor: '#EBEBEB',
+        alignSelf: 'center',
+        marginVertical: 15,
+        borderRadius: 2
+    },
+    header: {
+        flexDirection: 'row',
+        paddingBottom: 15,
+        borderBottomColor: '#EBEBEB',
+        borderBottomWidth: 1
+    },
+    headerText: {
+        fontSize: 14, 
+        color: '#21334F',
+        fontFamily: 'Manrope_700Bold'
+    },
+    close: {
+        position: 'absolute',
+        right: 20,
+        top: 0
+    },
+    modalImageContainer: {
+        width: '100%',
+        height: 149,
+        padding: 10,
+        paddingHorizontal: 20
+    },
+    modalImageRow: {
+        width: '100%',
+        height: '100%',
+        backgroundColor: '#21334F0A',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    row: { 
+        flexDirection: 'row', 
+        justifyContent: 'space-between', 
+        alignContent: 'center', 
+        marginBottom: 15
+    },
+    rowText: {
+        fontSize: 14, 
+        fontFamily: 'Manrope_400Regular'
+    },
+    rowInfoText: {
+        fontSize: 14, 
+        fontFamily: 'Manrope_400Regular', 
+        flexShrink: 1, textAlign: 'right'
+    },
+    confirmOrderBtn: {
+        width: '100%', 
+        height: 46, 
+        backgroundColor: '#147DF5', 
+        justifyContent: 'center', 
+        alignItems: 'center'
+    },
+    confirmOrderBtnText: {
+        fontSize: 14, 
+        fontFamily: 'Manrope_700Bold', 
+        color: '#fff'
     }
 })
 

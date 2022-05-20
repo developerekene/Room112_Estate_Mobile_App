@@ -127,25 +127,25 @@ function CustomerModal() {
     return (
         <ActionSheet id={modalId} animated={true} onBeforeShow={(data) => { setData(data); }}>
             <View style={{ height: '75%' }}>
-                <View style={styles.customerModal.dash} />
-                <View style={styles.customerModal.header}>
+                <View style={styles.dash} />
+                <View style={styles.header}>
                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                        <Text style={styles.customerModal.headerText}>Profile Details</Text>
+                        <Text style={styles.headerText}>Profile Details</Text>
                     </View>
-                    <TouchableOpacity style={styles.customerModal.close} onPress={() => {
+                    <TouchableOpacity style={styles.close} onPress={() => {
                         SheetManager.hide(modalId);
                     }}>
                         <MaterialCommunityIcons name="close" size={24} color="black" />
                     </TouchableOpacity>
                 </View>
                 <View style={{ width: '100%', height: 100, paddingHorizontal: 20 }}>
-                    <View style={styles.customerModal.customer}>
+                    <View style={styles.customer}>
 
-                        <Image source={data.image} style={styles.customerModal.customerImage}/>
+                        <Image source={data.image} style={styles.customerImage}/>
                         
                         <View style={{ marginStart: 10 }}>
-                            <Text style={styles.customerModal.customerName}>{data.name}</Text>
-                            <Text style={styles.customerModal.customerLocation}>{data.location}</Text>
+                            <Text style={styles.customerName}>{data.name}</Text>
+                            <Text style={styles.customerLocation}>{data.location}</Text>
                         </View>
                     </View>
                 </View>
@@ -153,27 +153,27 @@ function CustomerModal() {
                     <View style={{ marginBottom: 15}}>
                         <Text style={{fontSize: 14, fontFamily: 'Manrope_400Regular'}}>More info</Text>
                     </View>
-                    <View style={styles.customerModal.row}>
+                    <View style={styles.row}>
                         <MaterialCommunityIcons name="map-marker-outline" size={24} color="black" />
-                        <Text style={styles.customerModal.rowText}>{data.address}</Text>
+                        <Text style={styles.rowText}>{data.address}</Text>
                     </View>
-                    <View style={styles.customerModal.row}>
+                    <View style={styles.row}>
                         <MaterialCommunityIcons name="cellphone" size={24} color="black" />
-                        <Text style={styles.customerModal.rowText}>{data.phone}</Text>
+                        <Text style={styles.rowText}>{data.phone}</Text>
                     </View>
-                    <View style={styles.customerModal.row}>
+                    <View style={styles.row}>
                         <MaterialCommunityIcons name="email-outline" size={24} color="black" />
-                        <Text style={styles.customerModal.rowText}>{data.email}</Text>
+                        <Text style={styles.rowText}>{data.email}</Text>
                     </View>
-                    <View style={styles.customerModal.row}>
+                    <View style={styles.row}>
                         <MaterialCommunityIcons name="chart-bar" size={24} color="black" />
-                        <Text style={styles.customerModal.rowText}>Consumption level ({data.consumptionLevel}%)</Text>
+                        <Text style={styles.rowText}>Consumption level ({data.consumptionLevel}%)</Text>
                     </View>
-                    <View style={styles.customerModal.row}>
+                    <View style={styles.row}>
                         <MaterialCommunityIcons name="bottle-wine-outline" size={24} color="black" />
-                        <Text style={styles.customerModal.rowText}>Total Bottles bought ({data.bought})</Text>
+                        <Text style={styles.rowText}>Total Bottles bought ({data.bought})</Text>
                     </View>
-                    <View style={styles.customerModal.row}>
+                    <View style={styles.row}>
                         <MaterialCommunityIcons name="bottle-wine-outline" size={24} color="black" />
                         <Text style={{fontSize: 14, marginStart: 10, fontFamily: 'Manrope_400Regular', flex: 1, flexShrink: 1, textAlign: 'left'}}>Total Bottles remaining ({data.remaining})</Text>
                     </View>
@@ -298,77 +298,75 @@ function FavouriteCustomers(props) {
 }
 
 const styles = StyleSheet.create({
-    customerModal: {
-        dash: {
-            height: 4,
-            width: '20%',
-            backgroundColor: '#EBEBEB',
-            alignSelf: 'center',
-            marginVertical: 15,
-            borderRadius: 2
-        },
-        header: {
-            flexDirection: 'row',
-            paddingBottom: 15,
-            borderBottomColor: '#EBEBEB',
-            borderBottomWidth: 1
-        },
-        headerText: {
-            fontSize: 14, 
-            color: '#21334F',
-            fontFamily: 'Manrope_700Bold'
-        },
-        close: {
-            position: 'absolute',
-            right: 20,
-            top: 0
-        },
-        customer: { 
-            width: '100%', 
-            height: '100%', 
-            alignItems: 'center', 
-            flexDirection: 'row' 
-        },
-        customerImage: {
-            width: 70,
-            height: 70,
-            borderRadius: 35
-        },
-        customerName: {
-            fontFamily: 'Manrope_700Bold',
-            color: '#21334F'
-        },
-        customerLocation: {
-            fontFamily: 'Manrope_400Regular',
-            color: '#21334F'
-        },
-        row: {
-            flexDirection: 'row', 
-            justifyContent: 'space-between', 
-            alignItems: 'center', 
-            marginBottom: 15
-        },
-        rowText: {
-            fontSize: 14, 
-            marginStart: 10, 
-            fontFamily: 'Manrope_400Regular', 
-            flex: 1, 
-            flexShrink: 1, 
-            textAlign: 'left'
-        },
-        reminderBtn: {
-            width: '100%', 
-            height: 46, 
-            flexDirection: 'row', 
-            justifyContent: 'center', 
-            alignItems: 'center'
-        },
-        reminderBtnText: {
-            fontSize: 14, 
-            marginStart: 10, 
-            fontFamily: 'Manrope_700Bold', 
-            color: '#fff'
-        }
+    dash: {
+        height: 4,
+        width: '20%',
+        backgroundColor: '#EBEBEB',
+        alignSelf: 'center',
+        marginVertical: 15,
+        borderRadius: 2
+    },
+    header: {
+        flexDirection: 'row',
+        paddingBottom: 15,
+        borderBottomColor: '#EBEBEB',
+        borderBottomWidth: 1
+    },
+    headerText: {
+        fontSize: 14, 
+        color: '#21334F',
+        fontFamily: 'Manrope_700Bold'
+    },
+    close: {
+        position: 'absolute',
+        right: 20,
+        top: 0
+    },
+    customer: { 
+        width: '100%', 
+        height: '100%', 
+        alignItems: 'center', 
+        flexDirection: 'row' 
+    },
+    customerImage: {
+        width: 70,
+        height: 70,
+        borderRadius: 35
+    },
+    customerName: {
+        fontFamily: 'Manrope_700Bold',
+        color: '#21334F'
+    },
+    customerLocation: {
+        fontFamily: 'Manrope_400Regular',
+        color: '#21334F'
+    },
+    row: {
+        flexDirection: 'row', 
+        justifyContent: 'space-between', 
+        alignItems: 'center', 
+        marginBottom: 15
+    },
+    rowText: {
+        fontSize: 14, 
+        marginStart: 10, 
+        fontFamily: 'Manrope_400Regular', 
+        flex: 1, 
+        flexShrink: 1, 
+        textAlign: 'left'
+    },
+    reminderBtn: {
+        width: '100%', 
+        height: 46, 
+        flexDirection: 'row', 
+        justifyContent: 'center', 
+        alignItems: 'center'
+    },
+    reminderBtnText: {
+        fontSize: 14, 
+        marginStart: 10, 
+        fontFamily: 'Manrope_700Bold', 
+        color: '#fff'
     },
     toolbar: {
         width: '100%',

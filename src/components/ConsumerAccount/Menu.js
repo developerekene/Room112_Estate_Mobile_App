@@ -9,6 +9,7 @@ const Menu = (props) => {
       <FlatList
         data={MenuItems}
         renderItem={({ item }) => <MenuItem menu={item} />}
+        ItemSeparatorComponent={() => <View style={{width: "100%", marginBottom: 10}} />}
         keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
         snapToAlignment={"start"}
@@ -23,7 +24,8 @@ export default Menu;
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    position: "absolute",
-    top: 250,
+    paddingVertical: 20,
+    // position: "absolute",
+    // top: "40%",
   },
 });

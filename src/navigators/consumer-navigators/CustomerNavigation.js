@@ -1,42 +1,47 @@
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 import React from "react";
-import HomeScreen from "../../../screens/consumer-screens/ConsumerDetails/HomeScreen";
-import TransactionsScreen from "../../../screens/consumer-screens/ConsumerDetails/TransactionsScreen";
-import AccountScreen from "../../../screens/consumer-screens/ConsumerDetails/AccountScreen";
-import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from "@react-navigation/native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import Colors from "../../../constants/index";
+import Colors from "../../constants/index";
+import HomeTab from "./ConsumerBottomTabs/HomeTab";
+import TransactionsTab from "./ConsumerBottomTabs/TransactionsTab";
+import AccountTab from "./ConsumerBottomTabs/AccountTab";
 
-const Tab = createMaterialBottomTabNavigator();
+const Tab = createBottomTabNavigator();
 
-const BottomNavigation = () => {
+const CustomerNavigation = () => {
   return (
     <NavigationContainer style={styles.navigationContainer}>
       <Tab.Navigator
+        safeAreaInsets={{
+          bottom: 10
+        }}
         labelled={false}
         barStyle={{
           width: Dimensions.get("window").width,
-          backgroundColor: "white",
+          backgroundColor: "#FFFFFF",
           justifyContent: "space-between",
         }}
         activeColor="#147DF5"
-        inactiveColor="lightgrey"
+        inactiveColor="#979797"
         style={{ width: "100%" }}
       >
         <Tab.Screen
-          component={HomeScreen}
+          component={HomeTab}
           name="Home"
           options={{
+            headerShown: false,
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons name="home" size={26} color={color} />
             ),
           }}
         />
         <Tab.Screen
-          component={TransactionsScreen}
+          component={TransactionsTab}
           name="Transactions"
           options={{
+            headerShown: false,
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons
                 name="clipboard"
@@ -47,9 +52,10 @@ const BottomNavigation = () => {
           }}
         />
         <Tab.Screen
-          component={AccountScreen}
+          component={AccountTab}
           name="Acccount"
           options={{
+            headerShown: false,
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons name="account" size={26} color={color} />
             ),
@@ -60,6 +66,6 @@ const BottomNavigation = () => {
   );
 };
 
-export default BottomNavigation;
-
 const styles = StyleSheet.create({});
+
+export default CustomerNavigation;

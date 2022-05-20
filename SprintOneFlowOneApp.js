@@ -14,7 +14,7 @@ import Supplier from "./src/screens/supplier-screens/Supplier";
 import Customer from "./src/screens/supplier-screens/Customer";
 import FavouriteCustomers from "./src/screens/supplier-screens/FavouriteCustomers";
 import TotalSupplyMadeActivityOverview from "./src/screens/TotalSupplyMadeActivityOverview";
-// import SupplierScreen from "./src/screens/SupplierScreen/SupplierScreen";
+import RegisterScreen from "./RegisterScreen";
 
 export default function OrganizerApp() {
   let [fontsLoaded] = useFonts({
@@ -37,8 +37,8 @@ export default function OrganizerApp() {
     <View style={styles.container}>
       <StatusBar style="auto" />
       <SafeAreaProvider style={{ width: "100%", height: "100%" }}>
-        {/* <SupplierScreen /> */}
-        <Supplier />
+        <RegisterScreen />
+        {/* <Supplier /> */}
         {/* <Customer /> */}
         {/* <FavouriteCustomers /> */}
         {/* <TotalSupplyMadeActivityOverview /> */}

@@ -142,15 +142,15 @@ function CustomerModal() {
       }}
     >
       <View style={{ height: "75%" }}>
-        <View style={styles.customerModal.dash} />
-        <View style={styles.customerModal.header}>
+        <View style={styles.dash} />
+        <View style={styles.header}>
           <View
             style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
           >
-            <Text style={styles.customerModal.headerText}>Profile Details</Text>
+            <Text style={styles.headerText}>Profile Details</Text>
           </View>
           <TouchableOpacity
-            style={styles.customerModal.close}
+            style={styles.close}
             onPress={() => {
               SheetManager.hide(modalId);
             }}
@@ -159,15 +159,15 @@ function CustomerModal() {
           </TouchableOpacity>
         </View>
         <View style={{ width: "100%", height: 100, paddingHorizontal: 20 }}>
-          <View style={styles.customerModal.customer}>
+          <View style={styles.customer}>
             <Image
               source={data.image}
-              style={styles.customerModal.customerImage}
+              style={styles.customerImage}
             />
 
             <View style={{ marginStart: 10 }}>
-              <Text style={styles.customerModal.customerName}>{data.name}</Text>
-              <Text style={styles.customerModal.customerLocation}>
+              <Text style={styles.customerName}>{data.name}</Text>
+              <Text style={styles.customerLocation}>
                 {data.location}
               </Text>
             </View>
@@ -179,43 +179,43 @@ function CustomerModal() {
               More info
             </Text>
           </View>
-          <View style={styles.customerModal.row}>
+          <View style={styles.row}>
             <MaterialCommunityIcons
               name="map-marker-outline"
               size={24}
               color="black"
             />
-            <Text style={styles.customerModal.rowText}>{data.address}</Text>
+            <Text style={styles.rowText}>{data.address}</Text>
           </View>
-          <View style={styles.customerModal.row}>
+          <View style={styles.row}>
             <MaterialCommunityIcons name="cellphone" size={24} color="black" />
-            <Text style={styles.customerModal.rowText}>{data.phone}</Text>
+            <Text style={styles.rowText}>{data.phone}</Text>
           </View>
-          <View style={styles.customerModal.row}>
+          <View style={styles.row}>
             <MaterialCommunityIcons
               name="email-outline"
               size={24}
               color="black"
             />
-            <Text style={styles.customerModal.rowText}>{data.email}</Text>
+            <Text style={styles.rowText}>{data.email}</Text>
           </View>
-          <View style={styles.customerModal.row}>
+          <View style={styles.row}>
             <MaterialCommunityIcons name="chart-bar" size={24} color="black" />
-            <Text style={styles.customerModal.rowText}>
+            <Text style={styles.rowText}>
               Consumption level ({data.consumptionLevel}%)
             </Text>
           </View>
-          <View style={styles.customerModal.row}>
+          <View style={styles.row}>
             <MaterialCommunityIcons
               name="bottle-wine-outline"
               size={24}
               color="black"
             />
-            <Text style={styles.customerModal.rowText}>
+            <Text style={styles.rowText}>
               Total Bottles bought ({data.bought})
             </Text>
           </View>
-          <View style={styles.customerModal.row}>
+          <View style={styles.row}>
             <MaterialCommunityIcons
               name="bottle-wine-outline"
               size={24}
@@ -243,13 +243,13 @@ function CustomerModal() {
               SheetManager.show(reminderModalId, data);
             }}
           >
-            <View style={styles.customerModal.reminderBtn}>
+            <View style={styles.reminderBtn}>
               <MaterialCommunityIcons
                 name="clock-time-eight-outline"
                 size={24}
                 color="#fff"
               />
-              <Text style={styles.customerModal.reminderBtnText}>
+              <Text style={styles.reminderBtnText}>
                 Send a Reminder
               </Text>
             </View>
@@ -276,7 +276,7 @@ function CustomerReminderModal() {
       }}
     >
       <View style={{ height: "75%" }}>
-        <View style={[styles.customerModal.dash, { top: -75 }]} />
+        <View style={[styles.dash, { top: -75 }]} />
         <View style={{ flex: 1, justifyContent: "center" }}>
           <View style={{ padding: 20, paddingHorizontal: 30 }}>
             <View style={{ marginBottom: 15, alignItems: "center" }}>
@@ -314,8 +314,8 @@ function CustomerReminderModal() {
               underlayColor="#08386F"
               onPress={() => {}}
             >
-              <View style={styles.customerModal.reminderBtn}>
-                <Text style={styles.customerModal.reminderBtnText}>
+              <View style={styles.reminderBtn}>
+                <Text style={styles.reminderBtnText}>
                   Back Home
                 </Text>
               </View>
@@ -338,13 +338,8 @@ function showReminderSuccessDetails(data) {
 
 function FavouriteCustomers(props) {
   return (
-    <SafeAreaView>
+    <View style={{backgroundColor: "#FFF"}}>
       <View style={{ width: "100%", height: "100%" }}>
-        <View style={styles.toolbar}>
-          <MaterialCommunityIcons name="arrow-left" size={24} color="black" />
-          <Text style={styles.toolbarTxt}>Back</Text>
-        </View>
-
         <View
           style={{
             paddingHorizontal: 20,
@@ -433,7 +428,7 @@ function FavouriteCustomers(props) {
         </View>
       </View>
       <CustomerModal />
-    </SafeAreaView>
+    </View>
   );
 }
 

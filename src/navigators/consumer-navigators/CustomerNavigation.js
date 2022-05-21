@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 import React from "react";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from "@react-navigation/native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Colors from "../../constants/index";
 import HomeTab from "./ConsumerBottomTabs/HomeTab";
@@ -12,60 +11,56 @@ const Tab = createBottomTabNavigator();
 
 const CustomerNavigation = () => {
   return (
-    <NavigationContainer style={styles.navigationContainer}>
-      <Tab.Navigator
-        safeAreaInsets={{
-          bottom: 10
+    <Tab.Navigator
+      safeAreaInsets={{
+        bottom: 10
+      }}
+      labelled={false}
+      barStyle={{
+        width: Dimensions.get("window").width,
+        backgroundColor: "#FFFFFF",
+        justifyContent: "space-between",
+      }}
+      activeColor="#147DF5"
+      inactiveColor="#979797"
+      style={{ width: "100%" }}
+    >
+      <Tab.Screen
+        component={HomeTab}
+        name="Home"
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="home" size={26} color={color} />
+          ),
         }}
-        labelled={false}
-        barStyle={{
-          width: Dimensions.get("window").width,
-          backgroundColor: "#FFFFFF",
-          justifyContent: "space-between",
+      />
+      <Tab.Screen
+        component={TransactionsTab}
+        name="Transactions"
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons
+              name="clipboard"
+              size={26}
+              color={color}
+            />
+          ),
         }}
-        activeColor="#147DF5"
-        inactiveColor="#979797"
-        style={{ width: "100%" }}
-      >
-        <Tab.Screen
-          component={HomeTab}
-          name="Home"
-          options={{
-            headerShown: false,
-            tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="home" size={26} color={color} />
-            ),
-          }}
-        />
-        <Tab.Screen
-          component={TransactionsTab}
-          name="Transactions"
-          options={{
-            headerShown: false,
-            tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons
-                name="clipboard"
-                size={26}
-                color={color}
-              />
-            ),
-          }}
-        />
-        <Tab.Screen
-          component={AccountTab}
-          name="Acccount"
-          options={{
-            headerShown: false,
-            tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="account" size={26} color={color} />
-            ),
-          }}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
+      />
+      <Tab.Screen
+        component={AccountTab}
+        name="Acccount"
+        options={{
+          headerShown: false,
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="account" size={26} color={color} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
   );
 };
-
-const styles = StyleSheet.create({});
 
 export default CustomerNavigation;

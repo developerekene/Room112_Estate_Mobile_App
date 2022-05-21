@@ -47,11 +47,7 @@ class TotalSupplyMadeActivityOverview extends React.Component {
   }
   render() {
     return (
-      <SafeAreaView style={styles.container}>
-        <View style={{width: "100%", height: 48, paddingHorizontal: 20, flexDirection: "row", alignItems: "center",}}>
-          <AntDesign name="arrowleft" size={24} color="black" />
-          <Text style={{ fontFamily: "Manrope_400Regular", fontSize: 14 }}>Back</Text>
-        </View>
+      <View style={styles.container}>
         <View style={styles.overview}>
           <Text style={styles.overviewText}>Activity OverView</Text>
           <Text style={styles.supplyText}>
@@ -158,7 +154,7 @@ class TotalSupplyMadeActivityOverview extends React.Component {
             }}
           />
         </View>
-      </SafeAreaView>
+      </View>
     );
   }
 }
@@ -166,6 +162,7 @@ class TotalSupplyMadeActivityOverview extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#FFF"
   },
   overview: {
     padding: 20,

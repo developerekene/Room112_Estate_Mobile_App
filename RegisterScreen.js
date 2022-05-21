@@ -6,37 +6,18 @@ import {
   TextInput,
   Image,
   TouchableHighlight,
-  Picker,
   ScrollView,
+  TouchableWithoutFeedback
 } from "react-native";
+import {Picker} from '@react-native-picker/picker';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { NavigationContainer } from "@react-navigation/native";
 
-const RegisterScreen = () => {
+const RegisterScreen = ({navigation}) => {
   const onChange = () => {};
   return (
-    <SafeAreaView style={{ height: "100%", width: "100%" }}>
-      <View
-        style={{
-          width: "100%",
-          height: 48,
-          flexDirection: "row",
-          alignItems: "center",
-          paddingHorizontal: 10,
-        }}
-      >
-        <MaterialCommunityIcons name="arrow-left" size={24} color="black" />
-        <Text
-          style={{
-            fontFamily: "Manrope_400Regular",
-            fontSize: 12,
-            marginLeft: 5,
-          }}
-        >
-          Back
-        </Text>
-      </View>
-      <ScrollView style={{ marginTop: 5 }}>
+      <ScrollView style={{ flex: 1, backgroundColor: "#FFF", marginTop: 0}}>
         <View
           style={{
             justifyContent: "center",
@@ -219,7 +200,9 @@ const RegisterScreen = () => {
           <TouchableHighlight
             style={{ marginTop: 20 }}
             underlayColor="#114E93"
-            onPress={() => {}}
+            onPress={() => {
+              navigation.navigate("ConfirmEmail")
+            }}
           >
             <View
               style={{
@@ -230,7 +213,7 @@ const RegisterScreen = () => {
               }}
             >
               <Text style={{ color: "#FFF", fontFamily: "Manrope_700Bold" }}>
-                Login
+                Sign Up
               </Text>
             </View>
           </TouchableHighlight>
@@ -246,18 +229,19 @@ const RegisterScreen = () => {
             <Text style={{ fontFamily: "Manrope_400Regular" }}>
               Already have an account?
             </Text>
-            <Text
-              style={{
-                color: "#147DF5",
-                fontFamily: "Manrope_700Bold",
-              }}
-            >
-              Sign Up
-            </Text>
+            <TouchableWithoutFeedback onPress={() => {
+              navigation.navigate("Login")
+            }}>
+              <Text
+                style={{
+                  color: "#147DF5",
+                  fontFamily: "Manrope_700Bold",
+                }}
+              > Sign in </Text>
+            </TouchableWithoutFeedback>
           </View>
         </View>
       </ScrollView>
-    </SafeAreaView>
   );
 };
 

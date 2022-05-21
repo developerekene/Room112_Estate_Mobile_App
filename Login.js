@@ -1,11 +1,12 @@
 import React from 'react';
-import {Text, View, Image, TextInput, Button, TouchableHighlight} from 'react-native'
+import {Text, View, Image, TextInput, Button, TouchableHighlight, TouchableWithoutFeedback } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Entypo } from '@expo/vector-icons';
 
-function Login(props) {
+function Login({navigation}) {
 
     return (
-        <SafeAreaView style={{height: "100%", width: "100%"}}>
+        <SafeAreaView style={{height: "100%", width: "100%", backgroundColor: "#FFF"}}>
           
           <View style={{
                 justifyContent: 'center',
@@ -46,26 +47,41 @@ function Login(props) {
                   marginVertical: 5
                 }}>Password</Text>
               
-              <TextInput 
-                placeholder='Password'
-                underlineColorAndroid="transparent"
-                style={{
-                  height: 48,
-                  borderWidth: 0.5,
-                  borderColor: "rgba(33, 51, 79, 0.2)",
-                  padding: 10,
-                  fontFamily: "Manrope_400Regular"
-                }}/>
+              <View style={{
+                flexDirection: "row",
+                alignItems: "center",
+                height: 48,
+                borderWidth: 0.5,
+                borderColor: "rgba(33, 51, 79, 0.2)",
+                padding: 10,
+              }}>
+                <TextInput 
+                  secureTextEn
+                  placeholder='Password'
+                  underlineColorAndroid="transparent"
+                  style={{
+                    flex: 1,
+                    fontFamily: "Manrope_400Regular"
+                  }}/>
+                  <Entypo name="eye-with-line" size={20} color="black" />
+              </View>
             </View>
 
-            <Text style={{
-              fontSize: 12,
-              color: '#147DF5',
-              fontFamily: "Manrope_400Regular",
-              marginVertical: 3
-            }}>Forgot Password?</Text>
+            <TouchableWithoutFeedback onPress={ () => {
+                navigation.navigate("ForgotPassword")
+              } }>
+              <Text style={{
+                fontSize: 12,
+                color: '#147DF5',
+                fontFamily: "Manrope_400Regular",
+                marginVertical: 3
+              }}>Forgot Password?</Text>
+            </TouchableWithoutFeedback>
 
-            <TouchableHighlight style={{marginTop: 20}} underlayColor="#114E93" onPress={() => {}} >
+            <TouchableHighlight style={{marginTop: 20}} underlayColor="#114E93" onPress={() => {
+              navigation.navigate("Customer");
+              // navigation.navigate("Supplier");
+            }} >
               <View style={{
                 backgroundColor: "#147DF5",
                 height: 48,
@@ -83,10 +99,14 @@ function Login(props) {
               marginTop: 30
             }}>
               <Text style={{fontFamily: "Manrope_400Regular"}}>Don't have an account?</Text>
-              <Text style={{
-                color: '#147DF5',
-                fontFamily: "Manrope_700Bold"
-              }}> Sign Up</Text>
+              <TouchableWithoutFeedback onPress={ () => {
+                navigation.navigate("SignUp")
+              } }>
+                <Text style={{
+                  color: '#147DF5',
+                  fontFamily: "Manrope_700Bold"
+                }}> Sign Up</Text>
+              </TouchableWithoutFeedback>
             </View>
           </View>
               

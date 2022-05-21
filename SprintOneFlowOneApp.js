@@ -6,17 +6,13 @@ import {
   Manrope_400Regular,
   Manrope_600SemiBold,
   Manrope_700Bold,
+  Manrope_800ExtraBold,
   Manrope_300Light,
   Manrope_500Medium,
 } from "@expo-google-fonts/manrope";
+import { NavigationContainer } from '@react-navigation/native';
 
-import Supplier from "./src/screens/supplier-screens/Supplier";
-import Customer from "./src/screens/supplier-screens/Customer";
-import FavouriteCustomers from "./src/screens/supplier-screens/FavouriteCustomers";
-import TotalSupplyMadeActivityOverview from "./src/screens/TotalSupplyMadeActivityOverview";
 import Onboarding from './OnboardingScreen';
-import Login from './Login';
-import RegisterScreen from "./RegisterScreen";
 
 export default function OrganizerApp() {
   let [fontsLoaded] = useFonts({
@@ -37,18 +33,14 @@ export default function OrganizerApp() {
   }
 
   return (
-    <View style={styles.container}>
-      <StatusBar style="auto" />
-      <SafeAreaProvider style={{ width: "100%", height: "100%" }}>
-        <RegisterScreen />
-        {/* <Supplier /> */}
-        {/* <Customer /> */}
-        {/* <FavouriteCustomers /> */}
-        {/* <TotalSupplyMadeActivityOverview /> */}
-        {/* <Onboarding /> */}
-        <Login />
-      </SafeAreaProvider>
-    </View>
+    <NavigationContainer>
+      <View style={styles.container}>
+        <StatusBar style="auto" />
+        <SafeAreaProvider style={{ width: "100%", height: "100%" }}>
+          <Onboarding />
+        </SafeAreaProvider>
+      </View>
+    </NavigationContainer>
   );
 }
 

@@ -1,12 +1,12 @@
 import { StyleSheet } from 'react-native';
 import AddReminder from './AddReminder';
 import ReminderSent from './ReminderSent';
-import SprintOneFlowOneApp from "./SprintOneFlowOneApp";
+import AppFlow from "./AppFlow";
 
 export default function OrganizerApp() {
   return (
     <>
-      <SprintOneFlowOneApp />
+      <AppFlow />
       {/* <AddReminder/> */}
     </>
   );

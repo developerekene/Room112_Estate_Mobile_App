@@ -5,8 +5,10 @@ import SprintOneFlowOneApp from "./SprintOneFlowOneApp";
 
 export default function OrganizerApp() {
   return (
-    // <SprintOneFlowOneApp />
-    <AddReminder/>
+    <>
+      <SprintOneFlowOneApp />
+      {/* <AddReminder/> */}
+    </>
   );
 }
 

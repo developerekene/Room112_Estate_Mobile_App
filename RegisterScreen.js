@@ -13,7 +13,18 @@ import {Picker} from '@react-native-picker/picker';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { NavigationContainer } from "@react-navigation/native";
+import AppPicker from "./src/components/AppPicker/AppPicker";
 
+const userTypes = [
+  {
+    id: 1,
+    type: "Consumer"
+  },
+  {
+    id: 2,
+    type: "Supplier"
+  }
+]
 const RegisterScreen = ({navigation}) => {
   const onChange = () => {};
   return (
@@ -49,18 +60,12 @@ const RegisterScreen = ({navigation}) => {
             <View
               style={{
                 height: 48,
+                padding: 10,
                 borderWidth: 0.5,
                 borderColor: "#21334F33",
               }}
             >
-              <Picker
-                // selectedValue={selectedLanguage}
-                onValueChange={(itemValue, itemIndex) => {}}
-              >
-                <Picker.Item label="Select" value="" />
-                <Picker.Item label="Java" value="java" />
-                <Picker.Item label="JavaScript" value="js" />
-              </Picker>
+              <AppPicker items={userTypes} />
             </View>
           </View>
           <View style={{ marginTop: 10 }}>

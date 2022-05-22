@@ -79,8 +79,8 @@ function Login({navigation}) {
             </TouchableWithoutFeedback>
 
             <TouchableHighlight style={{marginTop: 20}} underlayColor="#114E93" onPress={() => {
-              navigation.navigate("Customer");
-              // navigation.navigate("Supplier");
+              // navigation.navigate("Customer");
+              navigation.navigate("Supplier");
             }} >
               <View style={{
                 backgroundColor: "#147DF5",

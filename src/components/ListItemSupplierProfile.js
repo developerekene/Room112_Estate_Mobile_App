@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   second: {
     marginLeft: 10,
     fontSize: 14,
-    fontWeight: "500",
+    fontFamily: "Manrope_400Regular",
     lineHeight: 19,
   },
   first: {
@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     display: "flex",
     flexDirection: "row",
+    alignItems: "center"
   },
 });
 

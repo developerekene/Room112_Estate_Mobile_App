@@ -4,10 +4,10 @@ import Colors from "./Colors";
 function ListItemForTotalSupply({ num, title }) {
   return (
     <View style={styles.list}>
-      <View style={styles.v}>
-        <Text style={styles.first}>{num}</Text>
+      <View style={{width: "20%", alignItems: "baseline"}}>
+        <Text style={[styles.first, {backgroundColor: "#eee", padding: 10}]}>{num}</Text>
       </View>
-      <View style={styles.v}>
+      <View style={{flex: 1}}>
         <Text style={styles.second}>{title}</Text>
       </View>
     </View>
@@ -16,34 +16,23 @@ function ListItemForTotalSupply({ num, title }) {
 
 const styles = StyleSheet.create({
   list: {
-    // display:'flex',
     flexDirection: "row",
-    padding: 10,
-    borderBottomColor: Colors.gray,
-    paddingTop: 20,
-    paddingBottom: 20,
+    paddingVertical: 10,
+    alignItems: "center",
     backgroundColor: Colors.white,
-    borderRadius: 7,
-    borderBottomWidth: 1,
-    borderBottomColor: "rgba(0, 0, 0, 0.02)",
   },
   second: {
     marginLeft: 10,
     fontSize: 14,
-    fontWeight: "500",
-    lineHeight: 19,
-    marginTop: 5,
+    fontFamily: "Manrope_500Medium",
   },
   first: {
-    color: "#21334f",
-    fontWeight: "700",
+    color: "#21334F",
+    fontFamily: "Manrope_700Bold",
     fontSize: 24,
-    lineHeight: 33,
-    fontStyle: "normal",
-    backgroundColor: "#eee",
   },
   v: {
-    textAlign: "center",
+    // textAlign: "center",
   },
 });
 

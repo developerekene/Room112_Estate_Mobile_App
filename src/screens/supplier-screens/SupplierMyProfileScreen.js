@@ -51,72 +51,72 @@ const messages = [
 function SupplierMyProfileScreen(props) {
   return (
     <View style={styles.container}>
-      <View style={styles.section_blue}>
-        <Text style={styles.bigTex}> My Profile</Text>
-        <View style={styles.middle_blue_view}>
-          <View>
-            <Image source={logo} style={{ width: 94, height: 94 }} />
+      <View>
+        <View style={styles.section_blue}>
+          <Text style={styles.bigTex}>My Profile</Text>
+          <View style={styles.middle_blue_view}>
+            <View>
+              <Image source={logo} style={{ width: 94, height: 94 }} />
+            </View>
+            <View style={styles.blue_side_text_view}>
+              <Text style={styles.supplier_name}>Don Jazzy</Text>
+              <Text style={styles.supplier_email}>donjazzyagain@gmail.com</Text>
+              <Pressable
+                style={styles.edit_photo_button}
+                onPress={() => console.log("hello world the great minds")}
+              >
+                <Text style={styles.edit_btn_text}>Edit Photo</Text>
+              </Pressable>
+            </View>
           </View>
-          <View style={styles.blue_side_text_view}>
-            <Text style={styles.supplier_name}>Don Jazzy</Text>
-            <Text style={styles.supplier_email}>donjazzyagain@gmail.com</Text>
-            <Pressable
-              style={styles.edit_photo_button}
-              onPress={() => console.log("hello world the great minds")}
-            >
-              <Text style={styles.edit_btn_text}>Edit Photo</Text>
-            </Pressable>
+        </View>
+        <View style={{
+          width: '100%',
+        }}>
+          <View style={styles.main}>
+            <FlatList
+              data={messages}
+              keyExtractor={(message) => message.id.toString()}
+              renderItem={({ item }) => (
+                <ListItemSupplierProfile
+                  title={item.title}
+                  iconname={item.material}
+                  arrowIcon={item.empto}
+                />
+              )}
+            />
           </View>
         </View>
       </View>
-      <View style={styles.main}>
-        <FlatList
-          data={messages}
-          keyExtractor={(message) => message.id.toString()}
-          renderItem={({ item }) => (
-            <ListItemSupplierProfile
-              title={item.title}
-              iconname={item.material}
-              arrowIcon={item.empto}
-            />
-          )}
-        />
-        {/* <ListItemSupplierProfile
-      title={messages[0].title}
-      iconname={messages[0].material}
-      arrowIcon={messages[0].empto}
-    /> */}
-      </View>
       <Pressable style={styles.logout_btn}>
-        <Text style={styles.lout_text}>Logout </Text>
         <MaterialCommunityIcons name="logout" size={24} color="#147df5" />
+        <Text style={styles.lout_text}>Logout </Text>
       </Pressable>
     </View>
   );
 }
 const styles = StyleSheet.create({
   container: {
-    paddingTop: Platform.OS === "android" ? 20 : 0,
-
     flex: 1,
-    // backgroundColor: "blue",
+    justifyContent: "space-between",
   },
   main: {
-    // backgroundColor: Colors.white,
     padding: 20,
+    paddingVertical: 0,
+    marginTop: 20
   },
   section_blue: {
     backgroundColor: "#147df5",
     height: 215,
-    paddingTop: 32,
-    paddingBottom: 32,
+    paddingTop: 30,
+    paddingBottom: 30,
     paddingEnd: 16,
     paddingStart: 16,
   },
   bigTex: {
     color: "#ffffff",
     fontSize: 24,
-    fontWeight: "700",
+    fontFamily: "Manrope_700Bold",
     lineHeight: 33,
     fontStyle: "normal",
   },
@@ -126,9 +126,10 @@ const styles = StyleSheet.create({
     marginTop: 24,
   },
   edit_photo_button: {
-    width: 100,
-    // height: 16,
+    width: 90,
+    height: 30,
     borderColor: "#ffff",
+    justifyContent: "center",
     borderWidth: 2,
     marginTop: 12,
 
@@ -139,6 +140,7 @@ const styles = StyleSheet.create({
   },
   edit_btn_text: {
     color: "#ffff",
+    fontFamily: "Manrope_700Bold",
     textAlign: "center",
   },
   blue_side_text_view: {
@@ -147,7 +149,7 @@ const styles = StyleSheet.create({
   },
   supplier_name: {
     color: "#ffffff",
-    fontWeight: "700",
+    fontFamily: "Manrope_700Bold",
     lineHeight: 22,
     fontSize: 16,
     fontStyle: "normal",
@@ -155,7 +157,7 @@ const styles = StyleSheet.create({
   supplier_email: {
     color: "#ffffff",
     fontSize: 12,
-    fontWeight: "400",
+    fontFamily: "Manrope_400Regular",
     lineHeight: 15,
     fontStyle: "italic",
   },
@@ -172,7 +174,7 @@ const styles = StyleSheet.create({
     paddingRight: 120,
     borderColor: "#147df5",
     borderWidth: 2,
-    marginTop: 100,
+    marginBottom: 30
     // height: 50,
   },
   lout_text: {

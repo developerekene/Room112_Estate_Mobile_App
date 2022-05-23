@@ -13,10 +13,29 @@ import {
 import Colors from "../../components/Colors";
 import { AntDesign, Feather } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useFonts, Manrope_400Regular, Manrope_600SemiBold, Manrope_700Bold, Manrope_300Light, Manrope_500Medium } from '@expo-google-fonts/manrope';
 
-function SupplierHomePageScreen(props) {
+function SupplierHomePageScreen({ stackScreensNavigation }) {
+
+  let [fontsLoaded] = useFonts({
+    Manrope_400Regular,
+    Manrope_700Bold,
+    Manrope_300Light,
+    Manrope_600SemiBold,
+    Manrope_500Medium
+  });
+
+  if (!fontsLoaded) {
+      return (
+          <View
+              style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+              <Text>loading...</Text>
+          </View>
+      );
+  }
+
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.toobarSection}>
         <View style={styles.alermPart}>
           <Text style={styles.text}>Hi, Supplier 👋</Text>
@@ -46,109 +65,98 @@ function SupplierHomePageScreen(props) {
             style={{
               fontSize: 24,
               color: Colors.black,
-              fontWeight: "700",
+              fontFamily: 'Manrope_500Medium',
               marginLeft: 10,
             }}
           >
             OverView
           </Text>
         </View>
-        <TouchableOpacity style={styles.card1}>
-          <View>
+        <TouchableOpacity style={styles.card1} onPress={() => {
+          stackScreensNavigation.navigate("SupplierActivityOverview")
+        }}>
+          <View style={{ width: "100%", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
             <Text
               style={{
                 textAlign: "center",
-                fontFamily: "Roboto",
+                fontFamily: "Manrope_700Bold",
                 fontSize: 40,
                 fontWeight: "900",
               }}
             >
               98
             </Text>
-          </View>
-
-          <View style={{ marginLeft: 10 }}>
-            <Text style={styles.textSize}>Total</Text>
-            <Text style={styles.textSize}>Supplies Made</Text>
-          </View>
-          <View style={{ marginLeft: 145 }}>
-            <AntDesign name="right" size={24} color="black" />
+            <View style={{flex: 1, flexDirection: "row", justifyContent: "space-between", marginLeft: 5}}>
+              <Text style={[styles.textSize, {marginLeft: 10}]}>Total supplies made</Text>
+              <AntDesign name="right" size={24} color="black" />
+            </View>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.card2}>
-          <View>
+        <TouchableOpacity style={styles.card2} onPress={() => {
+          stackScreensNavigation.navigate("SupplierTotalSupplies")
+        }}>
+          <View style={{ width: "100%", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
             <Text
               style={{
                 textAlign: "center",
-                fontFamily: "Roboto",
+                fontFamily: "Manrope_700Bold",
                 fontSize: 40,
                 fontWeight: "900",
               }}
             >
               111
             </Text>
-          </View>
-
-          <View style={{ marginLeft: 10 }}>
-            <Text style={styles.textSize}>Total</Text>
-            <Text style={styles.textSize}>orders received</Text>
-          </View>
-          <View style={{ marginLeft: 145 }}>
-            <AntDesign name="right" size={24} color="black" />
+            <View style={{flex: 1, flexDirection: "row", justifyContent: "space-between", marginLeft: 5}}>
+              <Text style={[styles.textSize, {marginLeft: 10}]}>Total orders received</Text>
+              <AntDesign name="right" size={24} color="black" />
+            </View>
           </View>
         </TouchableOpacity>
         <TouchableOpacity style={styles.card3}>
-          <View>
+          <View style={{ width: "100%", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
             <Text
               style={{
                 textAlign: "center",
-                fontFamily: "Roboto",
+                fontFamily: "Manrope_700Bold",
                 fontSize: 40,
                 fontWeight: "900",
               }}
             >
               32
             </Text>
-          </View>
-
-          <View style={{ marginLeft: 10 }}>
-            <Text style={styles.textSize}>Past</Text>
-            <Text style={styles.textSize}>Consumer Details</Text>
-          </View>
-          <View style={{ marginLeft: 145 }}>
-            <AntDesign name="right" size={24} color="black" />
+            <View style={{flex: 1, flexDirection: "row", justifyContent: "space-between", marginLeft: 5}}>
+              <Text style={[styles.textSize, {marginLeft: 10}]}>Past consumers details</Text>
+              <AntDesign name="right" size={24} color="black" />
+            </View>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.card4}>
-          <View>
+        <TouchableOpacity style={styles.card4} onPress={() => {
+          stackScreensNavigation.navigate("FavoriteCustomers")
+        }}>
+          <View style={{ width: "100%", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
             <Text
               style={{
                 textAlign: "center",
-                fontFamily: "Roboto",
+                fontFamily: "Manrope_700Bold",
                 fontSize: 40,
                 fontWeight: "900",
               }}
             >
               12
             </Text>
-          </View>
-
-          <View style={{ marginLeft: 10 }}>
-            <Text style={styles.textSize}>Total</Text>
-            <Text style={styles.textSize}>Supplies Made</Text>
-          </View>
-          <View style={{ marginLeft: 145 }}>
-            <AntDesign name="right" size={24} color="black" />
+            <View style={{flex: 1, flexDirection: "row", justifyContent: "space-between", marginLeft: 5}}>
+              <Text style={[styles.textSize, {marginLeft: 10}]}>List of favourite customers</Text>
+              <AntDesign name="right" size={24} color="black" />
+            </View>
           </View>
         </TouchableOpacity>
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: Platform.OS === "android" ? 25 : 0,
     backgroundColor: Colors.white,
 
     width: "100%",
@@ -167,7 +175,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: Colors.white,
-    fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
+    fontFamily: "Manrope_600SemiBold",
     fontSize: 16,
     fontWeight: "400",
   },
@@ -238,7 +246,6 @@ const styles = StyleSheet.create({
     height: 110,
     width: "100%",
     backgroundColor: "rgba(56, 176, 0, 0.05)",
-    display: "flex",
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
@@ -246,8 +253,8 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
   textSize: {
-    fontSize: 16,
-    fontWeight: "300",
+    fontSize: 18,
+    fontFamily: "Manrope_500Medium",
     color: Colors.black,
   },
 });

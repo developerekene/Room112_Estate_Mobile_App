@@ -17,7 +17,7 @@ import {
   Picker,
   Modal,
 } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
+import { MaterialIcons, AntDesign } from "@expo/vector-icons";
 
 const messages = [
   {
@@ -37,6 +37,7 @@ const messages = [
   },
 ];
 import ListItemForTotalSupply from "../components/ListItemForTotalSupply";
+import { SafeAreaView } from "react-native-safe-area-context";
 class TotalSupplyMadeActivityOverview extends React.Component {
   constructor() {
     super();
@@ -47,7 +48,6 @@ class TotalSupplyMadeActivityOverview extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>← Back</Text>
         <View style={styles.overview}>
           <Text style={styles.overviewText}>Activity OverView</Text>
           <Text style={styles.supplyText}>
@@ -57,11 +57,9 @@ class TotalSupplyMadeActivityOverview extends React.Component {
         <View style={styles.horizontal}></View>
         <View style={styles.main}>
           <View style={styles.supplymadeIconSection}>
-            <View>
-              <Text>Supply Made</Text>
-            </View>
+            <Text style={{fontFamily: "Manrope_700Bold", fontSize: 14}}>Supply Made</Text>
             <View style={styles.Icon_part}>
-              <Text>In the past</Text>
+              <Text style={{fontFamily: "Manrope_300Light", fontSize: 12}}>In the past</Text>
               <View>
                 <MaterialIcons
                   name="arrow-drop-down"
@@ -69,14 +67,11 @@ class TotalSupplyMadeActivityOverview extends React.Component {
                   color="#21334f"
                   style={styles.icon}
                   onPress={() => {
-                    if (count == 0) {
-                      this.setState({ show: true });
-                    } else {
-                      this.setState({ show: false });
-                    }
-                    count++;
-
-                    console.log(count);
+                    // if (this.state.show == false) {
+                    //   this.setState({ show: true });
+                    // } else {
+                    //   this.setState({ show: false });
+                    // }
                   }}
                 />
                 <Modal transparent={true} visible={this.state.show}>
@@ -101,47 +96,49 @@ class TotalSupplyMadeActivityOverview extends React.Component {
               </View>
             </View>
           </View>
-          <View style={{ width: "100%" }}>
+          <View style={{ width: "100%", overflow: "hidden" }}>
             <LineChart
+              withDots={false}
+              fromZero={true}
               data={{
-                labels: ["", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+                labels: ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"],
                 datasets: [
                   {
-                    data: [0, 10, 15, 30, 40, 60, 50, 10],
-                  },
-                ],
+                    data: [
+                      10, 15, 30, 40, 60, 50, 10
+                    ]
+                  }
+                ]
               }}
               width={Dimensions.get("window").width} // from react-native
-              height={250}
+              height={220}
               // yAxisLabel="$"
               // yAxisSuffix="k"
-              yAxisInterval={10} // optional, defaults to 1
+              yAxisInterval={1} // optional, defaults to 1
               chartConfig={{
-                backgroundColor: "#e5e5e5",
-                backgroundGradientFrom: "#fff",
-                backgroundGradientTo: "rgb(255, 255, 255,0.5)",
+                // backgroundColor: "#e26a00",
+                backgroundGradientFrom: "#FFF",
+                backgroundGradientTo: "#FFF",
                 decimalPlaces: 0, // optional, defaults to 2dp
-                withDots: false,
-                color: () => "rgba(20, 125, 245, 1)",
-
-                //linear-gradient(180deg, #147DF5 50.21%, rgba(20, 125, 245, 0.05) 95.64%), //rgba(20, 125, 245, 0.05) 95.64%)
-                labelColor: (opacity = 1) => `rgba(33, 51, 79, ${opacity})`, //  rgba(33, 51, 79, 1)
-
+                color: (opacity = 0.5) => `rgba(20, 125, 245, 0.6)`,
+                labelColor: () => `rgba(33, 51, 79, 1)`,
+                strokeWidth: -1,
                 style: {
-                  borderRadius: 16,
+                  borderRadius: 16
                 },
                 // propsForDots: {
                 //   r: "6",
                 //   strokeWidth: "2",
-                //   stroke: "#ffa726",
-                // },
+                //   stroke: "#ffa726"
+                // }
               }}
               bezier
               style={{
-                marginVertical: 8,
-                borderRadius: 16,
+                marginVertical: 10,
+                right: 10,
+                borderRadius: 0
               }}
-            />
+          />
           </View>
           <FlatList
             data={messages}
@@ -152,6 +149,9 @@ class TotalSupplyMadeActivityOverview extends React.Component {
                 num={item.title}
               />
             )}
+            ItemSeparatorComponent={() => {
+              return <View style={{width: "100%", height: 1, backgroundColor: "#21334F0F"}} />
+            }}
           />
         </View>
       </View>
@@ -161,41 +161,38 @@ class TotalSupplyMadeActivityOverview extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: Platform.OS === "android" ? 20 : 0,
-
     flex: 1,
-    // backgroundColor: "blue",
+    backgroundColor: "#FFF"
   },
   overview: {
-    padding: 10,
-    marginTop: 20,
+    padding: 20,
+    justifyContent: "center"
   },
   overviewText: {
     fontSize: 24,
     color: "#21334f",
-    fontWeight: "700",
-    lineHeight: 33,
+    fontFamily: "Manrope_700Bold",
   },
   supplyText: {
     color: "#21334f",
     marginTop: 5,
-    fontStyle: "normal",
+    fontFamily: "Manrope_300Light",
     fontSize: 12,
-    lineHeight: 16,
-    fontWeight: "300",
   },
   horizontal: {
-    backgroundColor: "rgba(0, 0, 0, 0.02)",
+    backgroundColor: "#00000005",
     height: 6,
-    marginTop: 10,
   },
   main: {
+    // backgroundColor: "tomato",
     padding: 10,
+    paddingHorizontal: 20
   },
   supplymadeIconSection: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
   },
   supply_made: {
     color: "#21334f",
@@ -205,10 +202,10 @@ const styles = StyleSheet.create({
   Icon_part: {
     display: "flex",
     flexDirection: "row",
+    alignItems: "center"
   },
   icon: {
     marginLeft: 2,
-    marginBottom: 5,
   },
   icon_text: {
     color: "#21334f",

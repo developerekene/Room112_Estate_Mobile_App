@@ -13,6 +13,7 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 
 import Onboarding from './OnboardingScreen';
+import TotalSuppliesMade from "./src/screens/supplier-screens/TotalSuppliesMade/TotalSuppliesMade";
 
 export default function AppFlow() {
   let [fontsLoaded] = useFonts({

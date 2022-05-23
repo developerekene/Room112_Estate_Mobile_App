@@ -24,6 +24,7 @@ import CheckMailScreen from './src/screens/CheckMailScreen';
 import CreateNewPasswordScreen from './src/screens/CreateNewPasswordScreen';
 import ConfirmEmail from './src/screens/ConfirmEmail';
 import Customer from './src/screens/consumer-screens/Customer';
+import TotalSuppliesMade from './src/screens/supplier-screens/TotalSuppliesMade/TotalSuppliesMade';
 
 
 const slides = [
@@ -173,82 +174,90 @@ function Onboarding () {
         } else {
           return (
             <Stack.Navigator>
+              
               <Stack.Screen
                 name="Home"
                 component={WelcomeScreen}
                 options={{ headerShown: false }}
               />
 
-              <Stack.Screen name="Login" component={Login} 
-                options={{
-                  headerShown: false
-                }}/>
+            <Stack.Screen name="SignUp" component={RegisterScreen} 
+              options={{
+                header: ({navigation}) => {
+                  return <GoBack navigation={navigation} />
+                }
+              }}/>
 
-              <Stack.Screen name="SignUp" component={RegisterScreen} 
-                options={{
-                  header: ({navigation}) => {
-                    return <GoBack navigation={navigation} />
-                  }
-                }}/>
+            <Stack.Screen name="Login" component={Login} 
+              options={{
+                headerShown: false
+              }}/>
 
-              <Stack.Screen name="Customer" component={Customer} 
-                options={{
-                  headerShown: false
-                }}/>
+            <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} 
+              options={{
+                header: ({navigation}) => {
+                  return <GoBack navigation={navigation} />
+                }
+              }}/>
 
-              <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} 
-                options={{
-                  header: ({navigation}) => {
-                    return <GoBack navigation={navigation} />
-                  }
-                }}/>
+            <Stack.Screen name="CheckMail" component={CheckMailScreen} 
+              options={{
+                headerShown: false
+              }}/>
 
-              <Stack.Screen name="CheckMail" component={CheckMailScreen} 
-                options={{
-                  headerShown: false
-                }}/>
-
-              <Stack.Screen
-                name="Supplier"
-                component={Supplier}
-                options={{ headerShown: false }}
+            <Stack.Screen
+              name="ConfirmEmail"
+              component={ConfirmEmail}
+              options={{
+                headerShown: false
+              }}
               />
 
-              <Stack.Screen
-                name="FavoriteCustomers"
-                component={FavouriteCustomers}
-                options={{
-                  header: ({navigation}) => {
-                    return <GoBack navigation={navigation} />
-                  }
-                }}
+            <Stack.Screen
+              name="CreateNewPasswordScreen"
+              component={CreateNewPasswordScreen}
+              options={{
+                headerShown: false
+              }}
+            />
+
+            <Stack.Screen
+              name="Supplier"
+              component={Supplier}
+              options={{ headerShown: false }}
               />
 
-              <Stack.Screen
-                name="ConfirmEmail"
-                component={ConfirmEmail}
-                options={{
-                  headerShown: false
-                }}
+            <Stack.Screen
+              name="FavoriteCustomers"
+              component={FavouriteCustomers}
+              options={{
+                header: ({navigation}) => {
+                  return <GoBack navigation={navigation} />
+                }
+              }}
               />
 
-              <Stack.Screen
-                name="CreateNewPasswordScreen"
-                component={CreateNewPasswordScreen}
-                options={{
-                  headerShown: false
-                }}
-              />
+            <Stack.Screen name="SupplierTotalSupplies" component={TotalSuppliesMade} 
+              options={{
+                header: ({navigation}) => {
+                  return <GoBack navigation={navigation} />
+                }
+              }}/>
 
-              <Stack.Screen
-                name="SupplierActivityOverview"
-                component={TotalSupplyMadeActivityOverview}
-                options={{
-                  header: ({navigation}) => {
-                    return <GoBack navigation={navigation} />
-                  }
-                }}
-              />
+            <Stack.Screen name="Customer" component={Customer} 
+              options={{
+                headerShown: false
+              }}/>
+
+            <Stack.Screen
+              name="SupplierActivityOverview"
+              component={TotalSupplyMadeActivityOverview}
+              options={{
+                header: ({navigation}) => {
+                  return <GoBack navigation={navigation} />
+                }
+              }}
+            />
             </Stack.Navigator>
           );
         }

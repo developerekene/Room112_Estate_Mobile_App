@@ -92,7 +92,9 @@ function SupplierHomePageScreen({ stackScreensNavigation }) {
             </View>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.card2}>
+        <TouchableOpacity style={styles.card2} onPress={() => {
+          stackScreensNavigation.navigate("SupplierTotalSupplies")
+        }}>
           <View style={{ width: "100%", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
             <Text
               style={{

@@ -14,7 +14,7 @@ function LogoutScreen({ close }) {
             // marginTop: Constants.statusBarHeight
         }}>
             <View style={{
-                flexDirection: "center",
+                flexDirection: "row",
                 alignItems: "center", 
                 padding: 20,
                 width: "100%",

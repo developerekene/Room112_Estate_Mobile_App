@@ -8,8 +8,12 @@ const BuyNow = () => {
   return (
     <SafeAreaView>
       <View style={styles.container}>
-        <ConsumerHeader title="Details" />
-        <Carousel />
+        <View>
+          <ConsumerHeader title="Details" />
+        </View>
+        <View>
+          <Carousel />
+        </View>
         <View style={styles.productDetails}>
           <Text style={{ fontWeight: "bold", fontSize: 18 }}>
             Bottle Water Pack
@@ -17,15 +21,24 @@ const BuyNow = () => {
           <Text style={{ fontWeight: "bold", fontSize: 24 }}>N900.00</Text>
         </View>
         <View>
-          <Text>In Stock</Text>
+          <Text
+            style={{
+              color: "#38B000",
+              fontSize: 14,
+            }}
+          >
+            In Stock
+          </Text>
         </View>
         <View>
           <Counter />
         </View>
-        <Pressable style={styles.btnprimary}>
-          <Text style={styles.btnPrimaryText}>Buy Now</Text>
-        </Pressable>
-        <Text>Remove</Text>
+        <View style={styles.btnView}>
+          <Pressable style={styles.btnprimary}>
+            <Text style={styles.btnPrimaryText}>Continue To Buy</Text>
+          </Pressable>
+          <Text style={{ color: "#147DF5", fontSize: 14 }}>Remove</Text>
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -35,9 +48,9 @@ export default BuyNow;
 
 const styles = StyleSheet.create({
   container: {
-    height: "100%",
+    width: "100%",
     alignItems: "center",
-    justifyContent: "center",
+    height: "100%",
   },
   btnprimary: {
     width: 329,
@@ -54,5 +67,10 @@ const styles = StyleSheet.create({
     textAlign: "left",
     color: "#fff",
     paddingLeft: 5,
+  },
+  btnView: {
+    justifyContent: "center",
+    width: "100%",
+    alignItems: "center",
   },
 });

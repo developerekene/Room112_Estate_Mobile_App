@@ -1,12 +1,13 @@
-import { StyleSheet, Text, View, FlatList } from "react-native";
+import { StyleSheet, Text, View, FlatList, Dimensions } from "react-native";
 import React from "react";
 import TransactionItems from "./TransactionItems";
 import TransactionItem from "./TransactionItem";
+// import { Dimensions } from "react-native-web";
 
 const TransactionCard = () => {
   return (
     <View style={styles.container}>
-      <FlatList
+      <FlatList 
         data={TransactionItems}
         renderItem={({ item }) => <TransactionItem menu={item} />}
         keyExtractor={(item) => item.id}
@@ -22,10 +23,11 @@ export default TransactionCard;
 
 const styles = StyleSheet.create({
   container: {
+    paddingHorizontal: 10,
+    // backgroundColor: "#000",
+    // justifyContent: "center",
     width: "100%",
-    position: "absolute",
-    top: 50,
-    justifyContent: "center",
-    alignItems: "center",
+    // marginVertical: 10,
+    flex: 1,
   },
 });

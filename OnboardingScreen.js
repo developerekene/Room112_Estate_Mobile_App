@@ -1,9 +1,30 @@
 import React from 'react';
 import { useState } from "react";
-import { Text, View, Image } from "react-native";
+import { Text, View, Image, StyleSheet } from "react-native";
 import AppIntroSlider from "react-native-app-intro-slider";
+import { AntDesign, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import Constants from 'expo-constants';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
+
 import { COLORS, SIZES } from "./src/constants/theme";
-import { AntDesign } from '@expo/vector-icons';
+import WelcomeScreen from './WelcomeScreen';
+import Login from './Login';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import GoBack from './src/components/GoBack/GoBack';
+import RegisterScreen from './RegisterScreen';
+import ForgotPasswordScreen from './src/screens/ForgotPasswordScreen';
+import Supplier from './src/screens/supplier-screens/Supplier';
+import FavouriteCustomers from './src/screens/supplier-screens/FavouriteCustomers';
+import TotalSupplyMadeActivityOverview from './src/screens/TotalSupplyMadeActivityOverview';
+import CheckMailScreen from './src/screens/CheckMailScreen';
+import CreateNewPasswordScreen from './src/screens/CreateNewPasswordScreen';
+import ConfirmEmail from './src/screens/ConfirmEmail';
+import Customer from './src/screens/consumer-screens/Customer';
+import TotalSuppliesMade from './src/screens/supplier-screens/TotalSuppliesMade/TotalSuppliesMade';
 
 
 const slides = [
@@ -19,44 +40,44 @@ const slides = [
        title: "Transparent Pricing",
        description:
          "Before placing an order, customers will input their address for delivery and receive detailed pricing information. There are no hidden costs!",
-       image: require("./src/assets/boarding1.png"),
+       image: require("./src/assets/boarding2.png"),
      },
      {
        id: 3,
        title: "Timely Delivery",
        description:
          "Depending on the customer’s needs, delivery can be one-time or long-running",
-       image: require("./src/assets/boarding1.png"),
+       image: require("./src/assets/boarding3.png"),
      },
    ];
 
 function Onboarding () {
      const [showHomePage, setShowHomePage] = useState(false);
      const buttonLabel = (label) => {
-          return (
-            <View
+        return (
+          <View
+            style={{
+              padding: 12,
+              backgroundColor: COLORS.primary,
+              width: 154,
+              height: 50,
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: 'row'
+            }}
+          >
+            <Text
               style={{
-                padding: 12,
-                backgroundColor: COLORS.primary,
-                width: 154,
-                height: 50,
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: 'row'
+                color: "white",
+                fontWeight: "600",
+                fontSize: SIZES.h4,
+                marginRight: 10
               }}
-            >
-              <Text
-                style={{
-                  color: "white",
-                  fontWeight: "600",
-                  fontSize: SIZES.h4,
-                  marginRight: 10
-                }}
-              >{label}</Text>
-              <AntDesign name="arrowright" size={24} color="white" />
-            </View>
-          );
-        };
+            >{label}</Text>
+            <AntDesign name="arrowright" size={24} color="white" />
+          </View>
+        );
+    };
         const buttonNewLabel = (label) => {
           return (
             <View
@@ -90,44 +111,46 @@ function Onboarding () {
                   <View
                     style={{
                       alignItems: "center",
-                      paddingBottom: 20,
                       height: '70%'
                     }}
                   >
-                    <View>
+                    <View style={{width: "100%", height: 400}}>
                       <Image
                         source={item.image}
                         style={{
-                          marginTop: 30,
-                          width: 400,
-                          height: 300,
-                          marginBottom: 20,
+                          width: "100%",
+                          height: "100%",
                         }}
                         resizeMode="cover"
                       />
                     </View>
       
-                    <Text
-                      style={{
-                        fontWeight: "bold",
-                        color: COLORS.title,
-                        fontSize: 20,
-                        marginTop: 25,
-                      }}
-                    >
-                      {item.title}
-                    </Text>
-                    <Text
-                      style={{
-                        textAlign: "center",
-                        paddingTop: 5,
-                        color: COLORS.title,
-                        fontSize: 14,
-                        marginTop: 15,
-                      }}
-                    >
-                      {item.description}
-                    </Text>
+                    <View style={{padding: 20}}>
+                      <Text
+                        style={{
+                          textAlign: "center",
+                          fontWeight: "bold",
+                          color: COLORS.title,
+                          fontFamily: "Manrope_800ExtraBold",
+                          fontSize: 20,
+                          marginTop: 25,
+                        }}
+                      >
+                        {item.title}
+                      </Text>
+                      <Text
+                        style={{
+                          textAlign: "center",
+                          marginTop: 5,
+                          color: COLORS.title,
+                          fontFamily: "Manrope_400Regular",
+                          fontSize: 14,
+                          marginTop: 15,
+                        }}
+                      >
+                        {item.description}
+                      </Text>
+                    </View>
                   </View>
                 );
               }}
@@ -147,6 +170,95 @@ function Onboarding () {
                 setShowHomePage(true);
               }}
             />
+          );
+        } else {
+          return (
+            <Stack.Navigator>
+              
+              <Stack.Screen
+                name="Home"
+                component={WelcomeScreen}
+                options={{ headerShown: false }}
+              />
+
+            <Stack.Screen name="SignUp" component={RegisterScreen} 
+              options={{
+                header: ({navigation}) => {
+                  return <GoBack navigation={navigation} />
+                }
+              }}/>
+
+            <Stack.Screen name="Login" component={Login} 
+              options={{
+                headerShown: false
+              }}/>
+
+            <Stack.Screen name="ForgotPassword" component={ForgotPasswordScreen} 
+              options={{
+                header: ({navigation}) => {
+                  return <GoBack navigation={navigation} />
+                }
+              }}/>
+
+            <Stack.Screen name="CheckMail" component={CheckMailScreen} 
+              options={{
+                headerShown: false
+              }}/>
+
+            <Stack.Screen
+              name="ConfirmEmail"
+              component={ConfirmEmail}
+              options={{
+                headerShown: false
+              }}
+              />
+
+            <Stack.Screen
+              name="CreateNewPasswordScreen"
+              component={CreateNewPasswordScreen}
+              options={{
+                headerShown: false
+              }}
+            />
+
+            <Stack.Screen
+              name="Supplier"
+              component={Supplier}
+              options={{ headerShown: false }}
+              />
+
+            <Stack.Screen
+              name="FavoriteCustomers"
+              component={FavouriteCustomers}
+              options={{
+                header: ({navigation}) => {
+                  return <GoBack navigation={navigation} />
+                }
+              }}
+              />
+
+            <Stack.Screen name="SupplierTotalSupplies" component={TotalSuppliesMade} 
+              options={{
+                header: ({navigation}) => {
+                  return <GoBack navigation={navigation} />
+                }
+              }}/>
+
+            <Stack.Screen name="Customer" component={Customer} 
+              options={{
+                headerShown: false
+              }}/>
+
+            <Stack.Screen
+              name="SupplierActivityOverview"
+              component={TotalSupplyMadeActivityOverview}
+              options={{
+                header: ({navigation}) => {
+                  return <GoBack navigation={navigation} />
+                }
+              }}
+            />
+            </Stack.Navigator>
           );
         }
 }

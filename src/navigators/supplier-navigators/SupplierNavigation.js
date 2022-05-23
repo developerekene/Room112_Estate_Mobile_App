@@ -1,17 +1,19 @@
 import React from "react";
+import { View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import HomeTab, { homeName } from "./SupplierBottomTabs/HomeTab";
 import OrdersTab, { ordersName } from "./SupplierBottomTabs/OrdersTab";
 import AccountTab, { accountName } from "./SupplierBottomTabs/AccountTab";
+import FavouriteCustomers from "../../screens/supplier-screens/FavouriteCustomers";
 
 const Tab = createBottomTabNavigator();
 
-function SupplierNavigation(props) {
+function SupplierNavigation({ stackScreensNavigation }) {
 
   return (
-    <NavigationContainer>
+    <View style={{ flex: 1 }}>
       <Tab.Navigator
         safeAreaInsets={{
           bottom: 10
@@ -40,11 +42,11 @@ function SupplierNavigation(props) {
           style: { padding: 10, height: 70 },
         })}
       >
-        <Tab.Screen name={homeName} component={HomeTab} />
+        <Tab.Screen name={homeName} children={() => <HomeTab stackScreensNavigation={stackScreensNavigation} />} />
         <Tab.Screen name={ordersName} component={OrdersTab} />
         <Tab.Screen name={accountName} component={AccountTab} />
       </Tab.Navigator>
-    </NavigationContainer>
+    </View>
   );
 }
 

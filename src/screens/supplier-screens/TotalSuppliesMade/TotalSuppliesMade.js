@@ -6,7 +6,6 @@ import {
   TextInput,
   Image,
   FlatList,
-  Button,
   TouchableHighlight,
   TouchableOpacity,
 } from "react-native";
@@ -129,10 +128,9 @@ const customers = [
 ];
 
 const modalId = "customer-modal";
-const reminderModalId = "customer-reminder-modal";
-const filterActionSheetId = "filter-action-sheet";
+const filterActionSheetId = "filter-modal";
 
-function CustomerModal() {
+function ProfileDetailsModal() {
   let [data, setData] = React.useState(customers[0]);
 
   return (
@@ -201,126 +199,35 @@ function CustomerModal() {
             />
             <Text style={styles.rowText}>{data.email}</Text>
           </View>
-          <View style={styles.row}>
-            <MaterialCommunityIcons name="chart-bar" size={24} color="black" />
-            <Text style={styles.rowText}>
-              Consumption level ({data.consumptionLevel}%)
-            </Text>
-          </View>
-          <View style={styles.row}>
-            <MaterialCommunityIcons
-              name="bottle-wine-outline"
-              size={24}
-              color="black"
-            />
-            <Text style={styles.rowText}>
-              Total Bottles bought ({data.bought})
-            </Text>
-          </View>
-          <View style={styles.row}>
-            <MaterialCommunityIcons
-              name="bottle-wine-outline"
-              size={24}
-              color="black"
-            />
-            <Text
-              style={{
-                fontSize: 14,
-                marginStart: 10,
-                fontFamily: "Manrope_400Regular",
-                flex: 1,
-                flexShrink: 1,
-                textAlign: "left",
-              }}
-            >
-              Total Bottles remaining ({data.remaining})
-            </Text>
-          </View>
         </View>
-        <View style={{ paddingHorizontal: 30 }}>
-          <TouchableOpacity
-            style={{ backgroundColor: "#147DF5" }}
-            underlayColor="#08386F"
-            onPress={() => {
-              SheetManager.show(reminderModalId, data);
-            }}
-          >
-            <View style={styles.reminderBtn}>
-              <MaterialCommunityIcons
-                name="clock-time-eight-outline"
-                size={24}
-                color="#fff"
-              />
-              <Text style={styles.reminderBtnText}>
-                Send a Reminder
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-      </View>
-      <CustomerReminderModal />
-    </ActionSheet>
-  );
-}
-
-function CustomerReminderModal() {
-  let [data, setData] = React.useState(customers[0]);
-
-  return (
-    <ActionSheet
-      id={reminderModalId}
-      containerStyle={{ justifyContent: "center" }}
-      onClose={() => {
-        SheetManager.hide(modalId);
-      }}
-      onBeforeShow={(data) => {
-        setData(data);
-      }}
-    >
-      <View style={{ height: "75%" }}>
-        <View style={[styles.dash, { top: -75 }]} />
-        <View style={{ flex: 1, justifyContent: "center" }}>
-          <View style={{ padding: 20, paddingHorizontal: 30 }}>
-            <View style={{ marginBottom: 15, alignItems: "center" }}>
-              <MaterialCommunityIcons
-                name="check-circle"
-                size={64}
-                color="#38B000"
-              />
-              <Text
-                style={{
-                  fontSize: 18,
-                  marginVertical: 15,
-                  textAlign: "center",
-                  fontFamily: "Manrope_700Bold",
-                }}
-              >
-                Reminder sent successfully
-              </Text>
-              <Text
-                style={{
-                  fontSize: 14,
-                  textAlign: "center",
-                  fontFamily: "Manrope_400Regular",
-                }}
-              >
-                You've successfully sent a reminder to{" "}
-                {<Text style={{ fontWeight: "bold" }}>{data.name}</Text>} he
-                will get a notification to place order.
-              </Text>
-            </View>
-          </View>
-          <View style={{ paddingHorizontal: 30 }}>
+        <View style={{ paddingHorizontal: 30, }}>
+          <View style={{flexDirection: "row", paddingHorizontal: 34}}>
             <TouchableHighlight
-              style={{ backgroundColor: "#147DF5" }}
-              underlayColor="#08386F"
-              onPress={() => {}}
+                style={{ backgroundColor: "#147DF500", paddingHorizontal: 10 }}
+                underlayColor="#00000010"
+                onPress={() => {
+                    
+                }}
             >
-              <View style={styles.reminderBtn}>
-                <Text style={styles.reminderBtnText}>
-                  Back Home
+                <View style={styles.statusBtn}>
+                <Text style={[styles.statusBtnText, {color: "#21334F"}]}>
+                    Status
                 </Text>
-              </View>
+                </View>
+            </TouchableHighlight>
+
+            <TouchableHighlight
+                style={{ backgroundColor: "#38B0000D", paddingHorizontal: 10 }}
+                underlayColor="#38B00020"
+                onPress={() => {
+                    
+                }}
+            >
+                <View style={styles.statusBtn}>
+                <Text style={[styles.statusBtnText, {color: "#38B000"}]}>
+                    Active
+                </Text>
+                </View>
             </TouchableHighlight>
           </View>
         </View>
@@ -331,110 +238,109 @@ function CustomerReminderModal() {
 
 function showDetails(item) {
   SheetManager.show(modalId, item);
-  // SheetManager.show(reminderModalId, {...item});
 }
 
 function showFilterActionSheet() {
-  SheetManager.show(filterActionSheetId);
+    SheetManager.show(filterActionSheetId);
 }
 
-function FavouriteCustomers(props) {
+function TotalSuppliesMade(props) {
   return (
     <View style={{backgroundColor: "#FFF"}}>
-      <View style={{ width: "100%", height: "100%" }}>
-        <View
-          style={{
-            paddingHorizontal: 20,
-            paddingBottom: 20,
-            flexDirection: "row",
-            borderBottomWidth: 1,
-            borderBottomColor: "#F5F5F5",
-          }}
-        >
-          <View
+        <View style={{ width: "100%", height: "100%" }}>
+            <View
             style={{
-              flex: 1,
-              padding: 10,
-              flexDirection: "row",
-              backgroundColor: "#F5F5F5",
-              alignItems: "center",
+                paddingHorizontal: 20,
+                paddingBottom: 20,
+                flexDirection: "row",
+                borderBottomWidth: 1,
+                borderBottomColor: "#F5F5F5",
             }}
-          >
-            <MaterialCommunityIcons
-              name="magnify"
-              size={24}
-              color="#979797"
-              style={{
-                marginRight: 10,
-              }}
-            />
-            <TextInput
-              placeholder="Search"
-              style={{
-                color: "#979797",
-                fontFamily: "Manrope_400Regular",
+            >
+            <View
+                style={{
                 flex: 1,
-              }}
-            />
-          </View>
-          <TouchableOpacity onPress={() => {
+                padding: 10,
+                flexDirection: "row",
+                backgroundColor: "#F5F5F5",
+                alignItems: "center",
+                }}
+            >
+                <MaterialCommunityIcons
+                name="magnify"
+                size={24}
+                color="#979797"
+                style={{
+                    marginRight: 10,
+                }}
+                />
+                <TextInput
+                placeholder="Search"
+                style={{
+                    color: "#979797",
+                    fontFamily: "Manrope_400Regular",
+                    flex: 1,
+                }}
+                />
+            </View>
+            <TouchableOpacity onPress={() => {
                 showFilterActionSheet();
             }}>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                padding: 10,
-              }}
-            >
-              <Text
-                style={{
-                  fontFamily: "Manrope_500Medium",
-                  fontSize: 14,
-                }}
-              >
-                Filter
-              </Text>
-              <MaterialCommunityIcons
-                name="filter-outline"
-                size={24}
-                color="#21334F"
-              />
+                <View
+                    style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    padding: 10,
+                    }}
+                >
+                    <Text
+                    style={{
+                        fontFamily: "Manrope_500Medium",
+                        fontSize: 14,
+                    }}
+                    >
+                        Filter
+                    </Text>
+                    <MaterialCommunityIcons
+                    name="filter-outline"
+                    size={24}
+                    color="#21334F"
+                    />
+                </View>
+            </TouchableOpacity>
             </View>
-          </TouchableOpacity>
-        </View>
 
-        <View style={{ width: "100%", padding: 20 }}>
-          <Text style={{ fontFamily: "Manrope_700Bold", fontSize: 18 }}>
-            Favourite Customers
-          </Text>
-        </View>
+            <View style={{ width: "100%", padding: 20 }}>
+            <Text style={{ fontFamily: "Manrope_700Bold", fontSize: 18 }}>
+                Past supplies
+            </Text>
+            </View>
 
-        <View style={{ paddingHorizontal: 20, flex: 1 }}>
-          <FlatList
-            data={customers}
-            keyExtractor={(i) => i.id}
-            renderItem={({ item }) => {
-              return (
-                <FavouriteCustomer
-                  name={item.name}
-                  image={item.image}
-                  location={item.location}
-                  onPress={() => {
-                    showDetails(item);
-                  }}
-                />
-              );
-            }}
-            ItemSeparatorComponent={() => {
-              return <View style={{ width: "100%", marginBottom: 20 }} />;
-            }}
-            scrollEnabled={true}
-          />
+            <View style={{ paddingHorizontal: 20, flex: 1 }}>
+            <FlatList
+                data={customers}
+                keyExtractor={(i) => i.id}
+                renderItem={({ item }) => {
+                return (
+                    <FavouriteCustomer
+                    name={item.name}
+                    image={item.image}
+                    location={item.location}
+                    onPress={() => {
+                        showDetails(item);
+                    }}
+                    />
+                );
+                }}
+                ItemSeparatorComponent={() => {
+                return <View style={{ width: "100%", marginBottom: 20 }} />;
+                }}
+                scrollEnabled={true}
+            />
+            </View>
         </View>
-      </View>
-      <CustomerModal />
-      <FilterActionSheet id={filterActionSheetId} />
+        <ProfileDetailsModal />
+        <FilterActionSheet id={filterActionSheetId} />
     </View>
   );
 }
@@ -497,17 +403,15 @@ const styles = StyleSheet.create({
     flexShrink: 1,
     textAlign: "left",
   },
-  reminderBtn: {
-    width: "100%",
-    height: 46,
+  statusBtn: {
+    height: 31,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
   },
-  reminderBtnText: {
+  statusBtnText: {
     fontSize: 14,
-    marginStart: 10,
-    fontFamily: "Manrope_700Bold",
+    fontFamily: "Manrope_400Regular",
     color: "#fff",
   },
   toolbar: {
@@ -523,4 +427,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FavouriteCustomers;
+export default TotalSuppliesMade;

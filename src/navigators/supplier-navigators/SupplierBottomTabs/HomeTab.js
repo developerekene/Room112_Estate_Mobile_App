@@ -4,10 +4,10 @@ import { View } from 'react-native';
 import SupplierHomePageScreen from "../../../screens/supplier-screens/SupplierHomePageScreen";
 
 export const homeName = "Home";
-function HomeTab({ navigation }) {
+function HomeTab({ stackScreensNavigation }) {
     return (
         <View style={{flex: 1, backgroundColor: '#fff' }}>
-            <SupplierHomePageScreen />
+            <SupplierHomePageScreen stackScreensNavigation={stackScreensNavigation} />
         </View>
     );
 }

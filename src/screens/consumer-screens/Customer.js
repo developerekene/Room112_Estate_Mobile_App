@@ -4,7 +4,7 @@ import CustomerNavigation from '../../navigators/consumer-navigators/CustomerNav
 
 function Customer(props) {
     return (
-        <SafeAreaView style={{width: '100%', height: '100%'}}>
+        <SafeAreaView style={{width: '100%', height: '100%', backgroundColor: "#FFF"}}>
             <CustomerNavigation />
         </SafeAreaView>
     );

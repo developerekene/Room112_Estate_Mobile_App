@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, SafeAreaView, Pressable } from "react-native";
 import React from "react";
-import ConsumerHeader from "../../../components/ConsumerHeader/ConsumerHeader";
+import Header from "../../../components/ConsumerHeader/Header";
 import Carousel from "./Carousel";
 import Counter from "./Counter";
 
@@ -8,10 +8,10 @@ const BuyNow = () => {
   return (
     <SafeAreaView>
       <View style={styles.container}>
-        <View>
-          <ConsumerHeader title="Details" />
+        <View style={styles.header}>
+          <Header title="Details" />
         </View>
-        <View>
+        <View style={styles.carousel}>
           <Carousel />
         </View>
         <View style={styles.productDetails}>
@@ -20,17 +20,18 @@ const BuyNow = () => {
           </Text>
           <Text style={{ fontWeight: "bold", fontSize: 24 }}>N900.00</Text>
         </View>
-        <View>
+        <View style={styles.inStock}>
           <Text
             style={{
               color: "#38B000",
               fontSize: 14,
+              padding: 20,
             }}
           >
             In Stock
           </Text>
         </View>
-        <View>
+        <View style={styles.counter}>
           <Counter />
         </View>
         <View style={styles.btnView}>
@@ -49,8 +50,9 @@ export default BuyNow;
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    alignItems: "center",
-    height: "100%",
+    // alignItems: "center",
+    justifyContent: "space-between",
+    height: "80%",
   },
   btnprimary: {
     width: 329,
@@ -72,5 +74,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: "100%",
     alignItems: "center",
+  },
+  productDetails: {
+    alignItems: "flex-start",
+    justifyContent: "center",
+    padding: 20,
   },
 });

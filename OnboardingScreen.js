@@ -27,6 +27,7 @@ import Customer from './src/screens/consumer-screens/Customer';
 import TotalSuppliesMade from './src/screens/supplier-screens/TotalSuppliesMade/TotalSuppliesMade';
 import SupplierProfileDetailScreen from './src/screens/supplier-screens/SupplierProfileDetailScreen';
 import ProfileSettings from './src/screens/consumer-screens/ProfileSettings';
+import NotificationSettings from './src/screens/consumer-screens/NotificationSettings/NotificationSettings';
 
 
 const slides = [
@@ -277,6 +278,16 @@ function Onboarding () {
               options={{
                 header: ({navigation}) => {
                   return <GoBack navigation={navigation} title="Edit Profile" />
+                }
+              }}
+            />
+
+            <Stack.Screen
+              name="CustomerNotificationSettings"
+              component={NotificationSettings}
+              options={{
+                header: ({navigation}) => {
+                  return <GoBack navigation={navigation} title="Notifications" />
                 }
               }}
             />

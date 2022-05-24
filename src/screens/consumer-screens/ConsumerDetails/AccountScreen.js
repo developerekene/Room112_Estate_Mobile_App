@@ -5,13 +5,21 @@ import {
   Dimensions,
   Image,
   Pressable,
+  TouchableHighlight
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import Menu from "../../../components/ConsumerAccount/Menu";
 import { Feather } from '@expo/vector-icons';
 import { SafeAreaView } from "react-native-safe-area-context";
+import LogoutScreen from "../../LogoutScreen";
 
 const AccountScreen = ({ navigation }) => {
+  const [logoutConfirmation, updateLogoutConfirmation] = useState(false);
+
+  function closeLogoutConfirmation() {
+    updateLogoutConfirmation(false)
+  }
+
   return (
     <>
     <View style={styles.homeheader}>
@@ -35,13 +43,16 @@ const AccountScreen = ({ navigation }) => {
       </View>
       <View style={{flex: 1, justifyContent: "space-between"}}>
         <Menu style={styles.menu} />
-        <Pressable style={{ paddingHorizontal: 20, marginBottom: 30 }}>
+        <TouchableHighlight style={{ paddingHorizontal: 20, marginBottom: 30 }} underlayColor="#114E9310" onPress={()=>{
+          updateLogoutConfirmation(true);
+        }}>
           <View style={styles.btnprimary}>
             <Feather name="log-out" size={24} color="#147DF5" />
             <Text style={styles.btnPrimaryText}>Logout</Text>
           </View>
-        </Pressable>
+        </TouchableHighlight>
       </View>
+      { logoutConfirmation && <LogoutScreen close={closeLogoutConfirmation} /> }
     </View>
     </>
   );

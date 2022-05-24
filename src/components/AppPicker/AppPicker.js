@@ -4,7 +4,6 @@ import { Feather, Ionicons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 function AppPicker({ items, placeholder = "Select" }) {
-    console.log(items);
     const [ modalDisplay, setModalDisplay ] = React.useState(false)
     const [ selectedItem, setSelectedItem ] = React.useState();
     return (

@@ -7,6 +7,7 @@ import {
   Image,
   Button,
   Pressable,
+  TouchableHighlight,
   FlatList,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -14,6 +15,7 @@ import { Feather } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import logo from "../../../assets/supplier.png";
 import ListItemSupplierProfile from "../../components/ListItemSupplierProfile";
+import LogoutScreen from "../LogoutScreen";
 
 const messages = [
   {
@@ -49,6 +51,12 @@ const messages = [
 ];
 
 function SupplierMyProfileScreen(props) {
+  const [logoutConfirmation, updateLogoutConfirmation] = React.useState(false);
+
+  function closeLogoutConfirmation() {
+    updateLogoutConfirmation(false)
+  }
+
   return (
     <View style={styles.container}>
       <View>
@@ -88,10 +96,15 @@ function SupplierMyProfileScreen(props) {
           </View>
         </View>
       </View>
-      <Pressable style={styles.logout_btn}>
-        <MaterialCommunityIcons name="logout" size={24} color="#147df5" />
-        <Text style={styles.lout_text}>Logout </Text>
-      </Pressable>
+      <TouchableHighlight style={styles.logout_btn} underlayColor="#114E9310" onPress={()=>{
+        updateLogoutConfirmation(true);
+      }}>
+        <>
+          <MaterialCommunityIcons name="logout" size={24} color="#147df5" />
+          <Text style={styles.lout_text}>Logout </Text>
+        </>
+      </TouchableHighlight>
+      { logoutConfirmation && <LogoutScreen close={closeLogoutConfirmation} /> }
     </View>
   );
 }

@@ -5,10 +5,10 @@ import SupplierMyProfileScreen from "../../../screens/supplier-screens/SupplierM
 import SupplierHeader from "../../../components/SupplierHeader";
 
 export const accountName = "Account";
-function AccountTab({ navigation }) {
+function AccountTab({ stackScreensNavigation }) {
     return (
         <View style={{flex: 1, backgroundColor: '#fff' }}>
-            <SupplierMyProfileScreen />
+            <SupplierMyProfileScreen stackScreensNavigation={stackScreensNavigation}/>
         </View>
     );
 }

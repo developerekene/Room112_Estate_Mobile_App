@@ -9,11 +9,11 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import Menu from "../../../components/ConsumerAccount/Menu";
-import { Feather } from '@expo/vector-icons';
+import { Feather, FontAwesome5, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { SafeAreaView } from "react-native-safe-area-context";
 import LogoutScreen from "../../LogoutScreen";
 
-const AccountScreen = ({ navigation }) => {
+const AccountScreen = ({ stackScreensNavigation: navigation }) => {
   const [logoutConfirmation, updateLogoutConfirmation] = useState(false);
 
   function closeLogoutConfirmation() {
@@ -41,8 +41,96 @@ const AccountScreen = ({ navigation }) => {
           </View>
         </View>
       </View>
-      <View style={{flex: 1, justifyContent: "space-between"}}>
-        <Menu style={styles.menu} />
+      <View style={{flex: 1, justifyContent: "space-between", width: "100%"}}>
+
+        <View style={{flex: 1, padding: 20}}>
+            <TouchableHighlight
+              style={{
+                marginBottom: 10
+              }}
+              underlayColor="#00000010"
+              onPress={() => {
+
+              }}>
+              <View style={{flexDirection: "row", alignItems: "center", justifyContent: "space-between", padding: 10}}>
+                <View style={{flexDirection: "row", alignItems: "center"}}>
+                  <FontAwesome5 name="user-circle" size={22} color="black" />
+                  <Text style={{marginLeft: 10, fontFamily: "Manrope_400Regular", fontSize: 14}}>Profile</Text>
+                </View>
+                <Ionicons name="chevron-forward" size={18} color="black" />
+              </View>
+            </TouchableHighlight>
+
+            <TouchableHighlight
+              style={{
+                marginBottom: 10
+              }}
+              underlayColor="#00000010"
+              onPress={() => {
+
+              }}>
+                <View style={{flexDirection: "row", alignItems: "center", justifyContent: "space-between", padding: 10}}>
+                  <View style={{flexDirection: "row", alignItems: "center"}}>
+                    <MaterialCommunityIcons name="bell-outline" size={22} color="black" />
+                    <Text style={{marginLeft: 10, fontFamily: "Manrope_400Regular", fontSize: 14}}>Notifications</Text>
+                  </View>
+                  <Ionicons name="chevron-forward" size={18} color="black" />
+                </View>
+            </TouchableHighlight>
+
+            <TouchableHighlight
+              style={{
+                marginBottom: 10
+              }}
+              underlayColor="#00000010"
+              onPress={() => {
+                navigation.navigate("CustomerProfileSettings")
+              }}>
+                <View style={{flexDirection: "row", alignItems: "center", justifyContent: "space-between", padding: 10}}>
+                  <View style={{flexDirection: "row", alignItems: "center"}}>
+                    <MaterialCommunityIcons name="cog-outline" size={22} color="black" />
+                    <Text style={{marginLeft: 10, fontFamily: "Manrope_400Regular", fontSize: 14}}>Settings</Text>
+                  </View>
+                  <Ionicons name="chevron-forward" size={18} color="black" />
+                </View>
+              </TouchableHighlight>
+
+              <TouchableHighlight
+              style={{
+                marginBottom: 10
+              }}
+              underlayColor="#00000010"
+              onPress={() => {
+
+              }}>
+                <View style={{flexDirection: "row", alignItems: "center", justifyContent: "space-between", padding: 10}}>
+                  <View style={{flexDirection: "row", alignItems: "center"}}>
+                    <Feather name="users" size={22} color="black" />
+                    <Text style={{marginLeft: 10, fontFamily: "Manrope_400Regular", fontSize: 14}}>Invite Friends</Text>
+                  </View>
+                  <Ionicons name="chevron-forward" size={18} color="black" />
+                </View>
+              </TouchableHighlight>
+
+              <TouchableHighlight
+              style={{
+                marginBottom: 10
+              }}
+              underlayColor="#00000010"
+              onPress={() => {
+
+              }}>
+                <View style={{flexDirection: "row", alignItems: "center", justifyContent: "space-between", padding: 10}}>
+                  <View style={{flexDirection: "row", alignItems: "center"}}>
+                    <Feather name="help-circle" size={22} color="black" />
+                    <Text style={{marginLeft: 10, fontFamily: "Manrope_400Regular", fontSize: 14}}>Help</Text>
+                  </View>
+                  <Ionicons name="chevron-forward" size={18} color="black" />
+                </View>
+              </TouchableHighlight>
+        </View>
+
+
         <TouchableHighlight style={{ paddingHorizontal: 20, marginBottom: 30 }} underlayColor="#114E9310" onPress={()=>{
           updateLogoutConfirmation(true);
         }}>

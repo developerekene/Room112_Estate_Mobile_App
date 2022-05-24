@@ -9,7 +9,7 @@ import AccountTab from "./ConsumerBottomTabs/AccountTab";
 
 const Tab = createBottomTabNavigator();
 
-const CustomerNavigation = () => {
+const CustomerNavigation = ({ stackScreensNavigation }) => {
   return (
     <Tab.Navigator
       safeAreaInsets={{
@@ -50,7 +50,7 @@ const CustomerNavigation = () => {
         }}
       />
       <Tab.Screen
-        component={AccountTab}
+        children={() => <AccountTab stackScreensNavigation={stackScreensNavigation}/>}
         name="Acccount"
         options={{
           headerShown: false,

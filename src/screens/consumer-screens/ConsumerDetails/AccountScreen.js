@@ -50,7 +50,7 @@ const AccountScreen = ({ stackScreensNavigation: navigation }) => {
               }}
               underlayColor="#00000010"
               onPress={() => {
-
+                navigation.navigate("CustomerProfileSettings")
               }}>
               <View style={{flexDirection: "row", alignItems: "center", justifyContent: "space-between", padding: 10}}>
                 <View style={{flexDirection: "row", alignItems: "center"}}>
@@ -67,7 +67,7 @@ const AccountScreen = ({ stackScreensNavigation: navigation }) => {
               }}
               underlayColor="#00000010"
               onPress={() => {
-
+                navigation.navigate("CustomerNotificationSettings")
               }}>
                 <View style={{flexDirection: "row", alignItems: "center", justifyContent: "space-between", padding: 10}}>
                   <View style={{flexDirection: "row", alignItems: "center"}}>
@@ -84,7 +84,7 @@ const AccountScreen = ({ stackScreensNavigation: navigation }) => {
               }}
               underlayColor="#00000010"
               onPress={() => {
-                navigation.navigate("CustomerProfileSettings")
+                
               }}>
                 <View style={{flexDirection: "row", alignItems: "center", justifyContent: "space-between", padding: 10}}>
                   <View style={{flexDirection: "row", alignItems: "center"}}>
@@ -96,13 +96,13 @@ const AccountScreen = ({ stackScreensNavigation: navigation }) => {
               </TouchableHighlight>
 
               <TouchableHighlight
-              style={{
-                marginBottom: 10
-              }}
-              underlayColor="#00000010"
-              onPress={() => {
+                style={{
+                  marginBottom: 10
+                }}
+                underlayColor="#00000010"
+                onPress={() => {
 
-              }}>
+                }}>
                 <View style={{flexDirection: "row", alignItems: "center", justifyContent: "space-between", padding: 10}}>
                   <View style={{flexDirection: "row", alignItems: "center"}}>
                     <Feather name="users" size={22} color="black" />

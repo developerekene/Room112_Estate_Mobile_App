@@ -3,16 +3,20 @@ import { TouchableWithoutFeedback, View, Text, StyleSheet } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Constants from 'expo-constants';
 
-function GoBack({ navigation }) {
+function GoBack({ navigation, title = "" }) {
     return (
-        <TouchableWithoutFeedback onPress={() => {
-            navigation.goBack()
-        }}>
+        
             <View style={[styles.toolbar, {marginTop: Constants.statusBarHeight}]}>
-                <MaterialCommunityIcons name="arrow-left" size={24} color="black" />
-                <Text style={styles.toolbarTxt}>Back</Text>
+                <TouchableWithoutFeedback onPress={() => {
+                    navigation.goBack()
+                }}>
+                    <View style={{flexDirection: "row", alignItems: "center", position: "absolute", zIndex: 9999, left: 10}}>
+                        <MaterialCommunityIcons name="arrow-left" size={24} color="black" />
+                        <Text style={styles.toolbarTxt}>Back</Text>
+                    </View>
+                </TouchableWithoutFeedback>
+                <Text style={[styles.toolbarTxt, {textAlign: "center", flex: 1, fontFamily: "Manrope_700Bold", fontSize: 14}]}>{title}</Text>
             </View>
-        </TouchableWithoutFeedback>
     );
 }
 

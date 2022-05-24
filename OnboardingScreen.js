@@ -25,6 +25,8 @@ import CreateNewPasswordScreen from './src/screens/CreateNewPasswordScreen';
 import ConfirmEmail from './src/screens/ConfirmEmail';
 import Customer from './src/screens/consumer-screens/Customer';
 import TotalSuppliesMade from './src/screens/supplier-screens/TotalSuppliesMade/TotalSuppliesMade';
+import SupplierProfileDetailScreen from './src/screens/supplier-screens/SupplierProfileDetailScreen';
+import ProfileSettings from './src/screens/consumer-screens/ProfileSettings';
 
 
 const slides = [
@@ -228,6 +230,16 @@ function Onboarding () {
               />
 
             <Stack.Screen
+              name="SupplierProfileDetailScreen"
+              component={SupplierProfileDetailScreen}
+              options={{
+                header: ({navigation}) => {
+                  return <GoBack navigation={navigation} title="Edit Profile" />
+                }
+              }}
+              />
+
+            <Stack.Screen
               name="FavoriteCustomers"
               component={FavouriteCustomers}
               options={{
@@ -255,6 +267,16 @@ function Onboarding () {
               options={{
                 header: ({navigation}) => {
                   return <GoBack navigation={navigation} />
+                }
+              }}
+            />
+
+            <Stack.Screen
+              name="CustomerProfileSettings"
+              component={ProfileSettings}
+              options={{
+                header: ({navigation}) => {
+                  return <GoBack navigation={navigation} title="Edit Profile" />
                 }
               }}
             />

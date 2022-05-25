@@ -101,7 +101,7 @@ const AccountScreen = ({ stackScreensNavigation: navigation }) => {
                 }}
                 underlayColor="#00000010"
                 onPress={() => {
-
+                  navigation.navigate("CustomerReferSettings")
                 }}>
                 <View style={{flexDirection: "row", alignItems: "center", justifyContent: "space-between", padding: 10}}>
                   <View style={{flexDirection: "row", alignItems: "center"}}>

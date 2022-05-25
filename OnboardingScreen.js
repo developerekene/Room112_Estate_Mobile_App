@@ -28,6 +28,7 @@ import TotalSuppliesMade from './src/screens/supplier-screens/TotalSuppliesMade/
 import SupplierProfileDetailScreen from './src/screens/supplier-screens/SupplierProfileDetailScreen';
 import ProfileSettings from './src/screens/consumer-screens/ProfileSettings';
 import NotificationSettings from './src/screens/consumer-screens/NotificationSettings/NotificationSettings';
+import ReferSettings from './src/screens/consumer-screens/ReferSettings';
 
 
 const slides = [
@@ -288,6 +289,16 @@ function Onboarding () {
               options={{
                 header: ({navigation}) => {
                   return <GoBack navigation={navigation} title="Notifications" />
+                }
+              }}
+            />
+
+            <Stack.Screen
+              name="CustomerReferSettings"
+              component={ReferSettings}
+              options={{
+                header: ({navigation}) => {
+                  return <GoBack navigation={navigation} title="Invite Friends" />
                 }
               }}
             />

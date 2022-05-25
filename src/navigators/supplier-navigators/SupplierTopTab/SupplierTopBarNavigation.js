@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TextInput,
   Pressable,
+  Image
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 //import { NavigationContainer } from "@react-navigation/native";
@@ -65,7 +66,21 @@ function ProfileDetails() {
 function MyProducts() {
   return (
     <View style={{ height: 200 }}>
-      <Text>Add Product</Text>
+      <View style={{
+        alignItems: 'center',
+        marginTop: 30,
+        marginBottom: 30
+      }}>
+      <Image source={require('../../../assets/GroupN.png')}/>
+      </View>
+
+      <View style={{
+        marginLeft: 20,
+        marginRight: 20
+      }}>
+        <Button
+          title="Add Product"/>
+      </View>
     </View>
   );
 }

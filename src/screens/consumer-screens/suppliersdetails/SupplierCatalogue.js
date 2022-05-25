@@ -109,6 +109,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     justifyContent: "center",
     padding: 20,
+    elevation: 10,
   },
   card: {
     width: "100%",

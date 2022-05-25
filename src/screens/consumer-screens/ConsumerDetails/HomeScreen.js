@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View, Image, FlatList } from "react-native";
-import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import React from "react";
 import HomePageHeader from "../../../components/ConsumerHeader/HomePageHeader";
 import { AntDesign, Fontisto } from "@expo/vector-icons";
 import Product from "../../../components/ConsumerHeader/Product";
 
-import { SafeAreaView } from "react-native-safe-area-context";
+//import { SafeAreaView } from "react-native-safe-area-context";
 import { ScrollView } from "react-native-virtualized-view";
 
 const products = [

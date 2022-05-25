@@ -44,7 +44,7 @@ function SupplierNavigation({ stackScreensNavigation }) {
       >
         <Tab.Screen name={homeName} children={() => <HomeTab stackScreensNavigation={stackScreensNavigation} />} />
         <Tab.Screen name={ordersName} component={OrdersTab} />
-        <Tab.Screen name={accountName} component={AccountTab} />
+        <Tab.Screen name={accountName} children={() => <AccountTab stackScreensNavigation={stackScreensNavigation}/>} />
       </Tab.Navigator>
     </View>
   );

@@ -6,7 +6,6 @@ import {
   TextInput,
   Image,
   FlatList,
-  Button,
   TouchableHighlight,
   TouchableOpacity,
 } from "react-native";
@@ -142,8 +141,12 @@ function CustomerModal() {
       onBeforeShow={(data) => {
         setData(data);
       }}
+      
+      containerStyle={{
+        marginBottom: 50
+      }}
     >
-      <View style={{ height: "75%" }}>
+      
         <View style={styles.dash} />
         <View style={styles.header}>
           <View
@@ -237,15 +240,14 @@ function CustomerModal() {
             </Text>
           </View>
         </View>
-        <View style={{ paddingHorizontal: 30 }}>
-          <TouchableOpacity
-            style={{ backgroundColor: "#147DF5" }}
-            underlayColor="#08386F"
+        <View style={{ paddingHorizontal: 30, }}>
+          <TouchableHighlight
+            underlayColor="#147DF510"
             onPress={() => {
               SheetManager.show(reminderModalId, data);
             }}
           >
-            <View style={styles.reminderBtn}>
+            <View style={[styles.reminderBtn, { backgroundColor: "#147DF5" }]}>
               <MaterialCommunityIcons
                 name="clock-time-eight-outline"
                 size={24}
@@ -255,10 +257,9 @@ function CustomerModal() {
                 Send a Reminder
               </Text>
             </View>
-          </TouchableOpacity>
+          </TouchableHighlight>
         </View>
-      </View>
-      <CustomerReminderModal />
+        <CustomerReminderModal />
     </ActionSheet>
   );
 }
@@ -269,61 +270,61 @@ function CustomerReminderModal() {
   return (
     <ActionSheet
       id={reminderModalId}
-      containerStyle={{ justifyContent: "center" }}
+      containerStyle={{
+        marginBottom: 50,
+      }}
+
       onClose={() => {
         SheetManager.hide(modalId);
       }}
+
       onBeforeShow={(data) => {
         setData(data);
       }}
     >
-      <View style={{ height: "75%" }}>
-        <View style={[styles.dash, { top: -75 }]} />
-        <View style={{ flex: 1, justifyContent: "center" }}>
-          <View style={{ padding: 20, paddingHorizontal: 30 }}>
-            <View style={{ marginBottom: 15, alignItems: "center" }}>
-              <MaterialCommunityIcons
-                name="check-circle"
-                size={64}
-                color="#38B000"
-              />
-              <Text
-                style={{
-                  fontSize: 18,
-                  marginVertical: 15,
-                  textAlign: "center",
-                  fontFamily: "Manrope_700Bold",
-                }}
-              >
-                Reminder sent successfully
-              </Text>
-              <Text
-                style={{
-                  fontSize: 14,
-                  textAlign: "center",
-                  fontFamily: "Manrope_400Regular",
-                }}
-              >
-                You've successfully sent a reminder to{" "}
-                {<Text style={{ fontWeight: "bold" }}>{data.name}</Text>} he
-                will get a notification to place order.
-              </Text>
-            </View>
-          </View>
-          <View style={{ paddingHorizontal: 30 }}>
-            <TouchableHighlight
-              style={{ backgroundColor: "#147DF5" }}
-              underlayColor="#08386F"
-              onPress={() => {}}
-            >
-              <View style={styles.reminderBtn}>
-                <Text style={styles.reminderBtnText}>
-                  Back Home
-                </Text>
-              </View>
-            </TouchableHighlight>
-          </View>
+      <View style={styles.dash} />
+      <View style={{ padding: 20, paddingHorizontal: 30 }}>
+        <View style={{ marginBottom: 15, alignItems: "center" }}>
+          <MaterialCommunityIcons
+            name="check-circle"
+            size={64}
+            color="#38B000"
+          />
+          <Text
+            style={{
+              fontSize: 18,
+              marginVertical: 15,
+              textAlign: "center",
+              fontFamily: "Manrope_700Bold",
+            }}
+          >
+            Reminder sent successfully
+          </Text>
+          <Text
+            style={{
+              fontSize: 14,
+              textAlign: "center",
+              fontFamily: "Manrope_400Regular",
+            }}
+          >
+            You've successfully sent a reminder to{" "}
+            {<Text style={{ fontWeight: "bold" }}>{data.name}</Text>} he
+            will get a notification to place order.
+          </Text>
         </View>
+      </View>
+      <View style={{ paddingHorizontal: 30 }}>
+        <TouchableHighlight
+          style={{ backgroundColor: "#147DF5" }}
+          underlayColor="#08386F"
+          onPress={() => {}}
+        >
+          <View style={styles.reminderBtn}>
+            <Text style={styles.reminderBtnText}>
+              Back Home
+            </Text>
+          </View>
+        </TouchableHighlight>
       </View>
     </ActionSheet>
   );

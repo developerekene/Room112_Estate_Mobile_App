@@ -13,7 +13,7 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 
 import Onboarding from './OnboardingScreen';
-import TotalSuppliesMade from "./src/screens/supplier-screens/TotalSuppliesMade/TotalSuppliesMade";
+import ReferSettings from "./src/screens/consumer-screens/ReferSettings";
 
 export default function AppFlow() {
   let [fontsLoaded] = useFonts({
@@ -39,6 +39,7 @@ export default function AppFlow() {
         <StatusBar style="auto" />
         <SafeAreaProvider style={{ width: "100%", height: "100%" }}>
           <Onboarding />
+          {/* <ReferSettings /> */}
         </SafeAreaProvider>
       </View>
     </NavigationContainer>

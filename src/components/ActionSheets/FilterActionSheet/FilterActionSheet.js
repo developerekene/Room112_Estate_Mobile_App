@@ -17,38 +17,39 @@ function FilterActionSheet({id}) {
       <ActionSheet
         id={id}
         animated={true}
+        containerStyle={{
+          marginBottom: 50
+        }}
       >
-        <View style={{ height: "75%" }}>
-          <View style={styles.dash} />
-          <View style={styles.header}>
-            <View
-              style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-            >
-              <Text style={styles.headerText}>Filter</Text>
-            </View>
-            <TouchableOpacity
-              style={styles.close}
-              onPress={() => {
-                SheetManager.hide(id);
-              }}
-            >
-              <MaterialCommunityIcons name="close" size={24} color="black" />
-            </TouchableOpacity>
+        <View style={styles.dash} />
+        <View style={styles.header}>
+          <View
+            style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+          >
+            <Text style={styles.headerText}>Filter</Text>
           </View>
-          <View style={{width: "100%", height: "100%", padding: 20}}>
-              <FlatList 
-                data={filterCategories}
-                keyExtractor={item => item}
-                renderItem={({item})=>{
-                    return (
-                        <TouchableHighlight onPress={() => {
-                            
-                        }} underlayColor="#00000010">
-                            <Text style={{fontFamily: "Manrope_400Regular", color: "#21334F", fontSize: 14, padding: 5, margin: 5, textAlign: "left"}}>{item}</Text>
-                        </TouchableHighlight>
-                    )
-                }}/>
-          </View>
+          <TouchableOpacity
+            style={styles.close}
+            onPress={() => {
+              SheetManager.hide(id);
+            }}
+          >
+            <MaterialCommunityIcons name="close" size={24} color="black" />
+          </TouchableOpacity>
+        </View>
+        <View style={{ padding: 20}}>
+            <FlatList 
+              data={filterCategories}
+              keyExtractor={item => item}
+              renderItem={({item})=>{
+                  return (
+                      <TouchableHighlight onPress={() => {
+                          
+                      }} underlayColor="#00000010">
+                          <Text style={{fontFamily: "Manrope_400Regular", color: "#21334F", fontSize: 14, padding: 5, margin: 5, textAlign: "left"}}>{item}</Text>
+                      </TouchableHighlight>
+                  )
+              }}/>
         </View>
       </ActionSheet>
     );

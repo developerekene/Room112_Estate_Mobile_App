@@ -7,48 +7,23 @@ import {
   Image,
   Button,
   Pressable,
+  TouchableHighlight,
   FlatList,
 } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons, Entypo } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import logo from "../../../assets/supplier.png";
 import ListItemSupplierProfile from "../../components/ListItemSupplierProfile";
+import LogoutScreen from "../LogoutScreen";
 
-const messages = [
-  {
-    id: 1,
-    title: "Profile",
-    material: (
-      <MaterialCommunityIcons
-        name="account-circle-outline"
-        size={24}
-        color="black"
-      />
-    ),
-    empto: "chevron-right",
-  },
-  {
-    id: 2,
-    title: "Notification",
-    material: <Feather name="bell" size={24} color="black" />,
-    empto: "chevron-right",
-  },
-  {
-    id: 3,
-    title: "Setting",
-    material: <Feather name="settings" size={24} color="black" />,
-    empto: "chevron-right",
-  },
-  {
-    id: 4,
-    title: "Help",
-    material: <AntDesign name="questioncircleo" size={24} color="black" />,
-    empto: "chevron-right",
-  },
-];
+function SupplierMyProfileScreen({ stackScreensNavigation: navigation }) {
+  const [logoutConfirmation, updateLogoutConfirmation] = React.useState(false);
 
-function SupplierMyProfileScreen(props) {
+  function closeLogoutConfirmation() {
+    updateLogoutConfirmation(false)
+  }
+
   return (
     <View style={styles.container}>
       <View>
@@ -74,24 +49,83 @@ function SupplierMyProfileScreen(props) {
           width: '100%',
         }}>
           <View style={styles.main}>
-            <FlatList
-              data={messages}
-              keyExtractor={(message) => message.id.toString()}
-              renderItem={({ item }) => (
-                <ListItemSupplierProfile
-                  title={item.title}
-                  iconname={item.material}
-                  arrowIcon={item.empto}
-                />
-              )}
-            />
+            <TouchableHighlight underlayColor="#00000010" onPress={() => {
+              
+            }}>
+              <View style={styles.list}>
+                <View style={styles.v}>
+                  <View>
+                    <MaterialCommunityIcons
+                      name="account-circle-outline"
+                      size={24}
+                      color="black"
+                    />
+                  </View>
+                  <Text style={styles.second}>Profile</Text>
+                </View>
+                <View style={styles.v}>
+                  <Entypo name="chevron-right" size={24} color="black" />
+                </View>
+              </View>
+            </TouchableHighlight>
+            <TouchableHighlight underlayColor="#00000010" onPress={() => {
+              
+            }}>
+              <View style={styles.list}>
+                <View style={styles.v}>
+                  <View>
+                    <Feather name="bell" size={24} color="black" />
+                  </View>
+                  <Text style={styles.second}>Notification</Text>
+                </View>
+                <View style={styles.v}>
+                  <Entypo name="chevron-right" size={24} color="black" />
+                </View>
+              </View>
+            </TouchableHighlight>
+            <TouchableHighlight underlayColor="#00000010" onPress={() => {
+              navigation.navigate("SupplierProfileDetailScreen")
+            }}>
+              <View style={styles.list}>
+                <View style={styles.v}>
+                  <View>
+                    <Feather name="settings" size={24} color="black" />
+                  </View>
+                  <Text style={styles.second}>Setting</Text>
+                </View>
+                <View style={styles.v}>
+                  <Entypo name="chevron-right" size={24} color="black" />
+                </View>
+              </View>
+            </TouchableHighlight>
+
+            <TouchableHighlight underlayColor="#00000010" onPress={() => {
+              
+            }}>
+              <View style={styles.list}>
+                <View style={styles.v}>
+                  <View>
+                    <AntDesign name="questioncircleo" size={24} color="black" />
+                  </View>
+                  <Text style={styles.second}>Help</Text>
+                </View>
+                <View style={styles.v}>
+                  <Entypo name="chevron-right" size={24} color="black" />
+                </View>
+              </View>
+            </TouchableHighlight>
           </View>
         </View>
       </View>
-      <Pressable style={styles.logout_btn}>
-        <MaterialCommunityIcons name="logout" size={24} color="#147df5" />
-        <Text style={styles.lout_text}>Logout </Text>
-      </Pressable>
+      <TouchableHighlight style={styles.logout_btn} underlayColor="#114E9310" onPress={()=>{
+        updateLogoutConfirmation(true);
+      }}>
+        <>
+          <MaterialCommunityIcons name="logout" size={24} color="#147df5" />
+          <Text style={styles.lout_text}>Logout </Text>
+        </>
+      </TouchableHighlight>
+      { logoutConfirmation && <LogoutScreen close={closeLogoutConfirmation} /> }
     </View>
   );
 }
@@ -180,6 +214,38 @@ const styles = StyleSheet.create({
   lout_text: {
     color: "#147df5",
     margin: 10,
+  },
+
+
+
+  //////////////////////
+  list: {
+    flexDirection: "row",
+    padding: 10,
+    paddingTop: 20,
+    paddingBottom: 20,
+    borderRadius: 7,
+    justifyContent: "space-between",
+  },
+  second: {
+    marginLeft: 10,
+    fontSize: 14,
+    fontFamily: "Manrope_400Regular",
+    lineHeight: 19,
+  },
+  first: {
+    color: "#21334f",
+    fontWeight: "700",
+    fontSize: 24,
+    lineHeight: 33,
+    fontStyle: "normal",
+    backgroundColor: "#eee",
+  },
+  v: {
+    textAlign: "center",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center"
   },
 });
 

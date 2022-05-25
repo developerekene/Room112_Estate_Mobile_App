@@ -19,10 +19,8 @@ const styles = StyleSheet.create({
   list: {
     flexDirection: "row",
     padding: 10,
-
     paddingTop: 20,
     paddingBottom: 20,
-
     borderRadius: 7,
     justifyContent: "space-between",
   },

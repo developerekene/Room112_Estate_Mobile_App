@@ -3,11 +3,13 @@ import AddReminder from './AddReminder';
 import ReminderSent from './ReminderSent';
 import AppFlow from "./AppFlow";
 import SupplierAddDetailScreen from './src/screens/supplier-screens/SupplierAddProduct';
+import CustomerDetailModal from './CustomerDetailModal';
 
 export default function OrganizerApp() {
   return (
     <>
-    <SupplierAddDetailScreen/>
+    <CustomerDetailModal/>
+    {/* <SupplierAddDetailScreen/> */}
       {/* <AppFlow /> */}
       {/* <AddReminder/> */}
     </>

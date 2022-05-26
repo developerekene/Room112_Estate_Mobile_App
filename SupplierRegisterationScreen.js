@@ -14,42 +14,19 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Formik } from "formik";
 import * as Yup from 'yup';
 
-
-import AppPicker from "./src/components/AppPicker/AppPicker";
-
-const userTypes = [
-  {
-    id: 1,
-    type: "Consumer"
-  },
-  {
-    id: 2,
-    type: "Supplier"
-  }
-]
-
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const SignupSchema = Yup.object().shape({
-
-  companyName: Yup.string()
-    .min(2, 'Too Short!')
-    .max(50, 'Too Long!')
-    .required('Required'),
-  email: Yup.string().email('Invalid email').required('Required'),
-  password: Yup.string().min(4, "Too Short!").max(50, "Too Long!").required("Required"),
-  phone: Yup.string().min(11, "Too Short!").max(15, "Too Long!").matches(phoneRegExp, 'Invalid Phone number!').required("Required")
+    companyName: Yup.string()
+        .min(2, 'Too Short!')
+        .max(50, 'Too Long!')
+        .required('Required'),
+    email: Yup.string().email('Invalid email').required('Required'),
+    password: Yup.string().min(4, "Too Short!").max(50, "Too Long!").required("Required"),
+    phone: Yup.string().min(11, "Too Short!").max(15, "Too Long!").matches(phoneRegExp, 'Invalid Phone number!').required("Required")
 });
 
-const RegisterScreen = ({navigation, route}) => {
-  console.log(route.params.userType);
-  
-  React.useEffect(() => {
-    if (route.params.userType == "consumer") {
-      navigation.navigate("Login")
-    }
-  }, [])
+const SupplierRegisterationScreen = ({navigation, route}) => {
 
-  const onChange = () => {};
   return (
       <ScrollView style={{ flex: 1, backgroundColor: "#FFF", marginTop: 0}}>
         <View
@@ -69,35 +46,14 @@ const RegisterScreen = ({navigation, route}) => {
           >
             Sign up your account
           </Text>
-
-          <View style={{ marginTop: 20 }}>
-            <Text
-              style={{
-                fontSize: 14,
-                fontFamily: "Manrope_400Regular",
-                marginVertical: 5,
-              }}
-            >
-              User Type
-            </Text>
-            <View
-              style={{
-                height: 48,
-                padding: 10,
-                borderWidth: 0.5,
-                borderColor: "#21334F33",
-              }}
-            >
-              <AppPicker items={userTypes} />
-            </View>
-          </View>
           
           <Formik
             initialValues={{
-              companyName: "",
-              email: "",
-              password: "",
-              phone: ""
+                userType: route.params.userType.toString(),
+                companyName: "",
+                email: "",
+                password: "",
+                phone: ""
             }}
             validationSchema={SignupSchema}
             onSubmit={(values) => console.log(values)}>
@@ -343,4 +299,4 @@ const RegisterScreen = ({navigation, route}) => {
   );
 };
 
-export default RegisterScreen;
+export default SupplierRegisterationScreen;

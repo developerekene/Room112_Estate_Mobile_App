@@ -29,6 +29,8 @@ import SupplierProfileDetailScreen from './src/screens/supplier-screens/Supplier
 import ProfileSettings from './src/screens/consumer-screens/ProfileSettings';
 import NotificationSettings from './src/screens/consumer-screens/NotificationSettings/NotificationSettings';
 import ReferSettings from './src/screens/consumer-screens/ReferSettings';
+import SupplierRegisterationScreen from './SupplierRegisterationScreen';
+import ConsumerRegisterationScreen from './ConsumerRegisterationScreen';
 
 
 const slides = [
@@ -186,6 +188,20 @@ function Onboarding () {
               />
 
             <Stack.Screen name="SignUp" component={RegisterScreen} 
+              options={{
+                header: ({navigation}) => {
+                  return <GoBack navigation={navigation} />
+                }
+              }}/>
+
+            <Stack.Screen name="SupplierRegisterationScreen" component={SupplierRegisterationScreen} 
+              options={{
+                header: ({navigation}) => {
+                  return <GoBack navigation={navigation} />
+                }
+              }}/>
+
+            <Stack.Screen name="ConsumerRegisterationScreen" component={ConsumerRegisterationScreen} 
               options={{
                 header: ({navigation}) => {
                   return <GoBack navigation={navigation} />

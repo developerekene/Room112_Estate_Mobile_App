@@ -5,7 +5,7 @@ import AppFlow from "./AppFlow";
 import SupplierAddDetailScreen from './src/screens/supplier-screens/SupplierAddProduct';
 import CustomerDetailModal from './CustomerDetailModal';
 
-export default function OrganizerApp() {
+export default function App() {
   return (
     <>
     <CustomerDetailModal/>

@@ -2,10 +2,12 @@ import { StyleSheet } from 'react-native';
 import AddReminder from './AddReminder';
 import ReminderSent from './ReminderSent';
 import AppFlow from "./AppFlow";
+import SupplierAddDetailScreen from './src/screens/supplier-screens/SupplierAddProduct';
 
 export default function OrganizerApp() {
   return (
     <>
+    {/* <SupplierAddDetailScreen/> */}
       <AppFlow />
       {/* <AddReminder/> */}
     </>

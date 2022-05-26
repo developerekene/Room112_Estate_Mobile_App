@@ -1,18 +1,12 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  FlatList
-} from "react-native";
+import { StyleSheet, Text, View, Image, FlatList } from "react-native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import React from "react";
 import HomePageHeader from "../../../components/ConsumerHeader/HomePageHeader";
 import { AntDesign, Fontisto } from "@expo/vector-icons";
 import Product from "../../../components/ConsumerHeader/Product";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { ScrollView } from 'react-native-virtualized-view';
 
-
+//import { SafeAreaView } from "react-native-safe-area-context";
+import { ScrollView } from "react-native-virtualized-view";
 
 const products = [
   {
@@ -73,21 +67,24 @@ const products = [
 
 const HomeScreen = () => {
   return (
-    <View style={{ height: "100%", width: "100%" }}>
-      <HomePageHeader />
-      {/* <ScrollView> */}
-        <View style={{width: "100%", height: "100%"  }}>
-          <ScrollView style={{padding: 20}}>
+    <SafeAreaProvider>
+      <View style={{ height: "100%", width: "100%" }}>
+        <HomePageHeader />
+        {/* <ScrollView> */}
+        <View style={{ width: "100%", height: "100%" }}>
+          <ScrollView style={{ padding: 20 }}>
             <View style={styles.containerBar}>
-              <View style={{flexDirection: "row", alignItems: "center"}}>
-                <View style={{ 
-                  backgroundColor: "#FFBE0B1A", 
-                  width: 42, 
-                  height: 42, 
-                  justifyContent: "center", 
-                  alignItems: "center",
-                  borderRadius: 21
-                    }}>
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <View
+                  style={{
+                    backgroundColor: "#FFBE0B1A",
+                    width: 42,
+                    height: 42,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    borderRadius: 21,
+                  }}
+                >
                   <AntDesign
                     name="barschart"
                     style={styles.icon}
@@ -95,8 +92,10 @@ const HomeScreen = () => {
                     color="#FFBE0B"
                   />
                 </View>
-                <View style={{marginLeft: 10}}>
-                  <Text style={styles.title}>Your consumption level is 65.89%</Text>
+                <View style={{ marginLeft: 10 }}>
+                  <Text style={styles.title}>
+                    Your consumption level is 65.89%
+                  </Text>
                   <Text style={styles.subTitle}>Today 02 Apr 2022</Text>
                 </View>
               </View>
@@ -112,29 +111,34 @@ const HomeScreen = () => {
               <Text style={styles.navBelowNotoutlined}>Suppliers</Text>
               <Text style={styles.navBelowOutlined}>See all</Text>
             </View>
-            
-            <View style={{width: "100%", flex: 1, justifyContent: "center" }}>
+
+            <View style={{ width: "100%", flex: 1, justifyContent: "center" }}>
               <FlatList
                 numColumns={2}
                 data={products}
                 scrollEnabled={true}
                 keyExtractor={(_, index) => index.toString()}
-                renderItem={({ item, index }) => <Product product={item} index={index}
-                style={{
-                  backgroundColor: "#000"
-                }} />}
+                renderItem={({ item, index }) => (
+                  <Product
+                    product={item}
+                    index={index}
+                    style={{
+                      backgroundColor: "#000",
+                    }}
+                  />
+                )}
               />
               <Image
                 style={styles.frame}
                 source={require("../../../../assets/HomePageImg/frame.png")}
-              /> 
+              />
             </View>
-            
           </ScrollView>
         </View>
 
-      {/* </ScrollView> */}
-    </View>
+        {/* </ScrollView> */}
+      </View>
+    </SafeAreaProvider>
   );
 };
 
@@ -146,7 +150,7 @@ const styles = StyleSheet.create({
     // alignItems: "center",
     backgroundColor: "#E5E5E5",
     height: "100%",
-    width: "100%"
+    width: "100%",
   },
   containerBar: {
     width: "100%",
@@ -163,7 +167,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     // paddingTop: 5,
     // flex: 1,
-    padding: 10
+    padding: 10,
   },
   title: {
     fontSize: 14,

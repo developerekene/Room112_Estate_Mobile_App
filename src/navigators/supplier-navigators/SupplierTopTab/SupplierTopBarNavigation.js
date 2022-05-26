@@ -84,8 +84,8 @@ function MyProducts() {
           }}>
             <Image source={require("../../../../assets/no_product.png")} />
           </View>
-          <Text style={{fontFamily: "Manrope_700Bold", fontSize: 16}}>No product found</Text>
-          <Text style={{fontFamily: "Manrope_400Regular", fontSize: 14}}>You have not upload any products yet</Text>
+          <Text style={{fontFamily: "Manrope_700Bold", fontSize: 16, textAlign: "center"}}>No product found</Text>
+          <Text style={{fontFamily: "Manrope_400Regular", fontSize: 14, textAlign: "center"}}>You have not upload any products yet</Text>
         </View>
         <TouchableHighlight style={{marginTop: 20}} underlayColor="#114E93" onPress={() => {
           

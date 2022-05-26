@@ -7,8 +7,8 @@ import SupplierAddDetailScreen from './src/screens/supplier-screens/SupplierAddP
 export default function OrganizerApp() {
   return (
     <>
-    {/* <SupplierAddDetailScreen/> */}
-      <AppFlow />
+      <SupplierAddDetailScreen/>
+      {/* <AppFlo /> */}
       {/* <AddReminder/> */}
     </>
   );

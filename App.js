@@ -4,11 +4,11 @@ import ReminderSent from './ReminderSent';
 import AppFlow from "./AppFlow";
 import SupplierAddDetailScreen from './src/screens/supplier-screens/SupplierAddProduct';
 
-export default function OrganizerApp() {
+export default function App() {
   return (
     <>
-      <SupplierAddDetailScreen/>
-      {/* <AppFlo /> */}
+    <SupplierAddDetailScreen/>
+      {/* <AppFlow /> */}
       {/* <AddReminder/> */}
     </>
   );

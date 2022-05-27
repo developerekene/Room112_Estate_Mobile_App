@@ -100,7 +100,7 @@ function Login({navigation}) {
             }}>
               <Text style={{fontFamily: "Manrope_400Regular"}}>Don't have an account?</Text>
               <TouchableWithoutFeedback onPress={ () => {
-                navigation.navigate("SignUp")
+                navigation.navigate("Home")
               } }>
                 <Text style={{
                   color: '#147DF5',

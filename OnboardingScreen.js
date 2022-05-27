@@ -201,7 +201,7 @@ function Onboarding () {
                 }
               }}/>
 
-            <Stack.Screen name="ConsumerRegisterationScreen" component={ConsumerRegisterationScreen} 
+            <Stack.Screen name="ConsumerRegisterationScreen" component={ConsumerRegisterationScreen}
               options={{
                 header: ({navigation}) => {
                   return <GoBack navigation={navigation} />

@@ -8,9 +8,9 @@ import CustomerDetailModal from './CustomerDetailModal';
 export default function App() {
   return (
     <>
-    {/* <CustomerDetailModal/> */}
-    {/* <SupplierAddDetailScreen/> */}
-      <AppFlow />
+      {/* <CustomerDetailModal /> */}
+      {/* <SupplierAddDetailScreen /> */}
+        <AppFlow />
       {/* <AddReminder/> */}
     </>
   );

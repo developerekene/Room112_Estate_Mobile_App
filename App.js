@@ -4,13 +4,17 @@ import ReminderSent from './ReminderSent';
 import AppFlow from "./AppFlow";
 import SupplierAddDetailScreen from './src/screens/supplier-screens/SupplierAddProduct';
 import CustomerDetailModal from './CustomerDetailModal';
+import ConfirmEmail from './src/screens/ConfirmEmail';
+import CusConfirmEmail from './ConsumerConfirmEmail';
+// import ConsumerRegisterationScreen from './'
 
 export default function App() {
   return (
     <>
-    <CustomerDetailModal/>
+    {/* <ConsumerRegisterationScreen/> */}
     {/* <SupplierAddDetailScreen/> */}
-      {/* <AppFlow /> */}
+      <AppFlow />
+      {/* <CusConfirmEmail/> */}
       {/* <AddReminder/> */}
     </>
   );

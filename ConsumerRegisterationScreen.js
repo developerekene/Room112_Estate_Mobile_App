@@ -22,7 +22,7 @@ const SignupSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Required'),
     password: Yup.string().min(4, "Too Short!").max(50, "Too Long!").required("Required"),
     phone: Yup.string().min(11, "Too Short!").max(15, "Too Long!").matches(phoneRegExp, 'Invalid Phone number!').required("Required"),
-    noOfWaterBottles: Yup.number().moreThan(0, "Invalid Number").lessThan(51, "Too Many Water Bottles").required("Required")
+    //noOfWaterBottles: Yup.number().moreThan(0, "Invalid Number").lessThan(51, "Too Many Water Bottles").required("Required")
 });
 
 const ConsumerRegisterationScreen = ({navigation, route}) => {
@@ -56,7 +56,10 @@ const ConsumerRegisterationScreen = ({navigation, route}) => {
                 email: "",
                 password: "",
                 phone: "",
-                noOfWaterBottles: ""
+                //noOfWaterBottles: ""
+                street: "",
+                city: "",
+                state: ""
             }}
             validationSchema={SignupSchema}
             onSubmit={(values) => console.log(values)}>
@@ -266,15 +269,74 @@ const ConsumerRegisterationScreen = ({navigation, route}) => {
                         borderColor: "rgba(33, 51, 79, 0.2)",
                         padding: 10,
                         paddingHorizontal: 5,
+                        marginRight: 240
                       }}
                     >
-                      <MaterialCommunityIcons
+                      {/* <MaterialCommunityIcons
                         name="map-marker-outline"
                         size={24}
                         color="#C4C4C4"
-                      />
+                      /> */}
                       <TextInput
-                        placeholder="Use current location"
+                        placeholder="Street"
+                        underlineColorAndroid="transparent"
+                        style={{
+                          flex: 1,
+                          fontFamily: "Manrope_400Regular",
+                          paddingHorizontal: 5,
+                        }}
+                      />
+                    </View>
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        alignItems: "center",
+                        borderWidth: 0.5,
+                        borderColor: "rgba(33, 51, 79, 0.2)",
+                        padding: 10,
+                        paddingHorizontal: 5,
+                        marginRight: 120,
+                        marginLeft: 140,
+                        position: 'absolute',
+                        marginTop: 29
+                      }}
+                    >
+                      {/* <MaterialCommunityIcons
+                        name="map-marker-outline"
+                        size={24}
+                        color="#C4C4C4"
+                      /> */}
+                      <TextInput
+                        placeholder="City"
+                        underlineColorAndroid="transparent"
+                        style={{
+                          flex: 1,
+                          fontFamily: "Manrope_400Regular",
+                          paddingHorizontal: 5,
+                        }}
+                      />
+                    </View>
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        alignItems: "center",
+                        borderWidth: 0.5,
+                        borderColor: "rgba(33, 51, 79, 0.2)",
+                        padding: 10,
+                        paddingHorizontal: 5,
+                        marginRight: 5,
+                        marginLeft: 260,
+                        position: 'absolute',
+                        marginTop: 29
+                      }}
+                    >
+                      {/* <MaterialCommunityIcons
+                        name="map-marker-outline"
+                        size={24}
+                        color="#C4C4C4"
+                      /> */}
+                      <TextInput
+                        placeholder="State"
                         underlineColorAndroid="transparent"
                         style={{
                           flex: 1,
@@ -284,7 +346,7 @@ const ConsumerRegisterationScreen = ({navigation, route}) => {
                       />
                     </View>
                   </View>
-                  <View style={{ marginTop: 10 }}>
+                  {/* <View style={{ marginTop: 10 }}>
                     <Text
                       style={{
                         fontSize: 14,
@@ -318,7 +380,7 @@ const ConsumerRegisterationScreen = ({navigation, route}) => {
                     >
                       { errors.noOfWaterBottles }
                     </Text>}
-                  </View>
+                  </View> */}
                   <TouchableHighlight
                     style={{ marginTop: 20 }}
                     underlayColor="#114E93"

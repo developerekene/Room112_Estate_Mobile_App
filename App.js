@@ -15,13 +15,25 @@ import { StyleSheet } from "react-native";
 import AddReminder from "./AddReminder";
 import ReminderSent from "./ReminderSent";
 import AppFlow from "./AppFlow";
-import SupplierAddDetailScreen from "./src/screens/supplier-screens/SupplierAddProduct";
 
-export default function OrganizerApp() {
+import SupplierAddDetailScreen from "./src/screens/supplier-screens/SupplierAddProduct";
+import SupplierAddDetailScreen from "./src/screens/supplier-screens/SupplierAddProduct";
+import CustomerDetailModal from "./CustomerDetailModal";
+import ConfirmEmail from "./src/screens/ConfirmEmail";
+import CusConfirmEmail from "./ConsumerConfirmEmail";
+// import ConsumerRegisterationScreen from './'
+
+export default function App() {
   return (
     <>
       <SupplierAddDetailScreen />
       {/* <AppFlow /> */}
+
+      {/* <ConsumerRegisterationScreen/> */}
+      {/* <SupplierAddDetailScreen/> */}
+      <AppFlow />
+      {/* <CusConfirmEmail/> */}
+
       {/* <AddReminder/> */}
     </>
   );

@@ -13,7 +13,12 @@ function WelcomeScreen({ navigation }) {
                         </View>
                         <View style={styles.btnsContainer}>
                             <TouchableHighlight style={{marginTop: 20}} underlayColor="#114E93" onPress={() => {
-                                navigation.navigate('SignUp')
+                                // navigation.navigate('SignUp', {
+                                //     userType: "consumer"
+                                // })
+                                navigation.navigate("ConsumerRegisterationScreen", {
+                                    userType: "consumer"
+                                })
                             }} >
                                 <View style={{
                                     backgroundColor: "#147DF5",
@@ -26,7 +31,12 @@ function WelcomeScreen({ navigation }) {
                             </TouchableHighlight>
 
                             <TouchableHighlight style={{marginTop: 20}} underlayColor="#00000010" onPress={() => {
-                                navigation.navigate('SignUp')
+                                // navigation.navigate('SignUp', {
+                                //     userType: "supplier"
+                                // })
+                                navigation.navigate("SupplierRegisterationScreen", {
+                                    userType: "supplier"
+                                })
                             }} >
                                 <View style={{
                                     borderWidth: 2,

@@ -6,7 +6,8 @@ import {
   StyleSheet,
   TextInput,
   Pressable,
-  Image
+  Image,
+  TouchableHighlight
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 //import { NavigationContainer } from "@react-navigation/native";
@@ -65,21 +66,39 @@ function ProfileDetails() {
 }
 function MyProducts() {
   return (
-    <View style={{ height: 200 }}>
+    <View style={{ flex: 1, backgroundColor: "#FFF" }}>
       <View style={{
-        alignItems: 'center',
-        marginTop: 30,
-        marginBottom: 30
+        padding: 20,
+        flex: 1,
       }}>
-      <Image source={require('../../../assets/GroupN.png')}/>
-      </View>
-
-      <View style={{
-        marginLeft: 20,
-        marginRight: 20
-      }}>
-        <Button
-          title="Add Product"/>
+        <View style={{
+          alignItems: "center",
+        }}>
+          <View style={{
+            alignItems: 'center',
+            justifyContent: "center",
+            height: 100,
+            width: 100,
+            borderRadius: 50,
+            backgroundColor: "#147DF50D"
+          }}>
+            <Image source={require("../../../../assets/no_product.png")} />
+          </View>
+          <Text style={{fontFamily: "Manrope_700Bold", fontSize: 16, textAlign: "center"}}>No product found</Text>
+          <Text style={{fontFamily: "Manrope_400Regular", fontSize: 14, textAlign: "center"}}>You have not upload any products yet</Text>
+        </View>
+        <TouchableHighlight style={{marginTop: 20}} underlayColor="#114E93" onPress={() => {
+          
+        }} >
+          <View style={{
+            backgroundColor: "#147DF5",
+            height: 48,
+            justifyContent: "center",
+            alignItems: "center",
+          }}>
+            <Text style={{color: "#FFF", fontFamily: "Manrope_700Bold"}}>Add Products</Text>
+          </View>
+        </TouchableHighlight>
       </View>
     </View>
   );

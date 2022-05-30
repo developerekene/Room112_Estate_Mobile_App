@@ -14,42 +14,20 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Formik } from "formik";
 import * as Yup from 'yup';
 
-
-import AppPicker from "./src/components/AppPicker/AppPicker";
-
-const userTypes = [
-  {
-    id: 1,
-    type: "Consumer"
-  },
-  {
-    id: 2,
-    type: "Supplier"
-  }
-]
-
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const SignupSchema = Yup.object().shape({
 
-  companyName: Yup.string()
-    .min(2, 'Too Short!')
-    .max(50, 'Too Long!')
-    .required('Required'),
-  email: Yup.string().email('Invalid email').required('Required'),
-  password: Yup.string().min(4, "Too Short!").max(50, "Too Long!").required("Required"),
-  phone: Yup.string().min(11, "Too Short!").max(15, "Too Long!").matches(phoneRegExp, 'Invalid Phone number!').required("Required")
+    firstname: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
+    lastname: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
+    email: Yup.string().email('Invalid email').required('Required'),
+    password: Yup.string().min(4, "Too Short!").max(50, "Too Long!").required("Required"),
+    phone: Yup.string().min(11, "Too Short!").max(15, "Too Long!").matches(phoneRegExp, 'Invalid Phone number!').required("Required"),
+    //noOfWaterBottles: Yup.number().moreThan(0, "Invalid Number").lessThan(51, "Too Many Water Bottles").required("Required")
 });
 
-const RegisterScreen = ({navigation, route}) => {
-  console.log(route.params.userType);
-  
-  React.useEffect(() => {
-    if (route.params.userType == "consumer") {
-      navigation.navigate("Login")
-    }
-  }, [])
+const ConsumerRegisterationScreen = ({navigation, route}) => {
+//   console.log(route.params.userType);
 
-  const onChange = () => {};
   return (
       <ScrollView style={{ flex: 1, backgroundColor: "#FFF", marginTop: 0}}>
         <View
@@ -69,35 +47,19 @@ const RegisterScreen = ({navigation, route}) => {
           >
             Sign up your account
           </Text>
-
-          <View style={{ marginTop: 20 }}>
-            <Text
-              style={{
-                fontSize: 14,
-                fontFamily: "Manrope_400Regular",
-                marginVertical: 5,
-              }}
-            >
-              User Type
-            </Text>
-            <View
-              style={{
-                height: 48,
-                padding: 10,
-                borderWidth: 0.5,
-                borderColor: "#21334F33",
-              }}
-            >
-              <AppPicker items={userTypes} />
-            </View>
-          </View>
           
           <Formik
             initialValues={{
-              companyName: "",
-              email: "",
-              password: "",
-              phone: ""
+                userType: route.params.userType,
+                firstname: "",
+                lastname: "",
+                email: "",
+                password: "",
+                phone: "",
+                //noOfWaterBottles: ""
+                street: "",
+                city: "",
+                state: ""
             }}
             validationSchema={SignupSchema}
             onSubmit={(values) => console.log(values)}>
@@ -113,25 +75,25 @@ const RegisterScreen = ({navigation, route}) => {
                         marginVertical: 5,
                       }}
                     >
-                      Company Name
+                      First Name
                     </Text>
                     <TextInput
                       autoCorrect={false}
                       autoCapitalize="none"
-                      placeholder="Company name"
+                      placeholder="First Name"
                       color="#000"
-                      onChangeText={handleChange("companyName")}
-                      onBlur={handleBlur("companyName")}
-                      value={values.companyName}
+                      onChangeText={handleChange("firstname")}
+                      onBlur={handleBlur("firstname")}
+                      value={values.firstname}
                       style={{
                         height: 48,
                         borderWidth: 0.5,
-                        borderColor: (errors.companyName && touched.companyName) ? "tomato" : "rgba(33, 51, 79, 0.2)",
+                        borderColor: (errors.firstname && touched.firstname) ? "tomato" : "rgba(33, 51, 79, 0.2)",
                         padding: 10,
                         fontFamily: "Manrope_400Regular",
                       }}
                     />
-                    {(errors.companyName && touched.companyName) && <Text
+                    {(errors.firstname && touched.firstname) && <Text
                         style={{
                           fontSize: 14,
                           fontFamily: "Manrope_400Regular",
@@ -139,7 +101,44 @@ const RegisterScreen = ({navigation, route}) => {
                           marginVertical: 2,
                         }}
                       >
-                        { errors.companyName }
+                        { errors.firstname }
+                      </Text>}
+                  </View>
+                  <View style={{ marginTop: 10 }}>
+                    <Text
+                      style={{
+                        fontSize: 14,
+                        fontFamily: "Manrope_400Regular",
+                        marginVertical: 5,
+                      }}
+                    >
+                      Last Name
+                    </Text>
+                    <TextInput
+                      autoCorrect={false}
+                      autoCapitalize="none"
+                      placeholder="Last Name"
+                      color="#000"
+                      onChangeText={handleChange("lastname")}
+                      onBlur={handleBlur("lastname")}
+                      value={values.lastname}
+                      style={{
+                        height: 48,
+                        borderWidth: 0.5,
+                        borderColor: (errors.lastname && touched.lastname) ? "tomato" : "rgba(33, 51, 79, 0.2)",
+                        padding: 10,
+                        fontFamily: "Manrope_400Regular",
+                      }}
+                    />
+                    {(errors.lastname && touched.lastname) && <Text
+                        style={{
+                          fontSize: 14,
+                          fontFamily: "Manrope_400Regular",
+                          color: "tomato",
+                          marginVertical: 2,
+                        }}
+                      >
+                        { errors.lastname }
                       </Text>}
                   </View>
                   <View style={{ marginTop: 10 }}>
@@ -260,7 +259,7 @@ const RegisterScreen = ({navigation, route}) => {
                         marginVertical: 5,
                       }}
                     >
-                      Location
+                      Address
                     </Text>
                     <View
                       style={{
@@ -270,15 +269,74 @@ const RegisterScreen = ({navigation, route}) => {
                         borderColor: "rgba(33, 51, 79, 0.2)",
                         padding: 10,
                         paddingHorizontal: 5,
+                        marginRight: 240
                       }}
                     >
-                      <MaterialCommunityIcons
+                      {/* <MaterialCommunityIcons
                         name="map-marker-outline"
                         size={24}
                         color="#C4C4C4"
-                      />
+                      /> */}
                       <TextInput
-                        placeholder="Use current location"
+                        placeholder="Street"
+                        underlineColorAndroid="transparent"
+                        style={{
+                          flex: 1,
+                          fontFamily: "Manrope_400Regular",
+                          paddingHorizontal: 5,
+                        }}
+                      />
+                    </View>
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        alignItems: "center",
+                        borderWidth: 0.5,
+                        borderColor: "rgba(33, 51, 79, 0.2)",
+                        padding: 10,
+                        paddingHorizontal: 5,
+                        marginRight: 120,
+                        marginLeft: 140,
+                        position: 'absolute',
+                        marginTop: 29
+                      }}
+                    >
+                      {/* <MaterialCommunityIcons
+                        name="map-marker-outline"
+                        size={24}
+                        color="#C4C4C4"
+                      /> */}
+                      <TextInput
+                        placeholder="City"
+                        underlineColorAndroid="transparent"
+                        style={{
+                          flex: 1,
+                          fontFamily: "Manrope_400Regular",
+                          paddingHorizontal: 5,
+                        }}
+                      />
+                    </View>
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        alignItems: "center",
+                        borderWidth: 0.5,
+                        borderColor: "rgba(33, 51, 79, 0.2)",
+                        padding: 10,
+                        paddingHorizontal: 5,
+                        marginRight: 5,
+                        marginLeft: 260,
+                        position: 'absolute',
+                        marginTop: 29
+                      }}
+                    >
+                      {/* <MaterialCommunityIcons
+                        name="map-marker-outline"
+                        size={24}
+                        color="#C4C4C4"
+                      /> */}
+                      <TextInput
+                        placeholder="State"
                         underlineColorAndroid="transparent"
                         style={{
                           flex: 1,
@@ -288,6 +346,41 @@ const RegisterScreen = ({navigation, route}) => {
                       />
                     </View>
                   </View>
+                  {/* <View style={{ marginTop: 10 }}>
+                    <Text
+                      style={{
+                        fontSize: 14,
+                        fontFamily: "Manrope_400Regular",
+                        marginVertical: 5,
+                      }}
+                    >
+                      Number of Water Bottles
+                    </Text>
+                    <TextInput
+                      placeholder="1"
+                      keyboardType="numeric"
+                      onChangeText={handleChange("noOfWaterBottles")}
+                      onBlur={handleBlur("noOfWaterBottles")}
+                      value={values.noOfWaterBottles}
+                      style={{
+                        height: 48,
+                        borderWidth: 0.5,
+                        borderColor: (errors.noOfWaterBottles && touched.noOfWaterBottles) ? "tomato" : "rgba(33, 51, 79, 0.2)",
+                        padding: 10,
+                        fontFamily: "Manrope_400Regular",
+                      }}
+                    />
+                    {(errors.noOfWaterBottles && touched.noOfWaterBottles) && <Text
+                      style={{
+                        fontSize: 14,
+                        fontFamily: "Manrope_400Regular",
+                        color: "tomato",
+                        marginVertical: 2,
+                      }}
+                    >
+                      { errors.noOfWaterBottles }
+                    </Text>}
+                  </View> */}
                   <TouchableHighlight
                     style={{ marginTop: 20 }}
                     underlayColor="#114E93"
@@ -343,4 +436,4 @@ const RegisterScreen = ({navigation, route}) => {
   );
 };
 
-export default RegisterScreen;
+export default ConsumerRegisterationScreen;

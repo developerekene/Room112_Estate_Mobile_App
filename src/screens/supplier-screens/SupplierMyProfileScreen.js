@@ -50,7 +50,7 @@ function SupplierMyProfileScreen({ stackScreensNavigation: navigation }) {
         }}>
           <View style={styles.main}>
             <TouchableHighlight underlayColor="#00000010" onPress={() => {
-              
+              navigation.navigate("SupplierProfileDetailScreen")
             }}>
               <View style={styles.list}>
                 <View style={styles.v}>
@@ -84,7 +84,7 @@ function SupplierMyProfileScreen({ stackScreensNavigation: navigation }) {
               </View>
             </TouchableHighlight>
             <TouchableHighlight underlayColor="#00000010" onPress={() => {
-              navigation.navigate("SupplierProfileDetailScreen")
+              
             }}>
               <View style={styles.list}>
                 <View style={styles.v}>

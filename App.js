@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // import OrganizerApp from "./OrganizerApp";
 // import ChangePassword from "./src/screens/consumer-screens/ConsumerDetails/changePassword";
 // import BuyNow from "./src/screens/consumer-screens/productDetails/BuyNow";
@@ -22,6 +23,11 @@ import CustomerDetailModal from "./CustomerDetailModal";
 import ConfirmEmail from "./src/screens/ConfirmEmail";
 import CusConfirmEmail from "./ConsumerConfirmEmail";
 // import ConsumerRegisterationScreen from './'
+=======
+import React from 'react';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View } from 'react-native';
+>>>>>>> 769c7690d50e0e5a64ee322d39a139bd882dac63
 
 export default function App() {
   return (

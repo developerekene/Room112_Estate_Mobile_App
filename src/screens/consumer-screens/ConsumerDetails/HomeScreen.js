@@ -4,6 +4,7 @@ import React from "react";
 import HomePageHeader from "../../../components/ConsumerHeader/HomePageHeader";
 import { AntDesign, Fontisto } from "@expo/vector-icons";
 import Product from "../../../components/ConsumerHeader/Product";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 //import { SafeAreaView } from "react-native-safe-area-context";
 import { ScrollView } from "react-native-virtualized-view";
@@ -68,6 +69,44 @@ const products = [
 const HomeScreen = () => {
   return (
     <SafeAreaProvider>
+      {/* <View style={styles.container}>
+        <ScrollView horizontal={false}>
+          <HomePageHeader />
+          <View style={styles.containerBar}>
+            <AntDesign
+              name="barschart"
+              style={styles.icon}
+              size={24}
+              color="#FFBE0B"
+            />
+            <View>
+              <Text style={styles.title}>Your consumption level is 65.89%</Text>
+              <Text style={styles.subTitle}>Today 02 Apr 2022</Text>
+            </View>
+            <Fontisto
+              name="angle-right"
+              style={styles.icon}
+              size={24}
+              color="#000"
+            />
+          </View>
+          <View style={styles.navBelow}>
+            <Text style={styles.navBelowNotoutlined}>Suppliers</Text>
+            <Text style={styles.navBelowOutlined}>See all</Text>
+          </View>
+          <FlatList
+            numColumns={2}
+            data={products}
+            keyExtractor={(_, index) => index.toString()}
+            renderItem={({ item }) => <Product product={item} />}
+          />
+          <Image
+            style={styles.frame}
+            source={require("../../../../assets/HomePageImg/frame.png")}
+          />
+        </ScrollView>
+      </View> */}
+
       <View style={{ height: "100%", width: "100%" }}>
         <HomePageHeader />
         {/* <ScrollView> */}

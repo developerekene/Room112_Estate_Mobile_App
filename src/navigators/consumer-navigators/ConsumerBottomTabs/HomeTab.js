@@ -3,10 +3,10 @@ import { View, Text } from 'react-native';
 
 import HomeScreen from '../../../screens/consumer-screens/ConsumerDetails/HomeScreen';
 
-function HomeTab({ navigation }) {
+function HomeTab({ stackScreensNavigation }) {
     return (
         <View style={{flex: 1, backgroundColor: '#fff' }}>
-            <HomeScreen />
+            <HomeScreen stackScreensNavigation={stackScreensNavigation} />
         </View>
     );
 }

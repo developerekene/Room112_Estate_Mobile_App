@@ -84,12 +84,11 @@ const ConsumptionLevelScreen = () => {
   ];
 
   return (
-    <SafeAreaView> 
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
+    <View contentContainerStyle={[styles.scrollContainer, {backgroundColor: "tomato", flex: 1}]}>
       <View style={styles.safeAreaContainer}>
-        <View style={styles.header}>
+        {/* <View style={styles.header}>
           <ConsumerHeader title="Statistics Level" />
-        </View>
+        </View> */}
         <View style={styles.navbar}>
           <Text
             style={{
@@ -198,8 +197,7 @@ const ConsumptionLevelScreen = () => {
           </Text>
         </View>
       </View>
-    </ScrollView>
-    </SafeAreaView>
+    </View>
 
   );
 };
@@ -210,7 +208,7 @@ const styles = StyleSheet.create({
   safeAreaContainer: {
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "space-between",
+    // justifyContent: "space-between",
     height: "100%",
     width: "100%",
   },

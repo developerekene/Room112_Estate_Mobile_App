@@ -1,12 +1,24 @@
-import axios from 'axios';
+import axios from 'axios'
+import {AsyncStorage} from 'react-native'
+import { API } from '../constants/constants'
 
-const api = axios.create({
-    baseURL: 'https://aquawaterapp.herokuapp.com',
-    timeout: 10000,
-    headers: {
-        'Authorization': 'Bearer decadev1234',
-        'Content-Type': 'application/json'
+let headers= {}
+const axiosInstance = axios.create({
+    baseURL: API.BASE_URL,
+    headers
+})
+
+axiosInstance.interceptors.request.use(
+    async (config) => {
+        const token = await AsyncStorage.getItem('token')
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`
+        }
+        return config;
+    },
+    (error)=>{
+        return Promise.reject(error);
     }
-});
+)
 
-export default api;
+export default axiosInstance;

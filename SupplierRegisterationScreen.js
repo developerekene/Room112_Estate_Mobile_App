@@ -19,7 +19,7 @@ import Constants from 'expo-constants';
 
 
 
-import api from "./src/api-config/api";
+import api from "./src/api-config/api_config";
 import AppPicker from "./src/components/AppPicker/AppPicker";
 import SnackBar from "./src/components/SnackBar/SnackBar";
 

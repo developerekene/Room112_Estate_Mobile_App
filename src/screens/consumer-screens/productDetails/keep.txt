@@ -1,3 +1,4 @@
+
 import { StyleSheet, Text, View, Pressable, SafeAreaView } from "react-native";
 import React from "react";
 import ConsumerHeader from "../../../components/ConsumerHeader/ConsumerHeader";
@@ -135,3 +136,17 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
   },
 });
+
+import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+
+export default function productDetails() {
+  return (
+    <View>
+      <Text>productDetails</Text>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({});
+

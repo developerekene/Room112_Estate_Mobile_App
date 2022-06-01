@@ -1,29 +1,24 @@
-import { StyleSheet } from 'react-native';
-import AddReminder from './AddReminder';
-import ReminderSent from './ReminderSent';
-import AppFlow from "./AppFlow";
-import SupplierAddDetailScreen from './src/screens/supplier-screens/SupplierAddProduct';
-import CustomerDetailModal from './CustomerDetailModal';
+import React from 'react';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View } from 'react-native';
+import AppFlow from './AppFlow';
 
 export default function App() {
   return (
     <>
-      {/* <CustomerDetailModal /> */}
-      {/* <SupplierAddDetailScreen /> */}
-        <AppFlow />
-      {/* <AddReminder/> */}
+      <AppFlow />
     </>
   );
 }
 
-// const styles = StyleSheet.create({
-//   screenTitle: {
-//     paddingTop: 20,
-//     paddingBottom: 20,
-//     fontSize: 24,
-//   },
-//   container: {
-//     flex: 1,
-//     backgroundColor: "#FFFFFF",
-//   },
-// });
+const styles = StyleSheet.create({
+  screenTitle: {
+    paddingTop: 20,
+    paddingBottom: 20,
+    fontSize: 24,
+  },
+  container: {
+    flex: 1,
+    backgroundColor: "#FFFFFF",
+  },
+});

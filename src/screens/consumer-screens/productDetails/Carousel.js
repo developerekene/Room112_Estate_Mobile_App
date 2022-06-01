@@ -41,7 +41,12 @@ export default class App extends React.Component {
             <Image
               key={index}
               source={item}
-              style={{ width, height, resizeMode: "contain" }}
+              style={{
+                width,
+                height,
+                resizeMode: "contain",
+                borderRadius: width / 2,
+              }}
             />
           ))}
         </ScrollView>

@@ -2,17 +2,17 @@ import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 import { AntDesign } from "react-native-vector-icons";
 
-const Product = ({product, index}) => {
-  // console.log(right);
+const Product = ({ product, index }) => {
   const { company, address, price, quantity, link, imageUrl, rating } = product;
-  const containerPadding = index % 2 > 0 ? {paddingLeft: 5} : {paddingRight: 5}
+  const containerPadding =
+    index % 2 > 0 ? { paddingLeft: 5 } : { paddingRight: 5 };
   return (
-    <View style={[{width: "50%"}, containerPadding]}>
+    <View style={[{ width: "50%" }, containerPadding]}>
       <View style={styles.container}>
         <View style={{ height: 90 }}>
           <Image style={styles.card} source={imageUrl} />
           <View style={styles.ratingNo}>
-            <Text style={[styles.rating, {color:"#000"}]}>{rating}</Text>
+            <Text style={[styles.rating, { color: "#000" }]}>{rating}</Text>
           </View>
         </View>
         <Text style={styles.companyText}>{company}</Text>
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     borderColor: "white",
     // borderWidth: 1,
     shadowOffset: { width: 0, height: 2.5 },
-    shadowColor: '#BEBEBE',
+    shadowColor: "#BEBEBE",
     shadowOpacity: 1,
     elevation: 10,
   },
@@ -59,14 +59,14 @@ const styles = StyleSheet.create({
     fontFamily: "Manrope_400Regular",
     textAlign: "left",
     color: "rgba(33, 51, 79, 1)",
-    marginBottom: 5
+    marginBottom: 5,
   },
   addressText: {
     fontSize: 12,
     fontFamily: "Manrope_400Regular",
     textAlign: "left",
     color: "rgba(33, 51, 79, 1)",
-    marginBottom: 2
+    marginBottom: 2,
   },
   priceQuantity: {
     flexDirection: "row",
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     // height: 24,
     borderRadius: 20,
     padding: 5,
-    justifyContent:"center",
-    alignItems:"center",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

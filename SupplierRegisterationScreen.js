@@ -38,6 +38,11 @@ const SignupSchema = Yup.object().shape({
     cPassword: Yup.string().min(6, "Too Short!").max(50, "Too Long!").matches(passwordRegExp, "Must Contain 6 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character").required("Required"),
     phone: Yup.string().min(11, "Too Short!").max(15, "Too Long!").matches(phoneRegExp, 'Invalid Phone number!').required("Required"),
     gender: Yup.string().required("Required"),
+    location: Yup.object().shape({
+      state: Yup.string().required("Required"),
+      city: Yup.string().required("Required"),
+      street: Yup.string().required("Required")
+    })
 });
 
 const gender = [
@@ -87,7 +92,7 @@ const SupplierRegisterationScreen = ({navigation, route}) => {
   async function postSupplierDetails(data, resetForm) {
     try {
       const response = await api.post("/CompanyManager", {...data});
-      console.log(response);
+      // console.log(response);
       if (response.data.success) {
         // updateCompanies(response.data.message);
         // updateSnackBarStatus({
@@ -132,6 +137,7 @@ const SupplierRegisterationScreen = ({navigation, route}) => {
   }, [])
 
   function registerSupplier(values, resetForm) {
+    console.log(values);
     updateDisableSubmitBtn(true);
     updateSubmitBtnText("Please wait...");
     if (values.password !== values.cPassword) {
@@ -516,7 +522,7 @@ const SupplierRegisterationScreen = ({navigation, route}) => {
                       { errors.gender }
                     </Text>}
                   </View>
-                  {/* <View style={{ marginTop: 10 }}>
+                  <View style={{ marginTop: 10 }}>
                     <Text
                       style={{
                         fontSize: 14,
@@ -524,14 +530,15 @@ const SupplierRegisterationScreen = ({navigation, route}) => {
                         marginVertical: 5,
                       }}
                     >
-                      Location
+                      Street
                     </Text>
                     <View
                       style={{
                         flexDirection: "row",
                         alignItems: "center",
                         borderWidth: 0.5,
-                        borderColor: "rgba(33, 51, 79, 0.2)",
+                        // borderColor: "rgba(33, 51, 79, 0.2)",
+                        borderColor: (errors.location) ? (errors.location.street && touched.location.street) ? "tomato" : "rgba(33, 51, 79, 0.2)" : "rgba(33, 51, 79, 0.2)",
                         padding: 10,
                         paddingHorizontal: 5,
                       }}
@@ -544,6 +551,9 @@ const SupplierRegisterationScreen = ({navigation, route}) => {
                       <TextInput
                         placeholder="Use current location"
                         underlineColorAndroid="transparent"
+                        onChangeText={handleChange("location.street")}
+                        onBlur={handleBlur("location.street")}
+                        value={values.location.street}
                         style={{
                           flex: 1,
                           fontFamily: "Manrope_400Regular",
@@ -551,7 +561,117 @@ const SupplierRegisterationScreen = ({navigation, route}) => {
                         }}
                       />
                     </View>
-                  </View> */}
+                    { errors.location ? (errors.location.street && touched.location.street) && <Text
+                      style={{
+                        fontSize: 14,
+                        fontFamily: "Manrope_400Regular",
+                        color: "tomato",
+                        marginVertical: 2,
+                      }}
+                    >
+                      { errors.location.street }
+                    </Text> : null }
+                  </View>
+                  <View style={{ marginTop: 10 }}>
+                    <Text
+                      style={{
+                        fontSize: 14,
+                        fontFamily: "Manrope_400Regular",
+                        marginVertical: 5,
+                      }}
+                    >
+                      City
+                    </Text>
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        alignItems: "center",
+                        borderWidth: 0.5,
+                        borderColor: "rgba(33, 51, 79, 0.2)",
+                        borderColor: (errors.location) ? (errors.location.city && touched.location.city) ? "tomato" : "rgba(33, 51, 79, 0.2)" : "rgba(33, 51, 79, 0.2)",
+                        padding: 10,
+                        paddingHorizontal: 5,
+                      }}
+                    >
+                      <MaterialCommunityIcons
+                        name="map-marker-outline"
+                        size={24}
+                        color="#C4C4C4"
+                      />
+                      <TextInput
+                        placeholder="Use current location"
+                        underlineColorAndroid="transparent"
+                        onChangeText={handleChange("location.city")}
+                        onBlur={handleBlur("location.city")}
+                        value={values.location.city}
+                        style={{
+                          flex: 1,
+                          fontFamily: "Manrope_400Regular",
+                          paddingHorizontal: 5,
+                        }}
+                      />
+                    </View>
+                    { errors.location ? (errors.location.city && touched.location.city) && <Text
+                      style={{
+                        fontSize: 14,
+                        fontFamily: "Manrope_400Regular",
+                        color: "tomato",
+                        marginVertical: 2,
+                      }}
+                    >
+                      { errors.location.city }
+                    </Text> : null }
+                  </View>
+                  <View style={{ marginTop: 10 }}>
+                    <Text
+                      style={{
+                        fontSize: 14,
+                        fontFamily: "Manrope_400Regular",
+                        marginVertical: 5,
+                      }}
+                    >
+                      State
+                    </Text>
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        alignItems: "center",
+                        borderWidth: 0.5,
+                        borderColor: "rgba(33, 51, 79, 0.2)",
+                        borderColor: (errors.location) ? (errors.location.state && touched.location.state) ? "tomato" : "rgba(33, 51, 79, 0.2)" : "rgba(33, 51, 79, 0.2)",
+                        padding: 10,
+                        paddingHorizontal: 5,
+                      }}
+                    >
+                      <MaterialCommunityIcons
+                        name="map-marker-outline"
+                        size={24}
+                        color="#C4C4C4"
+                      />
+                      <TextInput
+                        placeholder="Use current location"
+                        underlineColorAndroid="transparent"
+                        onChangeText={handleChange("location.state")}
+                        onBlur={handleBlur("location.state")}
+                        value={values.location.state}
+                        style={{
+                          flex: 1,
+                          fontFamily: "Manrope_400Regular",
+                          paddingHorizontal: 5,
+                        }}
+                      />
+                    </View>
+                    { errors.location ? (errors.location.state && touched.location.state) && <Text
+                      style={{
+                        fontSize: 14,
+                        fontFamily: "Manrope_400Regular",
+                        color: "tomato",
+                        marginVertical: 2,
+                      }}
+                    >
+                      { errors.location.state }
+                    </Text> : null }
+                  </View>
                   <TouchableHighlight
                     disabled={disableSubmitBtn}
                     style={{ marginTop: 20 }}

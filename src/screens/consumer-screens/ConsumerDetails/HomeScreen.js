@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, FlatList } from "react-native";
+import { StyleSheet, Text, View, Image, FlatList, TouchableWithoutFeedback } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import React from "react";
 import HomePageHeader from "../../../components/ConsumerHeader/HomePageHeader";
@@ -66,7 +66,7 @@ const products = [
   },
 ];
 
-const HomeScreen = () => {
+const HomeScreen = ({ stackScreensNavigation: navigation }) => {
   return (
     <SafeAreaProvider>
       {/* <View style={styles.container}>
@@ -112,39 +112,41 @@ const HomeScreen = () => {
         {/* <ScrollView> */}
         <View style={{ width: "100%", height: "100%" }}>
           <ScrollView style={{ padding: 20 }}>
-            <View style={styles.containerBar}>
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <View
-                  style={{
-                    backgroundColor: "#FFBE0B1A",
-                    width: 42,
-                    height: 42,
-                    justifyContent: "center",
-                    alignItems: "center",
-                    borderRadius: 21,
-                  }}
-                >
-                  <AntDesign
-                    name="barschart"
-                    style={styles.icon}
-                    size={24}
-                    color="#FFBE0B"
+            <TouchableWithoutFeedback onPress={() => navigation.navigate("ConsumptionLevelScreen")}>
+              <View style={styles.containerBar}>
+                    <View style={{ flexDirection: "row", alignItems: "center" }}>
+                        <View
+                          style={{
+                            backgroundColor: "#FFBE0B1A",
+                            width: 42,
+                            height: 42,
+                            justifyContent: "center",
+                            alignItems: "center",
+                            borderRadius: 21,
+                          }}
+                        >
+                          <AntDesign
+                            name="barschart"
+                            style={styles.icon}
+                            size={24}
+                            color="#FFBE0B"
+                          />
+                        </View>
+                        <View style={{ marginLeft: 10 }}>
+                          <Text style={styles.title}>
+                            Your consumption level is 65.89%
+                          </Text>
+                          <Text style={styles.subTitle}>Today 02 Apr 2022</Text>
+                        </View>
+                    </View>
+                <Fontisto
+                  name="angle-right"
+                  style={styles.icon}
+                  size={14}
+                  color="#000"
                   />
-                </View>
-                <View style={{ marginLeft: 10 }}>
-                  <Text style={styles.title}>
-                    Your consumption level is 65.89%
-                  </Text>
-                  <Text style={styles.subTitle}>Today 02 Apr 2022</Text>
-                </View>
               </View>
-              <Fontisto
-                name="angle-right"
-                style={styles.icon}
-                size={14}
-                color="#000"
-              />
-            </View>
+            </TouchableWithoutFeedback>
 
             <View style={styles.navBelow}>
               <Text style={styles.navBelowNotoutlined}>Suppliers</Text>

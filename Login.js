@@ -79,8 +79,8 @@ function Login({navigation}) {
             </TouchableWithoutFeedback>
 
             <TouchableHighlight style={{marginTop: 20}} underlayColor="#114E93" onPress={() => {
-              // navigation.navigate("Customer");
-              navigation.navigate("Supplier");
+              navigation.navigate("Customer");
+              // navigation.navigate("Supplier");
             }} >
               <View style={{
                 backgroundColor: "#147DF5",
@@ -100,7 +100,7 @@ function Login({navigation}) {
             }}>
               <Text style={{fontFamily: "Manrope_400Regular"}}>Don't have an account?</Text>
               <TouchableWithoutFeedback onPress={ () => {
-                navigation.navigate("SignUp")
+                navigation.navigate("Home")
               } }>
                 <Text style={{
                   color: '#147DF5',

@@ -26,7 +26,7 @@ const CustomerNavigation = ({ stackScreensNavigation }) => {
       style={{ width: "100%" }}
     >
       <Tab.Screen
-        component={HomeTab}
+        children={() => <HomeTab stackScreensNavigation={stackScreensNavigation} />}
         name="Home"
         options={{
           headerShown: false,

@@ -31,6 +31,7 @@ import NotificationSettings from './src/screens/consumer-screens/NotificationSet
 import ReferSettings from './src/screens/consumer-screens/ReferSettings';
 import SupplierRegisterationScreen from './SupplierRegisterationScreen';
 import ConsumerRegisterationScreen from './ConsumerRegisterationScreen';
+import ConsumptionLevelScreen from './src/screens/consumer-screens/ConsumerDetails/ConsumptionLevelScreen';
 
 
 const slides = [
@@ -201,7 +202,7 @@ function Onboarding () {
                 }
               }}/>
 
-            <Stack.Screen name="ConsumerRegisterationScreen" component={ConsumerRegisterationScreen} 
+            <Stack.Screen name="ConsumerRegisterationScreen" component={ConsumerRegisterationScreen}
               options={{
                 header: ({navigation}) => {
                   return <GoBack navigation={navigation} />
@@ -285,6 +286,16 @@ function Onboarding () {
               options={{
                 header: ({navigation}) => {
                   return <GoBack navigation={navigation} />
+                }
+              }}
+            />
+            
+            <Stack.Screen
+              name="ConsumptionLevelScreen"
+              component={ConsumptionLevelScreen}
+              options={{
+                header: ({navigation}) => {
+                  return <GoBack navigation={navigation} title="Statistics Level" />
                 }
               }}
             />

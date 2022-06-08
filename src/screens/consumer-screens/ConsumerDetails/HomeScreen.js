@@ -166,6 +166,7 @@ const HomeScreen = ({ stackScreensNavigation: navigation }) => {
                     style={{
                       backgroundColor: "#000",
                     }}
+                    navigation={navigation}
                   />
                 )}
               />

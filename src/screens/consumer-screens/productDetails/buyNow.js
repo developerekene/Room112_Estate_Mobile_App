@@ -1,47 +1,38 @@
-import { StyleSheet, Text, View, SafeAreaView, Pressable } from "react-native";
+import { StyleSheet, Text, View, SafeAreaView, TouchableHighlight } from "react-native";
 import React from "react";
 import Header from "../../../components/ConsumerHeader/Header";
 import Carousel from "./Carousel";
 import Counter from "./Counter";
+import GoBack from "../../../components/GoBack/GoBack";
 
 const BuyNow = () => {
   return (
-    <SafeAreaView>
-      <View style={styles.container}>
-        <View style={styles.header}>
-          <Header title="Details" />
-        </View>
+    <View style={{backgroundColor: "#FFF", flex: 1}}>
+      <View style={[styles.container]}>
         <View style={styles.carousel}>
           <Carousel />
         </View>
-        <View style={styles.productDetails}>
-          <Text style={{ fontWeight: "bold", fontSize: 18 }}>
+        <View style={[styles.productDetails, {}]}>
+          <Text style={{ marginBottom: 10, fontSize: 18, color: "#21334F", fontFamily: "Manrope_500Medium"}}>
             Bottle Water Pack
           </Text>
-          <Text style={{ fontWeight: "bold", fontSize: 24 }}>N900.00</Text>
-        </View>
-        <View style={styles.inStock}>
-          <Text
-            style={{
-              color: "#38B000",
-              fontSize: 14,
-              padding: 20,
-            }}
-          >
-            In Stock
-          </Text>
+          <Text style={{ marginBottom: 10, fontSize: 24, color: "#21334F", fontFamily: "Manrope_500Medium"}}>N900.00</Text>
+          
+          <Text style={{ marginBottom: 10, fontSize: 14, color: "#38B000", fontFamily: "Manrope_400Regular" }}>In Stock</Text>
         </View>
         <View style={styles.counter}>
           <Counter />
         </View>
-        <View style={styles.btnView}>
-          <Pressable style={styles.btnprimary}>
-            <Text style={styles.btnPrimaryText}>Continue To Buy</Text>
-          </Pressable>
-          <Text style={{ color: "#147DF5", fontSize: 14 }}>Remove</Text>
+        <View style={[styles.btnView, {paddingHorizontal: 20}]}>
+          <TouchableHighlight underlayColor="#1B4473" onPress={() => {}} style={styles.btnprimary}>
+            <Text style={[styles.btnPrimaryText, {fontFamily: "Manrope_600SemiBold", fontSize: 14}]}>Continue To Buy</Text>
+          </TouchableHighlight>
+          <TouchableHighlight underlayColor="#00000010" onPress={() => {}} style={[styles.btnprimary, {backgroundColor: "transparent"}]}>
+            <Text style={[styles.btnPrimaryText, {color: "#147DF5", fontFamily: "Manrope_600SemiBold", fontSize: 14}]}>Remove</Text>
+          </TouchableHighlight>
         </View>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -55,7 +46,7 @@ const styles = StyleSheet.create({
     height: "80%",
   },
   btnprimary: {
-    width: 329,
+    width: "100%",
     height: 50,
     backgroundColor: "#147DF5",
     flexDirection: "row",
@@ -71,6 +62,7 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
   },
   btnView: {
+    marginTop: 20,
     justifyContent: "center",
     width: "100%",
     alignItems: "center",

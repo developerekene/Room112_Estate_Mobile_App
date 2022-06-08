@@ -35,14 +35,16 @@ const SignupSchema = Yup.object().shape({
     lastname: Yup.string().min(3, "Too Short!").max(50, "Too Long!").required("Required"),
     email: Yup.string().email('Invalid email').required('Required'),
     password: Yup.string().min(6, "Too Short!").max(50, "Too Long!").matches(passwordRegExp, "Must Contain 6 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character").required("Required"),
-    cPassword: Yup.string().min(6, "Too Short!").max(50, "Too Long!").matches(passwordRegExp, "Must Contain 6 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character").required("Required"),
     phone: Yup.string().min(11, "Too Short!").max(15, "Too Long!").matches(phoneRegExp, 'Invalid Phone number!').required("Required"),
-    gender: Yup.string().required("Required"),
-    location: Yup.object().shape({
-      state: Yup.string().required("Required"),
-      city: Yup.string().required("Required"),
-      street: Yup.string().required("Required")
-    })
+    // gender: Yup.string().required("Required"),
+    state: Yup.string().required("Required"),
+    city: Yup.string().required("Required"),
+    street: Yup.string().required("Required")
+    // location: Yup.object().shape({
+    //   state: Yup.string().required("Required"),
+    //   city: Yup.string().required("Required"),
+    //   street: Yup.string().required("Required")
+    // })
 });
 
 const gender = [
@@ -137,22 +139,21 @@ const SupplierRegisterationScreen = ({navigation, route}) => {
   }, [])
 
   function registerSupplier(values, resetForm) {
-    console.log(values);
     updateDisableSubmitBtn(true);
     updateSubmitBtnText("Please wait...");
-    if (values.password !== values.cPassword) {
-      updateSnackBar({
-        text: "Passwords do not match!",
-        icon: "close",
-        iconColor: "#842029",
-        bgColor: "#f5c2c7",
-        textColor: "#842029"
-      });
-      showSnackBar();
-      updateDisableSubmitBtn(false);
-      updateSubmitBtnText("Sign Up");
-      return;
-    }
+    // if (values.password !== values.cPassword) {
+    //   updateSnackBar({
+    //     text: "Passwords do not match!",
+    //     icon: "close",
+    //     iconColor: "#842029",
+    //     bgColor: "#f5c2c7",
+    //     textColor: "#842029"
+    //   });
+    //   showSnackBar();
+    //   updateDisableSubmitBtn(false);
+    //   updateSubmitBtnText("Sign Up");
+    //   return;
+    // }
 
     // let formData = new FormData();
 
@@ -163,11 +164,20 @@ const SupplierRegisterationScreen = ({navigation, route}) => {
         lastname: `${values.lastname[0].toString().toUpperCase()}${values.lastname.toString().substr(1)}`,
         email: values.email,
         password: values.password,
-        confirmPassword: values.cPassword,
+        confirmPassword: values.password,
         phoneNumber: values.phone,
-        gender: values.gender,
+        gender: "undefined",
         age: values.age,
-        location: values.location
+        location: {
+          state: values.state,
+          street: values.street,
+          city: values.city,
+          country: "",
+          houseNumber: "",
+          otherDetails: "",
+          latitude: "",
+          longitude: ""
+        }
       },
       profilePictureUrl: values.profilePictureUrl
     }
@@ -205,20 +215,20 @@ const SupplierRegisterationScreen = ({navigation, route}) => {
                 // companyName: selectedCompany.companyName,
                 email: "",
                 password: "",
-                cPassword: "",
+                // cPassword: "",
                 phone: "",
-                gender: "",
+                // gender: "",
                 age: 0,
-                location: {
-                  country: "",
-                  state: "",
-                  city: "",
-                  street: "",
-                  houseNumber: "",
-                  otherDetails: "",
-                  latitude: "",
-                  longitude: ""
-                },
+                state: "",
+                city: "",
+                street: "",
+                // location: {
+                //   country: "",
+                //   houseNumber: "",
+                //   otherDetails: "",
+                //   latitude: "",
+                //   longitude: ""
+                // },
                 profilePictureUrl: ""
             }}
             validationSchema={SignupSchema}
@@ -417,44 +427,6 @@ const SupplierRegisterationScreen = ({navigation, route}) => {
                         marginVertical: 5,
                       }}
                     >
-                      Confirm Password
-                    </Text>
-                    <TextInput
-                      autoCapitalize="none"
-                      autoCorrect={false}
-                      secureTextEntry
-                      placeholder="Confirm Password"
-                      textContentType="password"
-                      onChangeText={handleChange("cPassword")}
-                      onBlur={handleBlur("cPassword")}
-                      value={values.cPassword}
-                      style={{
-                        height: 48,
-                        borderWidth: 0.5,
-                        borderColor: (errors.cPassword && touched.cPassword) ? "tomato" : "rgba(33, 51, 79, 0.2)",
-                        padding: 10,
-                        fontFamily: "Manrope_400Regular",
-                      }}
-                    />
-                    {(errors.cPassword && touched.cPassword) && <Text
-                      style={{
-                        fontSize: 14,
-                        fontFamily: "Manrope_400Regular",
-                        color: "tomato",
-                        marginVertical: 2,
-                      }}
-                    >
-                      { errors.cPassword }
-                    </Text>}
-                  </View>
-                  <View style={{ marginTop: 10 }}>
-                    <Text
-                      style={{
-                        fontSize: 14,
-                        fontFamily: "Manrope_400Regular",
-                        marginVertical: 5,
-                      }}
-                    >
                       Phone Number
                     </Text>
                     <TextInput
@@ -482,46 +454,6 @@ const SupplierRegisterationScreen = ({navigation, route}) => {
                       { errors.phone }
                     </Text>}
                   </View>
-                  <View style={{marginTop: 10}}>
-                    <Text
-                      style={{
-                        fontSize: 14,
-                        fontFamily: "Manrope_400Regular",
-                        marginVertical: 5,
-                      }}
-                    >
-                      Gender
-                    </Text>
-                    <RadioButtonRN
-                      data={gender}
-                      circleSize={14}
-                      textStyle={{
-                        fontSize: 14,
-                        fontFamily: "Manrope_400Regular",
-                        color: "#21334F"
-                      }}
-                      style={{
-
-                      }}
-                      boxStyle={{
-                        borderRadius: 0,
-                        borderColor: (errors.gender && touched.gender) ? "tomato" : "rgba(33, 51, 79, 0.2)",
-                      }}
-                      selectedBtn={(e) => {
-                        values.gender = e.label
-                      }}
-                    />
-                    {(errors.gender && touched.gender) && <Text
-                      style={{
-                        fontSize: 14,
-                        fontFamily: "Manrope_400Regular",
-                        color: "tomato",
-                        marginVertical: 2,
-                      }}
-                    >
-                      { errors.gender }
-                    </Text>}
-                  </View>
                   <View style={{ marginTop: 10 }}>
                     <Text
                       style={{
@@ -538,7 +470,7 @@ const SupplierRegisterationScreen = ({navigation, route}) => {
                         alignItems: "center",
                         borderWidth: 0.5,
                         // borderColor: "rgba(33, 51, 79, 0.2)",
-                        borderColor: (errors.location) ? (errors.location.street && touched.location.street) ? "tomato" : "rgba(33, 51, 79, 0.2)" : "rgba(33, 51, 79, 0.2)",
+                        borderColor: (errors.street && touched.street) ? "tomato" : "rgba(33, 51, 79, 0.2)",
                         padding: 10,
                         paddingHorizontal: 5,
                       }}
@@ -551,9 +483,9 @@ const SupplierRegisterationScreen = ({navigation, route}) => {
                       <TextInput
                         placeholder="Use current location"
                         underlineColorAndroid="transparent"
-                        onChangeText={handleChange("location.street")}
-                        onBlur={handleBlur("location.street")}
-                        value={values.location.street}
+                        onChangeText={handleChange("street")}
+                        onBlur={handleBlur("street")}
+                        value={values.street}
                         style={{
                           flex: 1,
                           fontFamily: "Manrope_400Regular",
@@ -561,16 +493,16 @@ const SupplierRegisterationScreen = ({navigation, route}) => {
                         }}
                       />
                     </View>
-                    { errors.location ? (errors.location.street && touched.location.street) && <Text
-                      style={{
-                        fontSize: 14,
-                        fontFamily: "Manrope_400Regular",
-                        color: "tomato",
-                        marginVertical: 2,
-                      }}
-                    >
-                      { errors.location.street }
-                    </Text> : null }
+                    {(errors.street && touched.street) && <Text
+                        style={{
+                          fontSize: 14,
+                          fontFamily: "Manrope_400Regular",
+                          color: "tomato",
+                          marginVertical: 2,
+                        }}
+                      >
+                        { errors.street }
+                      </Text>}
                   </View>
                   <View style={{ marginTop: 10 }}>
                     <Text
@@ -588,7 +520,7 @@ const SupplierRegisterationScreen = ({navigation, route}) => {
                         alignItems: "center",
                         borderWidth: 0.5,
                         borderColor: "rgba(33, 51, 79, 0.2)",
-                        borderColor: (errors.location) ? (errors.location.city && touched.location.city) ? "tomato" : "rgba(33, 51, 79, 0.2)" : "rgba(33, 51, 79, 0.2)",
+                        borderColor: (errors.city && touched.city) ? "tomato" : "rgba(33, 51, 79, 0.2)",
                         padding: 10,
                         paddingHorizontal: 5,
                       }}
@@ -601,9 +533,9 @@ const SupplierRegisterationScreen = ({navigation, route}) => {
                       <TextInput
                         placeholder="Use current location"
                         underlineColorAndroid="transparent"
-                        onChangeText={handleChange("location.city")}
-                        onBlur={handleBlur("location.city")}
-                        value={values.location.city}
+                        onChangeText={handleChange("city")}
+                        onBlur={handleBlur("city")}
+                        value={values.city}
                         style={{
                           flex: 1,
                           fontFamily: "Manrope_400Regular",
@@ -611,7 +543,7 @@ const SupplierRegisterationScreen = ({navigation, route}) => {
                         }}
                       />
                     </View>
-                    { errors.location ? (errors.location.city && touched.location.city) && <Text
+                    { (errors.city && touched.city) && <Text
                       style={{
                         fontSize: 14,
                         fontFamily: "Manrope_400Regular",
@@ -619,8 +551,8 @@ const SupplierRegisterationScreen = ({navigation, route}) => {
                         marginVertical: 2,
                       }}
                     >
-                      { errors.location.city }
-                    </Text> : null }
+                      { errors.city }
+                    </Text> }
                   </View>
                   <View style={{ marginTop: 10 }}>
                     <Text
@@ -638,7 +570,7 @@ const SupplierRegisterationScreen = ({navigation, route}) => {
                         alignItems: "center",
                         borderWidth: 0.5,
                         borderColor: "rgba(33, 51, 79, 0.2)",
-                        borderColor: (errors.location) ? (errors.location.state && touched.location.state) ? "tomato" : "rgba(33, 51, 79, 0.2)" : "rgba(33, 51, 79, 0.2)",
+                        borderColor: (errors.state && touched.state) ? "tomato" : "rgba(33, 51, 79, 0.2)",
                         padding: 10,
                         paddingHorizontal: 5,
                       }}
@@ -651,9 +583,9 @@ const SupplierRegisterationScreen = ({navigation, route}) => {
                       <TextInput
                         placeholder="Use current location"
                         underlineColorAndroid="transparent"
-                        onChangeText={handleChange("location.state")}
-                        onBlur={handleBlur("location.state")}
-                        value={values.location.state}
+                        onChangeText={handleChange("state")}
+                        onBlur={handleBlur("state")}
+                        value={values.state}
                         style={{
                           flex: 1,
                           fontFamily: "Manrope_400Regular",
@@ -661,7 +593,7 @@ const SupplierRegisterationScreen = ({navigation, route}) => {
                         }}
                       />
                     </View>
-                    { errors.location ? (errors.location.state && touched.location.state) && <Text
+                    { (errors.state && touched.state) && <Text
                       style={{
                         fontSize: 14,
                         fontFamily: "Manrope_400Regular",
@@ -669,8 +601,8 @@ const SupplierRegisterationScreen = ({navigation, route}) => {
                         marginVertical: 2,
                       }}
                     >
-                      { errors.location.state }
-                    </Text> : null }
+                      { errors.state }
+                    </Text> }
                   </View>
                   <TouchableHighlight
                     disabled={disableSubmitBtn}

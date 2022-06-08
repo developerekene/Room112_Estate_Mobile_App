@@ -11,6 +11,7 @@ import {
   useWindowDimensions,
 } from "react-native";
 import React from "react";
+import PagerView from 'react-native-pager-view';
 
 const width = Dimensions.get("window").width;
 const height = width * 0.45;
@@ -26,31 +27,35 @@ const images = [
 export default class App extends React.Component {
   render() {
     return (
-      <View style={{ width, height }}>
-        <ScrollView
-          horizontal
-          pagingEnabled
-          showsHorizontalScrollIndicator={false}
-          showsVerticalScrollIndicator={false}
-          decelerationRate={0}
-          snapToInterval={200}
-          snapToAlignment={"end"}
-          style={{ width, height }}
-        >
-          {images.map((item, index) => (
-            <Image
-              key={index}
-              source={item}
-              style={{
-                width,
-                height,
-                resizeMode: "contain",
-                borderRadius: width / 2,
-              }}
-            />
-          ))}
-        </ScrollView>
+      <View style={{ width: "100%", height: 200, backgroundColor: "#FFF" }}>
+        <PagerView style={styles.pagerView} initialPage={0}>
+            {
+              images.map((value, index) => {
+                return (
+                  <View key={index} style={{paddingHorizontal: 20, paddingVertical: 10}}>
+                    <View style={{flex: 1, borderRadius: 15, overflow: "hidden"}}>
+                      <Image
+                          key={index}
+                          source={value}
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            resizeMode: "cover",
+                          }}
+                        />
+                    </View>
+                  </View>
+                )
+              })
+            }
+        </PagerView>
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  pagerView: {
+    flex: 1,
+  },
+});

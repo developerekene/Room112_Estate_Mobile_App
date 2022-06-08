@@ -32,6 +32,7 @@ import ReferSettings from './src/screens/consumer-screens/ReferSettings';
 import SupplierRegisterationScreen from './SupplierRegisterationScreen';
 import ConsumerRegisterationScreen from './ConsumerRegisterationScreen';
 import ConsumptionLevelScreen from './src/screens/consumer-screens/ConsumerDetails/ConsumptionLevelScreen';
+import BuyNow from './src/screens/consumer-screens/productDetails/buyNow';
 
 
 const slides = [
@@ -278,6 +279,13 @@ function Onboarding () {
             <Stack.Screen name="Customer" component={Customer} 
               options={{
                 headerShown: false
+              }}/>
+
+            <Stack.Screen name="ProdcutDetails" component={BuyNow} 
+              options={{
+                header: ({navigation}) => {
+                  return <GoBack navigation={navigation} />
+                }
               }}/>
 
             <Stack.Screen

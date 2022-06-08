@@ -10,13 +10,22 @@ import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
+<<<<<<< HEAD
+import com.facebook.react.config.ReactFeatureFlags;
 import com.facebook.soloader.SoLoader;
+import com.example.aqua.newarchitecture.MainApplicationReactNativeHost;
+=======
+import com.facebook.soloader.SoLoader;
+>>>>>>> 74ae9b9ec45c17dd01c7f368270412c8bc1c3854
 
 import expo.modules.ApplicationLifecycleDispatcher;
 import expo.modules.ReactNativeHostWrapper;
 
+<<<<<<< HEAD
+=======
 import com.facebook.react.bridge.JSIModulePackage;
 
+>>>>>>> 74ae9b9ec45c17dd01c7f368270412c8bc1c3854
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
@@ -44,14 +53,32 @@ public class MainApplication extends Application implements ReactApplication {
     }
   });
 
+<<<<<<< HEAD
+  private final ReactNativeHost mNewArchitectureNativeHost =
+      new ReactNativeHostWrapper(this, new MainApplicationReactNativeHost(this));
+
+  @Override
+  public ReactNativeHost getReactNativeHost() {
+    if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
+      return mNewArchitectureNativeHost;
+    } else {
+      return mReactNativeHost;
+    }
+=======
   @Override
   public ReactNativeHost getReactNativeHost() {
     return mReactNativeHost;
+>>>>>>> 74ae9b9ec45c17dd01c7f368270412c8bc1c3854
   }
 
   @Override
   public void onCreate() {
     super.onCreate();
+<<<<<<< HEAD
+    // If you opted-in for the New Architecture, we enable the TurboModule system
+    ReactFeatureFlags.useTurboModules = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED;
+=======
+>>>>>>> 74ae9b9ec45c17dd01c7f368270412c8bc1c3854
     SoLoader.init(this, /* native exopackage */ false);
 
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());

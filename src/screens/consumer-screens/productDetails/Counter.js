@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Pressable, SafeAreaView } from "react-native";
+import { StyleSheet, Text, View, TouchableHighlight, SafeAreaView } from "react-native";
 import React from "react";
 
 export default class App extends React.Component {
@@ -21,27 +21,29 @@ export default class App extends React.Component {
     return (
       <SafeAreaView>
         <View style={styles.container}>
-          <Text style={{ fontSize: 14, color: "#21334F" }}>
+          <Text style={{ fontSize: 14, color: "#21334F", fontFamily: "Manrope_400Regular" }}>
             Select The Quantity
           </Text>
           <View style={styles.container__cartAction}>
-            <Pressable
+            <TouchableHighlight
+              underlayColor="#1B4473"
               style={styles.container__cartAction__btn}
               onPress={this.decrementValue}
             >
-              <Text>-</Text>
-            </Pressable>
+              <Text style={{color: "#FFF"}}>-</Text>
+            </TouchableHighlight>
             <View style={styles.container__quantity}>
               <Text style={{ fontSize: 14, color: "#21334F" }}>
                 {this.state.value}
               </Text>
             </View>
-            <Pressable
+            <TouchableHighlight
+              underlayColor="#1B4473"
               onPress={this.incrementValue}
               style={styles.container__cartAction__btn}
             >
-              <Text>+</Text>
-            </Pressable>
+              <Text style={{color: "#FFF"}}>+</Text>
+            </TouchableHighlight>
           </View>
         </View>
       </SafeAreaView>

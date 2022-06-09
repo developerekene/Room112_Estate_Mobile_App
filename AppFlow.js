@@ -10,11 +10,45 @@ import {
   Manrope_300Light,
   Manrope_500Medium,
 } from "@expo-google-fonts/manrope";
-import { NavigationContainer } from '@react-navigation/native';
+import { Link, NavigationContainer } from '@react-navigation/native';
+import * as Linking from 'expo-linking';
 
 import Onboarding from './OnboardingScreen';
+import BuyNow from "./src/screens/consumer-screens/productDetails/buyNow";
 
+const prefix = Linking.createURL('/');
+
+const linkConfig = {
+  screens: {
+    ConfirmEmail: "ConfirmEmail"
+  }
+}
 export default function AppFlow() {
+
+  const linking = {
+    prefixes: [prefix, "http://www.aqua-deca.com"],
+    linkConfig
+  };
+
+  // console.log(linking);
+
+  const redirectUrl = Linking.createURL('/Authentication');
+  
+
+  Linking.addEventListener(redirectUrl, (event) => {
+    console.log("event", event);
+  });
+
+  Linking.getInitialURL()
+  .then(response => {
+    console.log("response", response);
+  })
+  .catch(error => {
+
+  })
+
+  // console.log(linking);
+
   let [fontsLoaded] = useFonts({
     Manrope_400Regular,
     Manrope_700Bold,
@@ -33,11 +67,12 @@ export default function AppFlow() {
   }
 
   return (
-    <NavigationContainer>
+    <NavigationContainer linking={linking}>
       <View style={styles.container}>
         <StatusBar style="auto" />
         <SafeAreaProvider style={{ width: "100%", height: "100%" }}>
           <Onboarding />
+          {/* <BuyNow /> */}
         </SafeAreaProvider>
       </View>
     </NavigationContainer>

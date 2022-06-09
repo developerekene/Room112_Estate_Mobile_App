@@ -7,4 +7,11 @@
 # For more details, see
 #   http://developer.android.com/guide/developing/tools/proguard.html
 
+<<<<<<< HEAD
+# react-native-reanimated
+-keep class com.swmansion.reanimated.** { *; }
+-keep class com.facebook.react.turbomodule.** { *; }
+
+=======
+>>>>>>> 74ae9b9ec45c17dd01c7f368270412c8bc1c3854
 # Add any project specific keep options here:

@@ -7,3 +7,12 @@ apply from: new File(["node", "--print", "require.resolve('@react-native-communi
 applyNativeModulesSettingsGradle(settings)
 
 include ':app'
+<<<<<<< HEAD
+includeBuild(new File(["node", "--print", "require.resolve('react-native-gradle-plugin/package.json')"].execute(null, rootDir).text.trim()).getParentFile())
+
+if (settings.hasProperty("newArchEnabled") && settings.newArchEnabled == "true") {
+  include(":ReactAndroid")
+  project(":ReactAndroid").projectDir = new File(["node", "--print", "require.resolve('react-native/package.json')"].execute(null, rootDir).text.trim(), "../ReactAndroid");
+}
+=======
+>>>>>>> 74ae9b9ec45c17dd01c7f368270412c8bc1c3854

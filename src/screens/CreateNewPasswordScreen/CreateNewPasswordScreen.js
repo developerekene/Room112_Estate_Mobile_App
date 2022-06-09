@@ -32,6 +32,25 @@ function CreateNewPasswordScreen({ navigation }) {
   const [showPassword, setShowPassword] = useState(true);
   const [showConfirmPassword, setShowConfirmPassword] = useState(true);
 
+  const handleSubmitForm = async (values, formikActions) => {
+    console.log(values.email);
+    let password = values.password;
+    let confirmPassword = values.confirmPassword;
+    console.log(password);
+    console.log(confirmPassword);
+    try {
+      await axios.post(`${baseUrl}/api/v1/Account/Reset-Password`, {
+        ...values,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+    formikActions.resetForm();
+    formikActions.setSubmitting(false);
+    console.log(password);
+    console.log(confirmPassword);
+  };
+
   function showSnackBar(duration = 3000) {
     updateSnackBar(true);
     setTimeout(() => {
@@ -42,8 +61,9 @@ function CreateNewPasswordScreen({ navigation }) {
   return (
     <Formik
       initialValues={{ password: "", confirmPassword: "" }}
-      onSubmit={(values) => console.log(values)}
+      validateOnMount={true}
       validationSchema={validateSchema}
+      onSubmit={handleSubmitForm}
     >
       {({
         handleChange,

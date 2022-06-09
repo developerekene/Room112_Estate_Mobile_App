@@ -13,6 +13,11 @@ import SupplierHeader from "../../components/SupplierHeader/SupplierHeader";
 import { Formik } from "formik";
 import { AntDesign } from "@expo/vector-icons";
 import * as yup from "yup";
+import axios from "axios";
+//import axios from "../../../src/api-config/api_config";
+//import api from "../../../src/api-config/api_config";
+
+const baseUrl = "https://aquawaterapp.herokuapp.com";
 
 const validateSchema = yup.object().shape({
   email: yup
@@ -21,14 +26,44 @@ const validateSchema = yup.object().shape({
     .required("⚠️ Email is required"),
 });
 
-const ForgotPasswordScreen = ({ navigation }) => {
-  // const [isValidEmail, setIsValidEmail] = useState(false);
+const ForgotPasswordScreen = ({ navigation, route }) => {
+  const handleSubmitForm = async (values, formikActions) => {
+    console.log(values.email);
+    let email = values.email;
+    try {
+      await axios.post(`${baseUrl}/api/v1/Account/Forgot-Password`, {
+        email,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+
+    // try {
+    //   const response = await axios.post(
+    //     `${baseUrl}/api/v1/Account/Forgot-Password`,
+    //     {
+    //       email: values,
+    //     }
+    //   );
+    //   if (response.status === 201) {
+    //     alert(
+    //       `A link has been sent to your email address to change your password`
+    //     );
+    //   } else {
+    //     throw new Error("Error has occurred");
+    //   }
+    // } catch (error) {
+    //   alert("An error has occurred");
+    // }
+    formikActions.resetForm();
+    formikActions.setSubmitting(false);
+  };
   return (
     <Formik
       initialValues={{ email: "" }}
       validateOnMount={true}
-      onSubmit={(values) => console.log(values)}
       validationSchema={validateSchema}
+      onSubmit={handleSubmitForm}
     >
       {({
         handleChange,
@@ -40,7 +75,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
         errors,
       }) => (
         <SafeAreaView>
-          <SupplierHeader />
+          {/* <SupplierHeader /> */}
           <View
             style={{
               paddingHorizontal: 10,
@@ -121,8 +156,8 @@ const ForgotPasswordScreen = ({ navigation }) => {
                 style={{ marginTop: 20, paddingVertical: 10 }}
                 underlayColor="#114E93"
                 disabled={!isValid}
-                onPress={() => {
-                  null;
+                onPress={(e) => {
+                  handleSubmit(e);
                 }}
               >
                 <View

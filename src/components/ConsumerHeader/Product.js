@@ -10,7 +10,7 @@ const Product = ({ product, index }) => {
     <View style={[{ width: "50%" }, containerPadding]}>
       <View style={styles.container}>
         <View style={{ height: 90 }}>
-          <Image style={styles.card} source={imageUrl} />
+          <Image style={styles.card} source={{ uri: imageUrl }} />
           <View style={styles.ratingNo}>
             <Text style={[styles.rating, { color: "#000" }]}>{rating}</Text>
           </View>

@@ -84,7 +84,12 @@ const ConsumptionLevelScreen = () => {
   ];
 
   return (
-    <View contentContainerStyle={[styles.scrollContainer, {backgroundColor: "tomato", flex: 1}]}>
+    <View
+      contentContainerStyle={[
+        styles.scrollContainer,
+        { backgroundColor: "tomato", flex: 1 },
+      ]}
+    >
       <View style={styles.safeAreaContainer}>
         {/* <View style={styles.header}>
           <ConsumerHeader title="Statistics Level" />
@@ -152,11 +157,10 @@ const ConsumptionLevelScreen = () => {
         <View style={styles.legendContainer}>
           <View
             style={{
-              flex: 1,
+              width: "100%",
               flexDirection: "row",
               justifyContent: "center",
-              alignItems: "center",
-              textAlign: "center",
+              color: "black",
             }}
           >
             {data
@@ -168,9 +172,10 @@ const ConsumptionLevelScreen = () => {
 
           <View
             style={{
-              flex: 1,
+              width: "100%",
               flexDirection: "row",
               justifyContent: "center",
+              color: "black",
             }}
           >
             {data
@@ -198,7 +203,6 @@ const ConsumptionLevelScreen = () => {
         </View>
       </View>
     </View>
-
   );
 };
 
@@ -208,16 +212,19 @@ const styles = StyleSheet.create({
   safeAreaContainer: {
     backgroundColor: "#fff",
     alignItems: "center",
-    // justifyContent: "space-between",
+    //justifyContent: "space-between",
     height: "100%",
     width: "100%",
   },
   legendContainer: {
-    width: "80%",
+    width: "100%",
     borderWidth: 1,
     borderColor: "#fff",
     marginTop: 20,
+    alignItems: "flex-start",
+    justifyContent: "center",
     padding: 20,
+
     backgroundColor: "#fffff0",
   },
   container: {

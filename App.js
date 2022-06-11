@@ -1,12 +1,17 @@
-import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import AppFlow from './AppFlow';
+import React from "react";
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
+import AppFlow from "./AppFlow";
+import ForgotPasswordScreen from "./src/screens/ForgotPasswordScreen";
+import CreateNewPasswordScreen from "./src/screens/CreateNewPasswordScreen";
+import ForgotPassword from "./src/screens/ForgotPasswordScreen/ForgotPasswordScreen";
 
 export default function App() {
   return (
     <>
       <AppFlow />
+      {/* <ForgotPasswordScreen /> */}
+      {/* <CreateNewPasswordScreen /> */}
     </>
   );
 }

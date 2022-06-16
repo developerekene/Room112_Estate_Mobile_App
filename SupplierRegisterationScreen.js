@@ -21,30 +21,19 @@ import Constants from 'expo-constants';
 
 import api from "./src/api-config/api_config";
 import AppPicker from "./src/components/AppPicker/AppPicker";
-import SnackBar from "./src/components/SnackBar/SnackBar";
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const passwordRegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[.!@#\$%\^&\*])(?=.{6,})/;
 const SignupSchema = Yup.object().shape({
-    // companyName: Yup.string()
-    //     .min(2, 'Too Short!')
-    //     .max(50, 'Too Long!')
-    //     .required('Required'),
     company: Yup.string().required("Required"),
     firstname: Yup.string().min(3, "Too Short!").max(50, "Too Long!").required("Required"),
     lastname: Yup.string().min(3, "Too Short!").max(50, "Too Long!").required("Required"),
     email: Yup.string().email('Invalid email').required('Required'),
     password: Yup.string().min(6, "Too Short!").max(50, "Too Long!").matches(passwordRegExp, "Must Contain 6 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character").required("Required"),
     phone: Yup.string().min(11, "Too Short!").max(15, "Too Long!").matches(phoneRegExp, 'Invalid Phone number!').required("Required"),
-    // gender: Yup.string().required("Required"),
     state: Yup.string().required("Required"),
     city: Yup.string().required("Required"),
     street: Yup.string().required("Required")
-    // location: Yup.object().shape({
-    //   state: Yup.string().required("Required"),
-    //   city: Yup.string().required("Required"),
-    //   street: Yup.string().required("Required")
-    // })
 });
 
 const gender = [
@@ -67,7 +56,7 @@ const SupplierRegisterationScreen = ({navigation, route}) => {
   const [snackBar, updateSnackBar] = React.useState({
     text: "",
     icon: "",
-    iconColor: "",
+    iconColor: "#000",
     bgColor: "#FFF",
     textColor: "#FFF"
   });
@@ -94,22 +83,19 @@ const SupplierRegisterationScreen = ({navigation, route}) => {
   async function postSupplierDetails(data, resetForm) {
     try {
       const response = await api.post("/CompanyManager", {...data});
-      // console.log(response);
+      
       if (response.data.success) {
-        // updateCompanies(response.data.message);
-        // updateSnackBarStatus({
-        //   icon: "close",
-        //   text: response.data.message.trim(),
-        //   iconColor: "#0f5132",
-        //   bgColor: "#badbcc",
-        //   textColor: "#0f5132"
-        // });
-        snackBar.icon = "close";
-        snackBar.text = response.data.message.trim();
-        snackBar.iconColor = "#0f5132";
-        snackBar.bgColor = "#badbcc";
-        snackBar.textColor = "#0f5132";
+        updateSnackBar({
+          icon: "close",
+          text: response.data.message.trim(),
+          iconColor: "#0f5132",
+          bgColor: "#badbcc",
+          textColor: "#0f5132"
+        });
         showSnackBar();
+        setTimeout(() => {
+          navigation.navigate("CheckMail")
+        }, 1000);
       }
       updateDisableSubmitBtn(false);
       updateSubmitBtnText("Sign Up");
@@ -120,12 +106,23 @@ const SupplierRegisterationScreen = ({navigation, route}) => {
       });
     } catch (error) {
       if (error) {
-        if (typeof error.response.data === "string") {
-          snackBar.icon = "close";
-          snackBar.text = error.response.data.trim();
-          snackBar.iconColor = "#842029";
-          snackBar.bgColor = "#f5c2c7";
-          snackBar.textColor = "#842029";
+        if (typeof error.response.data === "string" && error.response.data !== "") {
+          updateSnackBar({
+            text: error.response.data.trim(),
+            icon: "close",
+            iconColor: "#842029",
+            bgColor: "#f5c2c7",
+            textColor: "#842029"
+          });
+          showSnackBar();
+        } else {
+          updateSnackBar({
+            text: "Error! please try again.",
+            icon: "close",
+            iconColor: "#842029",
+            bgColor: "#f5c2c7",
+            textColor: "#842029"
+          });
           showSnackBar();
         }
         updateDisableSubmitBtn(false);
@@ -141,21 +138,6 @@ const SupplierRegisterationScreen = ({navigation, route}) => {
   function registerSupplier(values, resetForm) {
     updateDisableSubmitBtn(true);
     updateSubmitBtnText("Please wait...");
-    // if (values.password !== values.cPassword) {
-    //   updateSnackBar({
-    //     text: "Passwords do not match!",
-    //     icon: "close",
-    //     iconColor: "#842029",
-    //     bgColor: "#f5c2c7",
-    //     textColor: "#842029"
-    //   });
-    //   showSnackBar();
-    //   updateDisableSubmitBtn(false);
-    //   updateSubmitBtnText("Sign Up");
-    //   return;
-    // }
-
-    // let formData = new FormData();
 
     let details = {
       companyId: values.company,
@@ -212,23 +194,13 @@ const SupplierRegisterationScreen = ({navigation, route}) => {
                 firstname: "",
                 lastname: "",
                 userType: route.params.userType.toString(),
-                // companyName: selectedCompany.companyName,
                 email: "",
                 password: "",
-                // cPassword: "",
                 phone: "",
-                // gender: "",
                 age: 0,
                 state: "",
                 city: "",
                 street: "",
-                // location: {
-                //   country: "",
-                //   houseNumber: "",
-                //   otherDetails: "",
-                //   latitude: "",
-                //   longitude: ""
-                // },
                 profilePictureUrl: ""
             }}
             validationSchema={SignupSchema}
@@ -469,7 +441,6 @@ const SupplierRegisterationScreen = ({navigation, route}) => {
                         flexDirection: "row",
                         alignItems: "center",
                         borderWidth: 0.5,
-                        // borderColor: "rgba(33, 51, 79, 0.2)",
                         borderColor: (errors.street && touched.street) ? "tomato" : "rgba(33, 51, 79, 0.2)",
                         padding: 10,
                         paddingHorizontal: 5,
@@ -482,6 +453,7 @@ const SupplierRegisterationScreen = ({navigation, route}) => {
                       />
                       <TextInput
                         placeholder="Use current location"
+                        autoCapitalize="none"
                         underlineColorAndroid="transparent"
                         onChangeText={handleChange("street")}
                         onBlur={handleBlur("street")}
@@ -532,6 +504,7 @@ const SupplierRegisterationScreen = ({navigation, route}) => {
                       />
                       <TextInput
                         placeholder="Use current location"
+                        autoCapitalize="none"
                         underlineColorAndroid="transparent"
                         onChangeText={handleChange("city")}
                         onBlur={handleBlur("city")}
@@ -582,6 +555,7 @@ const SupplierRegisterationScreen = ({navigation, route}) => {
                       />
                       <TextInput
                         placeholder="Use current location"
+                        autoCapitalize="none"
                         underlineColorAndroid="transparent"
                         onChangeText={handleChange("state")}
                         onBlur={handleBlur("state")}

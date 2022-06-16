@@ -1,21 +1,27 @@
 import React from "react";
-import { StyleSheet, View, Text, TextInput, Dimensions } from "react-native";
+import { StyleSheet, View, Text, TextInput, Dimensions, TouchableWithoutFeedback, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { Feather, Entypo } from "@expo/vector-icons";
 
-function ConsumerHeader({ title }) {
+function ConsumerHeader({ navigation }) {
   return (
     <View style={styles.consumerHeader}>
       <View style={styles.toolbar}>
         <Text style={styles.toolbarTxt}>Hi, Godswill 👋</Text>
         <View style={styles.consumerHeaderCart}>
-          <MaterialCommunityIcons
-            style={styles.icon}
-            name="cart-outline"
-            size={24}
-            color="white"
-          />
+          <TouchableOpacity onPress={() => {
+            navigation.navigate("ProdcutDetails");
+          }}>
+            <>
+              <MaterialCommunityIcons
+                style={styles.icon}
+                name="cart-outline"
+                size={24}
+                color="white"
+              />
+            </>
+          </TouchableOpacity>
           <Ionicons
             name="notifications-outline"
             style={styles.icon}

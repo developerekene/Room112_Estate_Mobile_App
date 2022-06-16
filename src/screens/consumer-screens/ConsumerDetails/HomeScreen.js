@@ -11,134 +11,33 @@ import React from "react";
 import HomePageHeader from "../../../components/ConsumerHeader/HomePageHeader";
 import { AntDesign, Fontisto } from "@expo/vector-icons";
 import Product from "../../../components/ConsumerHeader/Product";
-import { SafeAreaView } from "react-native-safe-area-context";
-//import axios from "../../../api-config/api_config";
-import axios from "axios";
 
-//import { SafeAreaView } from "react-native-safe-area-context";
 import { ScrollView } from "react-native-virtualized-view";
+import api from "../../../api-config/api_config";
 
-let products;
-const loadData = () => {
-  const baseUrl = "https://aquawaterapp.herokuapp.com";
-  axios({
-    method: "get",
-    url: `${baseUrl}/api/Company/GetAllCompaniesWithFeaturedProduct`,
-  }).then((response) => {
-    console.log(response.data);
-    console.log(response.data.pageItems[0]);
-    console.log(response.data.pageItems.length);
-
-    /**
-     * {
-    company: "Arinzona Water Inc",
-    address: "Ikeja, Lagos",
-    price: "N900.00",
-    quantity: "per/bottle",
-    link: "View Store",
-    imageUrl: require("../../../../assets/HomePageImg/img1.png"),
-    rating: "4.3⭐",
-  },
-     */
-    products = response.data.pageItems.map((item, index) => {
-      return {
-        companyName: `${response.data.pageItems[index].companyName}`,
-        address: `${response.data.pageItems[index].location.city} ${response.data.pageItems[0].location.country}`,
-        price: `₦${response.data.pageItems[index].product?.price} per/bottle`,
-        imageUrl: `${response.data.pageItems[index].product?.photos[0].imageUrl}`,
-        link: "View Store",
-        rating: "4.3⭐",
-      };
-    });
-
-    const arrayOfProducts = [
-      {
-        companyName: `${response.data.pageItems[0].companyName}`,
-        address: `${response.data.pageItems[0].location.city} ${response.data.pageItems[0].location.country}`,
-        price: `₦${response.data.pageItems[0].product.price} per/bottle`,
-        imageUrl: `${response.data.pageItems[0].product.photos[1].imageUrl}`,
-        link: "View Store",
-        rating: "4.3⭐",
-      },
-    ];
-    console.log(products);
-    // console.log(arrayOfProducts);
-    // console.log(response.data.pageItems[1]);
-    // console.log(response.data.pageItems[0].companyName);
-    // console.log(
-    //   `${response.data.pageItems[0].location.city} ${" "} ${
-    //     response.data.pageItems[0].location.country
-    //   }`
-    // );
-    // console.log(`₦${response.data.pageItems[0].product.price} per/bottle`);
-    // console.log(`${response.data.pageItems[0].product.photos[0].imageUrl}`);
-  });
-};
-
-// const products = [
-//   {
-//     company: "Arinzona Water Inc",
-//     address: "Ikeja, Lagos",
-//     price: "N900.00",
-//     quantity: "per/bottle",
-//     link: "View Store",
-//     imageUrl: require("../../../../assets/HomePageImg/img1.png"),
-//     rating: "4.3⭐",
-//   },
-//   {
-//     company: "Arinzona Water Inc",
-//     address: "Ikeja, Lagos",
-//     price: "N900.00",
-//     quantity: "per/bottle",
-//     link: "View Store",
-//     imageUrl: require("../../../../assets/HomePageImg/img1.png"),
-//     rating: "4.3⭐",
-//   },
-//   {
-//     company: "Arinzona Water Inc",
-//     address: "Ikeja, Lagos",
-//     price: "N900.00",
-//     quantity: "per/bottle",
-//     link: "View Store",
-//     imageUrl: require("../../../../assets/HomePageImg/img1.png"),
-//     rating: "4.3⭐",
-//   },
-//   {
-//     company: "Arinzona Water Inc",
-//     address: "Ikeja, Lagos",
-//     price: "N900.00",
-//     quantity: "per/bottle",
-//     link: "View Store",
-//     imageUrl: require("../../../../assets/HomePageImg/img1.png"),
-//     rating: "4.3⭐",
-//   },
-//   {
-//     company: "Arinzona Water Inc",
-//     address: "Ikeja, Lagos",
-//     price: "N900.00",
-//     quantity: "per/bottle",
-//     link: "View Store",
-//     imageUrl: require("../../../../assets/HomePageImg/img1.png"),
-//     rating: "4.3⭐",
-//   },
-//   {
-//     company: "Arinzona Water Inc",
-//     address: "Ikeja, Lagos",
-//     price: "N900.00",
-//     quantity: "per/bottle",
-//     link: "View Store",
-//     imageUrl: require("../../../../assets/HomePageImg/img1.png"),
-//     rating: "4.3⭐",
-//   },
-// ];
 
 const HomeScreen = ({ stackScreensNavigation: navigation }) => {
-  loadData();
+
+  const [_products, _updateProducts] = React.useState([]);
+
+  function getProducts() {
+    api.get("/api/Company/GetAllCompaniesWithFeaturedProduct")
+    .then(response => {
+      _updateProducts([...response.data.pageItems])
+    })
+    .catch(error => {
+      console.log(error);
+    })
+  }
+
+  React.useEffect(function() {
+    getProducts()
+  }, []);
+
   return (
     <SafeAreaProvider>
       <View style={{ height: "100%", width: "100%" }}>
-        <HomePageHeader />
-        {/* <ScrollView> */}
+        <HomePageHeader navigation={navigation} />
         <View style={{ width: "100%", height: "100%" }}>
           <ScrollView style={{ padding: 20 }}>
             <TouchableWithoutFeedback
@@ -187,16 +86,13 @@ const HomeScreen = ({ stackScreensNavigation: navigation }) => {
             <View style={{ width: "100%", flex: 1, justifyContent: "center" }}>
               <FlatList
                 numColumns={2}
-                data={products}
+                data={_products}
                 scrollEnabled={true}
                 keyExtractor={(_, index) => index.toString()}
                 renderItem={({ item, index }) => (
                   <Product
-                    product={item}
+                    item={item}
                     index={index}
-                    style={{
-                      backgroundColor: "#000",
-                    }}
                     navigation={navigation}
                   />
                 )}
@@ -208,8 +104,6 @@ const HomeScreen = ({ stackScreensNavigation: navigation }) => {
             </View>
           </ScrollView>
         </View>
-
-        {/* </ScrollView> */}
       </View>
     </SafeAreaProvider>
   );

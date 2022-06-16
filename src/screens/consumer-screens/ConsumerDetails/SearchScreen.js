@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, TextInput } from "react-native";
 import React from "react";
 import { Feather } from "@expo/vector-icons";
 import ConsumerHeader from "../../../components/ConsumerHeader/ConsumerHeader";
+import { Formik } from "formik";
 const SearchScreen = () => {
   return (
     <View style={styles.searchScreen}>

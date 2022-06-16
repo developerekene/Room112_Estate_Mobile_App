@@ -11,10 +11,134 @@ import React from "react";
 import HomePageHeader from "../../../components/ConsumerHeader/HomePageHeader";
 import { AntDesign, Fontisto } from "@expo/vector-icons";
 import Product from "../../../components/ConsumerHeader/Product";
+<<<<<<< HEAD
+import { SafeAreaView } from "react-native-safe-area-context";
+//import axios from "../../../api-config/api_config";
+import axios from "axios";
+=======
+>>>>>>> baf77fb46fdb35852c3731ed4d92ab1b7b68880a
 
 import { ScrollView } from "react-native-virtualized-view";
 import api from "../../../api-config/api_config";
 
+<<<<<<< HEAD
+let products;
+const loadData = () => {
+  const baseUrl = "https://aquawaterapp.herokuapp.com";
+  axios({
+    method: "get",
+    url: `${baseUrl}/api/Company/GetAllCompaniesWithFeaturedProduct`,
+  }).then((response) => {
+    console.log(response.data);
+    console.log(response.data.pageItems[0]);
+    console.log(response.data.pageItems.length);
+
+    /**
+     * {
+    company: "Arinzona Water Inc",
+    address: "Ikeja, Lagos",
+    price: "N900.00",
+    quantity: "per/bottle",
+    link: "View Store",
+    imageUrl: require("../../../../assets/HomePageImg/img1.png"),
+    rating: "4.3⭐",
+  },
+     */
+    products = response.data.pageItems.map((item, index) => {
+      return {
+        companyName: `${response.data.pageItems[index].companyName}`,
+        address: `${response.data.pageItems[index].location.city} ${response.data.pageItems[0].location.country}`,
+        price: `₦${response.data.pageItems[index].product?.price} per/bottle`,
+        imageUrl: `${response.data.pageItems[index].product?.photos[0].imageUrl}`,
+        link: "View Store",
+        rating: "4.3⭐",
+      };
+    });
+
+    const arrayOfProducts = [
+      {
+        companyName: `${response.data.pageItems[0].companyName}`,
+        address: `${response.data.pageItems[0].location.city} ${response.data.pageItems[0].location.country}`,
+        price: `₦${response.data.pageItems[0].product.price} per/bottle`,
+        imageUrl: `${response.data.pageItems[0].product.photos[1].imageUrl}`,
+        link: "View Store",
+        rating: "4.3⭐",
+      },
+    ];
+    console.log(products);
+    // console.log(arrayOfProducts);
+    // console.log(response.data.pageItems[1]);
+    // console.log(response.data.pageItems[0].companyName);
+    // console.log(
+    //   `${response.data.pageItems[0].location.city} ${" "} ${
+    //     response.data.pageItems[0].location.country
+    //   }`
+    // );
+    // console.log(`₦${response.data.pageItems[0].product.price} per/bottle`);
+    // console.log(`${response.data.pageItems[0].product.photos[0].imageUrl}`);
+  });
+};
+
+// const products = [
+//   {
+//     company: "Arinzona Water Inc",
+//     address: "Ikeja, Lagos",
+//     price: "N900.00",
+//     quantity: "per/bottle",
+//     link: "View Store",
+//     imageUrl: require("../../../../assets/HomePageImg/img1.png"),
+//     rating: "4.3⭐",
+//   },
+//   {
+//     company: "Arinzona Water Inc",
+//     address: "Ikeja, Lagos",
+//     price: "N900.00",
+//     quantity: "per/bottle",
+//     link: "View Store",
+//     imageUrl: require("../../../../assets/HomePageImg/img1.png"),
+//     rating: "4.3⭐",
+//   },
+//   {
+//     company: "Arinzona Water Inc",
+//     address: "Ikeja, Lagos",
+//     price: "N900.00",
+//     quantity: "per/bottle",
+//     link: "View Store",
+//     imageUrl: require("../../../../assets/HomePageImg/img1.png"),
+//     rating: "4.3⭐",
+//   },
+//   {
+//     company: "Arinzona Water Inc",
+//     address: "Ikeja, Lagos",
+//     price: "N900.00",
+//     quantity: "per/bottle",
+//     link: "View Store",
+//     imageUrl: require("../../../../assets/HomePageImg/img1.png"),
+//     rating: "4.3⭐",
+//   },
+//   {
+//     company: "Arinzona Water Inc",
+//     address: "Ikeja, Lagos",
+//     price: "N900.00",
+//     quantity: "per/bottle",
+//     link: "View Store",
+//     imageUrl: require("../../../../assets/HomePageImg/img1.png"),
+//     rating: "4.3⭐",
+//   },
+//   {
+//     company: "Arinzona Water Inc",
+//     address: "Ikeja, Lagos",
+//     price: "N900.00",
+//     quantity: "per/bottle",
+//     link: "View Store",
+//     imageUrl: require("../../../../assets/HomePageImg/img1.png"),
+//     rating: "4.3⭐",
+//   },
+// ];
+
+const HomeScreen = ({ stackScreensNavigation: navigation }) => {
+  loadData();
+=======
 
 const HomeScreen = ({ stackScreensNavigation: navigation }) => {
 
@@ -34,6 +158,7 @@ const HomeScreen = ({ stackScreensNavigation: navigation }) => {
     getProducts()
   }, []);
 
+>>>>>>> baf77fb46fdb35852c3731ed4d92ab1b7b68880a
   return (
     <SafeAreaProvider>
       <View style={{ height: "100%", width: "100%" }}>

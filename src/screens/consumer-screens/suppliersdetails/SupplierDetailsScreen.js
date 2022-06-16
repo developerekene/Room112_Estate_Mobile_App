@@ -9,9 +9,18 @@ import {
 import SuppliersDetailsHeader from "./SuppliersDetailsHeader";
 import ContactSupplier from "./ContactSupplier";
 import SupplierCatalogue from "./SupplierCatalogue";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ScrollView } from "react-native-virtualized-view";
 import Footer from "./Footer";
+//const baseURL = 'https://aquawaterapp.herokuapp.com'
+import { create } from "apisauce";
+import axios from "axios";
+
+// .then(response=>{
+//   if(!response.ok){
+//     response.problem
+//   }
+// })
 
 const products = [
   {
@@ -65,6 +74,25 @@ const products = [
 ];
 
 const SupplierDetailsScreen = () => {
+  //const apiClient = create({ baseURL: "https://aquawaterapp.herokuapp.com" });
+  const axio = axios.create({ baseURL: "https://aquawaterapp.herokuapp.com" });
+  const [listing, setListing] = useState([]);
+  useEffect(() => {
+    loadListing();
+  }, []);
+  const loadListing = async () => {
+    try {
+      // const response = await fetch(
+      //   "https://aquawaterapp.herokuapp.com/api/Product/GetProductsByCompanyID"
+      // );
+      const response = await axio.get("/api/Product/GetProductsByCompanyID");
+      //const data = await response.json();
+      // console.log(response.body);
+      console.log(response.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
   return (
     <SafeAreaView
       style={{ height: "100%", width: "100%", backgroundColor: "#fff" }}
@@ -87,6 +115,7 @@ const SupplierDetailsScreen = () => {
             fontSize: 14,
             padding: 10,
           }}
+          onPress={() => loadListing()}
         >
           Products
         </Text>

@@ -11,13 +11,17 @@ import React from "react";
 import HomePageHeader from "../../../components/ConsumerHeader/HomePageHeader";
 import { AntDesign, Fontisto } from "@expo/vector-icons";
 import Product from "../../../components/ConsumerHeader/Product";
+<<<<<<< HEAD
 import { SafeAreaView } from "react-native-safe-area-context";
 //import axios from "../../../api-config/api_config";
 import axios from "axios";
+=======
+>>>>>>> baf77fb46fdb35852c3731ed4d92ab1b7b68880a
 
-//import { SafeAreaView } from "react-native-safe-area-context";
 import { ScrollView } from "react-native-virtualized-view";
+import api from "../../../api-config/api_config";
 
+<<<<<<< HEAD
 let products;
 const loadData = () => {
   const baseUrl = "https://aquawaterapp.herokuapp.com";
@@ -134,11 +138,31 @@ const loadData = () => {
 
 const HomeScreen = ({ stackScreensNavigation: navigation }) => {
   loadData();
+=======
+
+const HomeScreen = ({ stackScreensNavigation: navigation }) => {
+
+  const [_products, _updateProducts] = React.useState([]);
+
+  function getProducts() {
+    api.get("/api/Company/GetAllCompaniesWithFeaturedProduct")
+    .then(response => {
+      _updateProducts([...response.data.pageItems])
+    })
+    .catch(error => {
+      console.log(error);
+    })
+  }
+
+  React.useEffect(function() {
+    getProducts()
+  }, []);
+
+>>>>>>> baf77fb46fdb35852c3731ed4d92ab1b7b68880a
   return (
     <SafeAreaProvider>
       <View style={{ height: "100%", width: "100%" }}>
-        <HomePageHeader />
-        {/* <ScrollView> */}
+        <HomePageHeader navigation={navigation} />
         <View style={{ width: "100%", height: "100%" }}>
           <ScrollView style={{ padding: 20 }}>
             <TouchableWithoutFeedback
@@ -187,16 +211,13 @@ const HomeScreen = ({ stackScreensNavigation: navigation }) => {
             <View style={{ width: "100%", flex: 1, justifyContent: "center" }}>
               <FlatList
                 numColumns={2}
-                data={products}
+                data={_products}
                 scrollEnabled={true}
                 keyExtractor={(_, index) => index.toString()}
                 renderItem={({ item, index }) => (
                   <Product
-                    product={item}
+                    item={item}
                     index={index}
-                    style={{
-                      backgroundColor: "#000",
-                    }}
                     navigation={navigation}
                   />
                 )}
@@ -208,8 +229,6 @@ const HomeScreen = ({ stackScreensNavigation: navigation }) => {
             </View>
           </ScrollView>
         </View>
-
-        {/* </ScrollView> */}
       </View>
     </SafeAreaProvider>
   );

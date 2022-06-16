@@ -3,11 +3,15 @@ import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import AppFlow from "./AppFlow";
 import Login from "./Login";
+import ForgotPasswordScreen from "./src/screens/ForgotPasswordScreen";
+import CreateNewPasswordScreen from "./src/screens/CreateNewPasswordScreen";
+import ForgotPassword from "./src/screens/ForgotPasswordScreen/ForgotPasswordScreen";
+import SupplierDetailsScreen from "./src/screens/consumer-screens/suppliersdetails/SupplierDetailsScreen";
 
 export default function App() {
   return (
     <>
-      <Login />
+      <SupplierDetailsScreen />
     </>
   );
 }

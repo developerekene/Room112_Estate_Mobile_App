@@ -1,5 +1,11 @@
 import React from "react";
-import { View, Text, Image, StyleSheet, TouchableHighlight } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableHighlight,
+} from "react-native";
 import { AntDesign } from "react-native-vector-icons";
 
 const Product = ({ product, index, navigation }) => {
@@ -8,32 +14,46 @@ const Product = ({ product, index, navigation }) => {
     index % 2 > 0 ? { paddingLeft: 5 } : { paddingRight: 5 };
   return (
     <View style={[{ width: "50%" }, containerPadding]}>
-          <View style={[styles.container, {}]}>
-            <TouchableHighlight underlayColor="#00000010" onPress={() => {
-              navigation.navigate("ProdcutDetails")
-            }}>
-              <>
-                <View style={{ height: 90 }}>
-                  <Image style={styles.card} source={imageUrl} />
-                  <View style={styles.ratingNo}>
-                    <Text style={[styles.rating, { color: "#000" }]}>{rating}</Text>
+      <View style={styles.container}>
+        <View style={{ height: 90 }}>
+          <Image style={styles.card} source={{ uri: imageUrl }} />
+          <View style={styles.ratingNo}>
+            <Text style={[styles.rating, { color: "#000" }]}>{rating}</Text>
+
+            <View style={[styles.container, {}]}>
+              <TouchableHighlight
+                underlayColor="#00000010"
+                onPress={() => {
+                  navigation.navigate("ProdcutDetails");
+                }}
+              >
+                <>
+                  <View style={{ height: 90 }}>
+                    <Image style={styles.card} source={imageUrl} />
+                    <View style={styles.ratingNo}>
+                      <Text style={[styles.rating, { color: "#000" }]}>
+                        {rating}
+                      </Text>
+                    </View>
                   </View>
-                </View>
-                <Text style={styles.companyText}>{company}</Text>
-                <Text style={styles.addressText}>{address}</Text>
-                <View style={styles.priceQuantity}>
-                  <Text style={styles.priceText}>{price}</Text>
-                  <Text style={styles.quantityText}> {quantity}</Text>
-                </View>
-              
-                <View style={styles.products_links}>
-                  <Text style={styles.linkText}>{link}</Text>
-                  <AntDesign name="right" size={14} color="#147DF5" />
-                </View>
-              </>
-            </TouchableHighlight>
+                  <Text style={styles.companyText}>{company}</Text>
+                  <Text style={styles.addressText}>{address}</Text>
+                  <View style={styles.priceQuantity}>
+                    <Text style={styles.priceText}>{price}</Text>
+                    <Text style={styles.quantityText}> {quantity}</Text>
+                  </View>
+
+                  <View style={styles.products_links}>
+                    <Text style={styles.linkText}>{link}</Text>
+                    <AntDesign name="right" size={14} color="#147DF5" />
+                  </View>
+                </>
+              </TouchableHighlight>
+            </View>
           </View>
+        </View>
       </View>
+    </View>
   );
 };
 
